@@ -15,6 +15,7 @@ const Hero = () => {
 
   return (
     <Box
+    id="inicio"
       sx={{
         position: "relative",
         height: "100vh",
