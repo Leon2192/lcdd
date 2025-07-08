@@ -1,104 +1,191 @@
-import { Box, Typography, useMediaQuery, useTheme, Button, Fade } from "@mui/material";
-import { useState, useEffect } from "react";
+import {
+  Box,
+  Grid,
+  Typography,
+  Card,
+  CardContent,
+  CardMedia,
+  Button,
+  useMediaQuery,
+} from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
-const Hero = () => {
+const HeroSection = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-  const [show, setShow] = useState(false);
 
-  useEffect(() => {
-    const timer = setTimeout(() => setShow(true), 100); // delay leve para suavidad
-    return () => clearTimeout(timer);
-  }, []);
-
-  const desktopImage = "/images/book.jpg";
-  const mobileImage = "/images/book.jpg";
+  const cards = [
+    {
+      title: "Invitacion XV",
+      description: "Dejá tu mensaje en el recuerdo.",
+      image: "/images/15.jpg",
+      shift: true,
+      link: "https://tmp-xv.vercel.app/",
+    },
+    {
+      title: "Invitacion Casamiento",
+      description: "¡Sobreviví al día después!",
+      image: "/images/test4.jpeg",
+      highlight: true,
+      link: "https://tmp-premium.vercel.app/",
+    },
+    {
+      title: "Codigo QR",
+      description: "Un mensaje de corazón grabado.",
+      image: "/images/qr.webp",
+      shift: true,
+      link: "https://template-prem.vercel.app/",
+    },
+  ];
 
   return (
     <Box
-      id="inicio"
       sx={{
-        position: "relative",
-        height: "100vh",
-        minHeight: "600px",
-        width: "100vw",
-        backgroundImage: `url(${isMobile ? mobileImage : desktopImage})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
+        py: { xs: 6, md: 10 },
+        px: { xs: 2, md: 4 },
+        pt: { xs: 14, md: 10 }, // más espacio arriba en mobile
+        backgroundColor: "#fce4ec",
         overflow: "hidden",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        px: 2,
       }}
     >
-      <Fade in={show} timeout={1200}>
-        <Box
-          sx={{
-            textAlign: "center",
-            color: "#fff",
-            maxWidth: 700,
-            px: { xs: 2, sm: 3 },
-          }}
-        >
-          <Typography
-            sx={{
-              fontSize: { xs: "1.6rem", sm: "2.2rem", md: "2.8rem" },
-              fontWeight: "bold",
-              mb: 2,
-              fontFamily:
-                "'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif",
-            }}
-          >
-            Invitaciones digitales para tu evento
-          </Typography>
+      <Grid container spacing={4} alignItems="center">
+        {/* COLUMNA IZQUIERDA */}
+        <Grid item xs={12} md={6}>
+          <Box sx={{ textAlign: { xs: "center", md: "left" } }}>
+            <Typography
+              variant="h3"
+              sx={{
+                fontSize: { xs: "2rem", sm: "2.5rem", md: "3rem" },
+                fontWeight: "bold",
+                color: "#c2185b",
+                mb: 2,
+                fontFamily: "'Playfair Display', serif",
+              }}
+            >
+              BIENVENIDO
+            </Typography>
 
-          <Typography
-            sx={{
-              fontSize: { xs: "0.95rem", sm: "1rem" },
-              fontWeight: 300,
-              lineHeight: 1.5,
-              mb: 3,
-              fontFamily:
-                "'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif",
-            }}
-          >
-            ¡Tu día más especial merece una invitación única!
-            <br />
-            Hacemos que compartir tu invitación con tus seres queridos
-            es tan simple como enviar un enlace.
-            <br />
-            ¡Conocé nuestros modelos!
-          </Typography>
+            <Typography
+              variant="h5"
+              sx={{
+                fontSize: { xs: "1.2rem", sm: "1.4rem", md: "1.5rem" },
+                color: "#303f9f",
+                mb: 2,
+              }}
+            >
+              INVITACIONES DIGITALES PARA TU EVENTO
+            </Typography>
 
-          <Button
-            variant="outlined"
-            href="#invitaciones"
+            <Typography
+              sx={{
+                mb: 3,
+                fontSize: { xs: "1rem", sm: "1.1rem" },
+                whiteSpace: "pre-line",
+              }}
+            >
+              {`¡Tu día más especial merece una invitación única!
+Hacemos que compartir tu invitación con tus seres queridos sea simple.
+¡Conocé nuestros modelos!`}
+            </Typography>
+
+            <Button
+              component="a"
+              href="#invitaciones"
+              variant="outlined"
+              sx={{
+                borderRadius: 999,
+                px: 4,
+                borderColor: "#84cc16",
+                color: "#84cc16",
+                fontWeight: "bold",
+                textTransform: "none",
+                "&:hover": {
+                  backgroundColor: "#84cc16",
+                  color: "#fff",
+                  borderColor: "#84cc16",
+                },
+              }}
+            >
+              VER MÁS
+            </Button>
+          </Box>
+        </Grid>
+
+        {/* COLUMNA DERECHA */}
+        <Grid item xs={12} md={6}>
+          <Box
             sx={{
-              color: "#fff",
-              borderColor: "#fff",
-              borderRadius: 999,
-              px: 4,
-              py: 1,
-              fontWeight: 500,
-              fontSize: "1rem",
-              fontFamily:
-                "'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif",
-              transition: "all 0.3s ease",
-              "&:hover": {
-                backgroundColor: "rgba(255, 255, 255, 0.2)",
-                borderColor: "#fff",
-                color: "#fff",
-              },
+              display: "flex",
+              flexDirection: { xs: "column", md: "row" },
+              justifyContent: { xs: "center", md: "center" },
+              alignItems: { xs: "center", md: "flex-start" },
+              gap: 3,
+              flexWrap: "wrap",
             }}
           >
-            Ver modelos
-          </Button>
-        </Box>
-      </Fade>
+            {cards.map((card, index) => (
+              <Card
+                key={index}
+                sx={{
+                  width: isMobile ? "90%" : 180,
+                  height: card.highlight ? 400 : 320,
+                  mt: isMobile ? 0 : card.shift ? "40px" : "0px",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "space-between",
+                  boxShadow: 3,
+                  borderRadius: 3,
+                  transition: "transform 0.3s ease",
+                  "&:hover": {
+                    transform: "translateY(-5px)",
+                  },
+                }}
+              >
+                <CardMedia
+                  component="img"
+                  height="140"
+                  image={card.image}
+                  alt={card.title}
+                />
+                <CardContent
+                  sx={{ display: "flex", flexDirection: "column", gap: 1 }}
+                >
+                  <Typography variant="subtitle1" fontWeight="bold">
+                    {card.title}
+                  </Typography>
+                  <Typography variant="body2" color="text.secondary">
+                    {card.description}
+                  </Typography>
+                  <Button
+                    component="a"
+                    href={card.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    variant="outlined"
+                    sx={{
+                      mt: 1,
+                      borderRadius: 999,
+                      borderColor: "#84cc16",
+                      color: "#84cc16",
+                      textTransform: "none",
+                      fontWeight: "bold",
+                      "&:hover": {
+                        backgroundColor: "#84cc16",
+                        borderColor: "#84cc16",
+                        color: "#fff",
+                      },
+                    }}
+                  >
+                    Ver más
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </Box>
+        </Grid>
+      </Grid>
     </Box>
   );
 };
 
-export default Hero;
+export default HeroSection;
