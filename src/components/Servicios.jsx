@@ -134,27 +134,35 @@ import {
                         {producto.subtitle}
                       </Typography>
                     </Box>
-                    <Button
-  variant="outlined"
-  sx={{
-    borderRadius: 999,
-    px: 3,
-    py: 0.8,
-    fontSize: "0.9rem",
-    fontWeight: 500,
-    color: "#555",
-    borderColor: "#bbb",
-    fontFamily:
-      "'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif",
-    transition: "all 0.3s ease",
-    "&:hover": {
-      backgroundColor: "#f0e6f6",
-      borderColor: "#aaa",
-    },
-  }}
+                    <a
+  href="https://wa.me/5491127682286"
+  target="_blank"
+  rel="noopener noreferrer"
+  style={{ textDecoration: "none" }}
 >
-  Ver más
-</Button>
+  <Button
+    variant="outlined"
+    sx={{
+      borderRadius: 999,
+      px: 3,
+      py: 0.8,
+      fontSize: "0.9rem",
+      fontWeight: 500,
+      color: "#555",
+      borderColor: "#bbb",
+      fontFamily:
+        "'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif",
+      transition: "all 0.3s ease",
+      "&:hover": {
+        backgroundColor: "#f0e6f6",
+        borderColor: "#aaa",
+      },
+    }}
+  >
+   Consultar servicio
+  </Button>
+</a>
+
 
                   </CardContent>
                 </Card>

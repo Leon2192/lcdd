@@ -57,7 +57,7 @@ const NuevoServicio = () => {
           variant="subtitle1"
           sx={{ color: "#666", fontSize: "1.2rem", lineHeight: 1.3 }}
         >
-          Invitaciones digitales para compartir en un clic. Modernas, personalizadas y listas para emocionar desde el celular. INvitaciones fisicas para entregar con amor. Disenos unicos con papeles especiales y todos los detalles que hacen la diferencia.EN pantalla o en mano, cada invitacion es un recuerdo inolvidable.
+          Invitaciones digitales para compartir en un clic. Modernas, personalizadas y listas para emocionar desde el celular. Invitaciones fisicas para entregar con amor. Disenos unicos con papeles especiales y todos los detalles que hacen la diferencia.EN pantalla o en mano, cada invitacion es un recuerdo inolvidable.
         </Typography>
       </Box>
 

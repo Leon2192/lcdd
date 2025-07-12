@@ -17,46 +17,47 @@ import { useInView } from "react-intersection-observer";
 
 const items = [
   {
-    icon: <PhotoCameraIcon sx={{ fontSize: 50, color: "#f8bbd0" }} />,
+    icon: <PhotoCameraIcon sx={{ fontSize: 50, color: "#424242" }} />,
     title: "Galería de fotos",
     subtitle: "Todas tus fotos significativas",
   },
   {
-    icon: <CalendarTodayIcon sx={{ fontSize: 50, color: "#b3e5fc" }} />,
+    icon: <CalendarTodayIcon sx={{ fontSize: 50, color: "#424242" }} />,
     title: "Asistencia",
     subtitle: "Confirmación de asistencia online.",
   },
   {
-    icon: <MapIcon sx={{ fontSize: 50, color: "#c8e6c9" }} />,
+    icon: <MapIcon sx={{ fontSize: 50, color: "#424242" }} />,
     title: "GPS",
     subtitle: "Indicaciones para llegar al evento.",
   },
   {
-    icon: <CardGiftcardIcon sx={{ fontSize: 50, color: "#d1c4e9" }} />,
+    icon: <CardGiftcardIcon sx={{ fontSize: 50, color: "#424242" }} />,
     title: "Lista de regalos",
     subtitle: "Info sobre listas, cuentas bancarias y demás.",
   },
   {
-    icon: <CheckroomIcon sx={{ fontSize: 50, color: "#ffe0b2" }} />,
+    icon: <CheckroomIcon sx={{ fontSize: 50, color: "#424242" }} />,
     title: "Dresscode",
     subtitle: "Info de vestimenta para tus invitados.",
   },
   {
-    icon: <MusicNoteIcon sx={{ fontSize: 50, color: "#b2dfdb" }} />,
+    icon: <MusicNoteIcon sx={{ fontSize: 50, color: "#424242" }} />,
     title: "Musicalización",
     subtitle: "Tu canción preferida sonando en tu invite.",
   },
   {
-    icon: <QueueMusicIcon sx={{ fontSize: 50, color: "#f48fb1" }} />,
+    icon: <QueueMusicIcon sx={{ fontSize: 50, color: "#424242" }} />,
     title: "Playlist",
     subtitle: "Sugerencia de canciones para tu fiesta.",
   },
   {
-    icon: <InfoOutlinedIcon sx={{ fontSize: 50, color: "#cfd8dc" }} />,
+    icon: <InfoOutlinedIcon sx={{ fontSize: 50, color: "#424242" }} />,
     title: "Información útil",
     subtitle: "Alojamientos, transportes y más.",
   },
 ];
+
 
 const InfoGrid = () => {
   const { ref, inView } = useInView({
@@ -71,7 +72,7 @@ const InfoGrid = () => {
         py: 6,
         px: 3,
         textAlign: "center",
-        backgroundColor: "#f9f9f9",
+        // backgroundColor: "#f9f9f9",
         fontFamily: "'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif",
       }}
     >
