@@ -1,96 +1,67 @@
 import {
   Box,
-  Typography,
   Grid,
+  Typography,
   Card,
-  CardMedia,
-  Fade,
+  CardContent,
+  Button,
 } from "@mui/material";
 import { useInView } from "react-intersection-observer";
 
-const servicios = [
-  {
-    image: "/images/qr.webp",
-    alt: "Stand de glitter",
-  },
-  {
-    image: "/images/qr2.avif",
-    alt: "Cabina 360",
-  },
-  {
-    image: "/images/qr3.webp",
-    alt: "Audio Guestbook",
-  },
-];
+// const servicios = [
+//   {
+//     image: "/imagenes/bat.jpg",
+//     title: "15 AÑOS",
+//     subtitle: "Fiestas temáticas inolvidables para cada estilo.",
+//   },
+//   {
+//     image: "/imagenes/decocasamiento.jpeg",
+//     title: "CASAMIENTOS",
+//     subtitle: "Detalles únicos para el día más importante.",
+//   },
+//   {
+//     image: "/imagenes/15.avif",
+//     title: "CUMPLEAÑOS",
+//     subtitle: "Celebraciones llenas de magia y personalización.",
+//   },
+// ];
 
 const NuevoServicio = () => {
-  const { ref, inView } = useInView({
-    triggerOnce: true, // solo una vez
-    threshold: 0.2, // porcentaje visible para activar
+  const { ref } = useInView({
+    triggerOnce: true,
+    threshold: 0.2,
   });
 
   return (
     <Box
+      id="servicios"
       ref={ref}
       sx={{
         py: 6,
-        px: 2,
+        px: 3,
         textAlign: "center",
-        fontFamily: "'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif",
+        backgroundColor: "#f9f9f9",
+        fontFamily:
+          "'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif",
       }}
     >
       <Typography
         variant="h4"
-        sx={{
-          fontWeight: "bold",
-          color: "#333",
-          mb: 1,
-        }}
+        sx={{ fontWeight: "bold", color: "#555", mb: 2 }}
       >
-        ¡Nuevo Servicio!
+        ¿Qué hacemos?
       </Typography>
 
-      <Typography
-        variant="body1"
-        sx={{
-          color: "#666",
-          mb: 4,
-          fontSize: { xs: "1rem", sm: "1.1rem" },
-        }}
-      >
-        Descubrí las nuevas propuestas que tenemos para tu evento
-      </Typography>
+      <Box sx={{ maxWidth: 800, mx: "auto", mb: 4 }}>
+        <Typography
+          variant="subtitle1"
+          sx={{ color: "#666", fontSize: "1.2rem", lineHeight: 1.3 }}
+        >
+          Invitaciones digitales para compartir en un clic. Modernas, personalizadas y listas para emocionar desde el celular. INvitaciones fisicas para entregar con amor. Disenos unicos con papeles especiales y todos los detalles que hacen la diferencia.EN pantalla o en mano, cada invitacion es un recuerdo inolvidable.
+        </Typography>
+      </Box>
 
-      <Grid container spacing={3} justifyContent="center">
-        {servicios.map((servicio, index) => (
-          <Grid item xs={12} sm={6} md={4} key={index}>
-            <Fade
-              in={inView}
-              style={{ transitionDelay: `${index * 300}ms` }}
-              timeout={800}
-            >
-              <Card
-                sx={{
-                  height: 400,
-                  borderRadius: 3,
-                  overflow: "hidden",
-                  boxShadow: 4,
-                }}
-              >
-                <CardMedia
-                  component="img"
-                  image={servicio.image}
-                  alt={servicio.alt}
-                  sx={{
-                    height: "100%",
-                    objectFit: "cover",
-                  }}
-                />
-              </Card>
-            </Fade>
-          </Grid>
-        ))}
-      </Grid>
+     
     </Box>
   );
 };

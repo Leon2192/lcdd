@@ -1,171 +1,164 @@
 import {
     Box,
-    Grid,
     Typography,
+    Grid,
     Card,
     CardContent,
+    CardMedia,
+    Fade,
     Button,
   } from "@mui/material";
+  import { useInView } from "react-intersection-observer";
   
-  import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
-  import FavoriteIcon from "@mui/icons-material/Favorite";
-  import GroupIcon from "@mui/icons-material/Group";
-  import CelebrationIcon from "@mui/icons-material/Celebration";
-  import WorkspacePremiumIcon from "@mui/icons-material/WorkspacePremium";
-  import HotelClassIcon from "@mui/icons-material/HotelClass";
-  
-  const servicios = [
+  const productos = [
     {
-      icon: <WorkspacePremiumIcon sx={{ fontSize: 40, color: "#f8bbd0" }} />,
-      title: "Invitación BLACK",
-      description:
-        "La opción más completa: incluye Dress Code, Instagram Wall, sugerencia de canciones y más.",
-      url: "https://tmp-premium.vercel.app/",
+      image: "/imagenes/ifisica.jpeg",
+      title: "Invitaciones impresas",
+      subtitle:
+        "Invitaciones con papel importado, creadas especialmente para vos. Con el mismo estilo creamos la decoración de tu fiesta!",
     },
     {
-      icon: <EmojiEventsIcon sx={{ fontSize: 40, color: "#b3e5fc" }} />,
-      title: "Invitación PREMIUM",
-      description:
-        "Todas las funciones básicas más cuenta regresiva y álbum con hasta 10 fotos de la pareja.",
-      url: "https://template-prem.vercel.app/",
+      image: "/imagenes/idigital.webp",
+      title: "Invitaciones digitales",
+      subtitle:
+        "Diseñamos tus invitaciones digitales para enviar por mail o whatsapp!",
     },
     {
-      icon: <HotelClassIcon sx={{ fontSize: 40, color: "#c8e6c9" }} />,
-      title: "Invitación TRADICIONAL",
-      description:
-        "Funciones esenciales: RSVP online, fotos de la pareja, y toda la info para tus invitados.",
-      url: "https://tmp-classic.vercel.app/",
-    },
-    {
-      icon: <CelebrationIcon sx={{ fontSize: 40, color: "#ffe0b2" }} />,
-      title: "Invitación 15 años",
-      description:
-        "Todas las funcionalidades pensadas para compartir los detalles de tu fiesta de 15 con todos.",
-      url: "https://tmp-xv.vercel.app/",
+      image: "/imagenes/souvenirs.jpeg",
+      title: "Souvenirs personalizados",
+      subtitle:
+        "Regalá a tus invitados un souvenir super original para que nunca se olviden de tu fiesta!",
     },
   ];
   
   const Servicios = () => {
+    const { ref, inView } = useInView({
+      triggerOnce: true,
+      threshold: 0.2,
+    });
+  
     return (
       <Box
-      id="invitaciones"
+        ref={ref}
         sx={{
           py: 6,
-          px: 3,
+          px: 2,
           textAlign: "center",
-          backgroundColor: "#f9f9f9",
           fontFamily:
             "'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif",
         }}
       >
         <Typography
           variant="h4"
-          sx={{ fontWeight: "bold", color: "#555", mb: 4 }}
+          sx={{
+            fontWeight: "bold",
+            color: "#333",
+            mb: 4,
+          }}
         >
-          Servicios que ofrecemos
+          Nuestros productos
         </Typography>
   
         <Grid container spacing={4} justifyContent="center">
-          {servicios.map((servicio, index) => (
-            <Grid item xs={12} md={6} key={index}>
-              <Card
-                sx={{
-                  height: "100%",
-                  minHeight: 340,
-                  borderRadius: 3,
-                  boxShadow: "0 4px 10px rgba(0,0,0,0.06)",
-                  backgroundColor: "#fff",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "space-between",
-                  textAlign: "center",
-                  padding: 3,
-                  transition: "transform 0.3s ease",
-                  "&:hover": {
-                    transform: "translateY(-5px)",
-                  },
-                }}
+          {productos.map((producto, index) => (
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              md={4}
+              key={index}
+              display="flex"
+              justifyContent="center"
+            >
+              <Fade
+                in={inView}
+                timeout={800}
+                style={{ transitionDelay: `${index * 300}ms` }}
               >
-                <Box
+                <Card
                   sx={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                  }}
-                >
-                  {servicio.icon}
-                </Box>
-  
-                <CardContent
-                  sx={{
-                    flexGrow: 1,
+                    width: 300,
+                    height: 460,
+                    borderRadius: 3,
+                    overflow: "hidden",
+                    boxShadow: 4,
                     display: "flex",
                     flexDirection: "column",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    padding: 0,
-                    mt: 2,
                   }}
                 >
-                  <Typography
-                    variant="h6"
+                  <CardMedia
+                    component="img"
+                    image={producto.image}
+                    alt={producto.title}
                     sx={{
-                      fontWeight: "bold",
-                      color: "#555",
-                      mb: 1,
-                      maxWidth: 280,
+                      height: 200,
+                      objectFit: "cover",
+                    }}
+                  />
+                  <CardContent
+                    sx={{
+                      flexGrow: 1,
+                      px: 2,
+                      py: 2,
+                      display: "flex",
+                      flexDirection: "column",
+                      justifyContent: "space-between",
                       textAlign: "center",
-                      wordBreak: "break-word",
                     }}
                   >
-                    {servicio.title}
-                  </Typography>
-  
-                  <Typography
-                    sx={{
-                      color: "#777",
-                      fontSize: "0.95rem",
-                      maxWidth: 280,
-                      textAlign: "center",
-                      lineHeight: 1.4,
-                      wordBreak: "break-word",
-                    }}
-                  >
-                    {servicio.description}
-                  </Typography>
-  
-                  <Box sx={{ mt: 3 }}>
-                    <a
-                      href={servicio.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      style={{ textDecoration: "none" }}
-                    >
-                      <Button
-                        variant="outlined"
+                    <Box>
+                      <Typography
+                        variant="h6"
+                        fontWeight="bold"
+                        gutterBottom
                         sx={{
-                          borderRadius: 999,
-                          px: 3,
-                          py: 0.8,
-                          fontSize: "0.9rem",
-                          fontWeight: 500,
-                          color: "#555",
-                          borderColor: "#bbb",
-                          fontFamily:
-                            "'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif",
-                          transition: "all 0.3s ease",
-                          "&:hover": {
-                            backgroundColor: "#f0e6f6",
-                            borderColor: "#aaa",
-                          },
+                          fontSize: "1.15rem",
+                          lineHeight: 1.4,
                         }}
                       >
-                        Ver Demo
-                      </Button>
-                    </a>
-                  </Box>
-                </CardContent>
-              </Card>
+                        {producto.title}
+                      </Typography>
+                      <Typography
+                        variant="body1"
+                        color="text.secondary"
+                        sx={{
+                          fontSize: "1rem",
+                          lineHeight: 1.6,
+                          overflow: "hidden",
+                          textOverflow: "ellipsis",
+                          display: "-webkit-box",
+                          WebkitLineClamp: 3,
+                          WebkitBoxOrient: "vertical",
+                        }}
+                      >
+                        {producto.subtitle}
+                      </Typography>
+                    </Box>
+                    <Button
+  variant="outlined"
+  sx={{
+    borderRadius: 999,
+    px: 3,
+    py: 0.8,
+    fontSize: "0.9rem",
+    fontWeight: 500,
+    color: "#555",
+    borderColor: "#bbb",
+    fontFamily:
+      "'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif",
+    transition: "all 0.3s ease",
+    "&:hover": {
+      backgroundColor: "#f0e6f6",
+      borderColor: "#aaa",
+    },
+  }}
+>
+  Ver más
+</Button>
+
+                  </CardContent>
+                </Card>
+              </Fade>
             </Grid>
           ))}
         </Grid>

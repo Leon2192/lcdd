@@ -4,19 +4,21 @@ import Footer from "./components/Footer"
 import Navbar from './components/Navbar'
 import NuevoServicio from './components/New'
 import InfoGrid from './components/Infogrid'
-import Servicios from './components/Servicios'
+import Invitaciones from './components/Invitaciones'
 import Whatsapp from './components/Whatsapp'
+import Servicios from './components/Servicios'
 
 function App() {
 
 
   return (
     <>
-    <Navbar/>
+    {/* <Navbar/> */}
     <Hero />
     <NuevoServicio/>
+    <Servicios/>
+    <Invitaciones/>
     <InfoGrid/>
-   <Servicios/>
     <Footer/>
     <Whatsapp />
     </>
