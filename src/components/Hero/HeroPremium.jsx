@@ -63,7 +63,7 @@ background: {
           description: "Con QR tu invitacion se comparte facil y tus invitados tambien sus fotos .",
           image: "/images/qr.webp",
           highlight: true,
-          link: "https://template-prem.vercel.app/",
+          link: "https://tmp-qr.vercel.app/",
         },
         {
           title: " Casamiento",
