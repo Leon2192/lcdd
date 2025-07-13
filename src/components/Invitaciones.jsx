@@ -13,13 +13,21 @@ import {
   import CelebrationIcon from "@mui/icons-material/Celebration";
   import WorkspacePremiumIcon from "@mui/icons-material/WorkspacePremium";
   import HotelClassIcon from "@mui/icons-material/HotelClass";
+  import QrCodeIcon from "@mui/icons-material/QrCode";
   
   const servicios = [
+    {
+      icon: <QrCodeIcon sx={{ fontSize: 40, color: "#ffe0b2" }} />,
+      title: "Invitación QR",
+      description:
+        "La opción más completa: incluye Dress Code, Instagram Wall, sugerencia de canciones y más.",
+      url: "https://tmp-qr.vercel.app/",
+    },
     {
       icon: <WorkspacePremiumIcon sx={{ fontSize: 40, color: "#f8bbd0" }} />,
       title: "Invitación BLACK",
       description:
-        "La opción más completa: incluye Dress Code, Instagram Wall, sugerencia de canciones y más.",
+        "Incluye Dress Code, Instagram Wall, sugerencia de canciones y más.",
       url: "https://tmp-premium.vercel.app/",
     },
     {
