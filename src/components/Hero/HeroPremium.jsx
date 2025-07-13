@@ -30,7 +30,7 @@ const Hero = () => {
   const links = [
     { label: "Inicio", href: "#inicio" },
     { label: "Invitaciones", href: "#invitaciones" },
-    { label: "Preguntas frecuentes", href: "#invitaciones" },
+    { label: "Preguntas frecuentes", href: "#faqs" },
     { label: "Contacto", href: "#contacto" },
   ];
 
