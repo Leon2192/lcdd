@@ -1,30 +1,5 @@
-import {
-  Box,
-  Grid,
-  Typography,
-  Card,
-  CardContent,
-  Button,
-} from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import { useInView } from "react-intersection-observer";
-
-// const servicios = [
-//   {
-//     image: "/imagenes/bat.jpg",
-//     title: "15 AÑOS",
-//     subtitle: "Fiestas temáticas inolvidables para cada estilo.",
-//   },
-//   {
-//     image: "/imagenes/decocasamiento.jpeg",
-//     title: "CASAMIENTOS",
-//     subtitle: "Detalles únicos para el día más importante.",
-//   },
-//   {
-//     image: "/imagenes/15.avif",
-//     title: "CUMPLEAÑOS",
-//     subtitle: "Celebraciones llenas de magia y personalización.",
-//   },
-// ];
 
 const NuevoServicio = () => {
   const { ref } = useInView({
@@ -39,29 +14,71 @@ const NuevoServicio = () => {
       sx={{
         py: 6,
         px: 3,
-        textAlign: "center",
+        mt:4,
         backgroundColor: "#f9f9f9",
         fontFamily:
           "'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif",
       }}
     >
-      <Typography
-        variant="h4"
-        sx={{ fontWeight: "bold", color: "#555", mb: 2 }}
+      <Grid
+        container
+        spacing={4}
+        justifyContent="space-around"
+        alignItems="center"
+        maxWidth="lg"
+        margin="0 auto"
       >
-        ¿Qué hacemos?
-      </Typography>
+        {/* Columna izquierda */}
+        <Grid item xs={12} md={5}>
+          <Box
+            sx={{
+              textAlign: "center",
+              maxWidth: "500px",
+              mx: "auto",
+            }}
+          >
+            <Typography
+              variant="h4"
+              sx={{ fontWeight: "bold", color: "#555", mb: 2 }}
+            >
+              ¿Qué hacemos?
+            </Typography>
 
-      <Box sx={{ maxWidth: 800, mx: "auto", mb: 4 }}>
-        <Typography
-          variant="subtitle1"
-          sx={{ color: "#666", fontSize: "1.2rem", lineHeight: 1.3 }}
-        >
-          Invitaciones digitales para compartir en un clic. Modernas, personalizadas y listas para emocionar desde el celular. Invitaciones fisicas para entregar con amor. Disenos unicos con papeles especiales y todos los detalles que hacen la diferencia.EN pantalla o en mano, cada invitacion es un recuerdo inolvidable.
-        </Typography>
-      </Box>
+            <Typography
+              variant="subtitle1"
+              sx={{ color: "#666", fontSize: "1.2rem", lineHeight: 1.4 }}
+            >
+              Invitaciones digitales para compartir en un clic. Modernas,
+              personalizadas y listas para emocionar desde el celular.
+              Invitaciones físicas para entregar con amor. Diseños únicos con
+              papeles especiales y todos los detalles que hacen la diferencia.
+              En pantalla o en mano, cada invitación es un recuerdo inolvidable.
+            </Typography>
+          </Box>
+        </Grid>
 
-     
+        {/* Columna derecha con imagen */}
+        <Grid item xs={12} md={5}>
+          <Box
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            height="100%"
+          >
+            <Box
+              component="img"
+              src="/imagenes/idigital.webp"
+              alt="QR"
+              sx={{
+                maxWidth: "100%",
+                width: { xs: "220px", sm: "300px" },
+                borderRadius: 2,
+                boxShadow: 2,
+              }}
+            />
+          </Box>
+        </Grid>
+      </Grid>
     </Box>
   );
 };
