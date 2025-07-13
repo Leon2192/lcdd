@@ -7,6 +7,7 @@ import InfoGrid from './components/Infogrid'
 import Invitaciones from './components/Invitaciones'
 import Whatsapp from './components/Whatsapp'
 import Servicios from './components/Servicios'
+import Faqs from './components/Faqs'
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
     <Servicios/>
     <Invitaciones/>
     <InfoGrid/>
+    <Faqs/>
     <Footer/>
     <Whatsapp />
     </>
