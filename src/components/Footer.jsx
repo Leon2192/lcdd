@@ -40,8 +40,8 @@ const Footer = () => {
           </Box>
           <Box display="flex" alignItems="center">
             <EmailIcon sx={{ fontSize: 20, color: "text.secondary", mr: 1 }} />
-            <Link href="mailto:lacasadeldetalle@gmail.com" underline="none" sx={{ color: "#009688", fontWeight: 500 }}>
-              lacasadeldetalle@gmail.com
+            <Link href="mailto:contacto.lacasadeldetalle@gmail.com" underline="none" sx={{ color: "#009688", fontWeight: 500 }}>
+              contacto.lacasadeldetalle@gmail.com
             </Link>
           </Box>
         </Grid>
@@ -57,7 +57,7 @@ const Footer = () => {
           <Box display="flex" alignItems="center">
             <InstagramIcon sx={{ fontSize: 20, color: "text.secondary", mr: 1 }} />
             <Link
-              href="https://instagram.com/lacasadeldetalle"
+              href="https://instagram.com/lacasadeldetalle_arg"
               target="_blank"
               underline="none"
               sx={{ color: "#009688", fontWeight: 500 }}
