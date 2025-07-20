@@ -21,35 +21,35 @@ import {
       title: "Invitación QR",
       description:
         "La opción más completa: incluye Dress Code, Instagram Wall, sugerencia de canciones y más.",
-      url: "https://tmp-qr.vercel.app/",
+      url: "https://qr-casamientos.lacasadeldetalle.com.ar/",
     },
     {
       icon: <WorkspacePremiumIcon sx={{ fontSize: 40, color: "#f8bbd0" }} />,
       title: "Invitación BLACK",
       description:
         "Incluye Dress Code, Instagram Wall, sugerencia de canciones y más.",
-      url: "https://tmp-premium.vercel.app/",
+      url: "https://casamientospremium.lacasadeldetalle.com.ar/",
     },
     {
       icon: <EmojiEventsIcon sx={{ fontSize: 40, color: "#b3e5fc" }} />,
       title: "Invitación PREMIUM",
       description:
         "Todas las funciones básicas más cuenta regresiva y álbum con hasta 10 fotos de la pareja.",
-      url: "https://template-prem.vercel.app/",
+      url: "https://premium.lacasadeldetalle.com.ar/",
     },
     {
       icon: <HotelClassIcon sx={{ fontSize: 40, color: "#c8e6c9" }} />,
       title: "Invitación TRADICIONAL",
       description:
         "Funciones esenciales: RSVP online, fotos de la pareja, y toda la info para tus invitados.",
-      url: "https://tmp-classic.vercel.app/",
+      url: "https://classic.lacasadeldetalle.com.ar/",
     },
     {
       icon: <CelebrationIcon sx={{ fontSize: 40, color: "#ffe0b2" }} />,
       title: "Invitación 15 años",
       description:
         "Todas las funcionalidades pensadas para compartir los detalles de tu fiesta de 15 con todos.",
-      url: "https://tmp-xv.vercel.app/",
+      url: "https://fiestasxv.lacasadeldetalle.com.ar/",
     },
   ];
   
