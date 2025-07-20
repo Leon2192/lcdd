@@ -24,7 +24,7 @@ const Footer = () => {
           <Box display="flex" alignItems="center" mb={1}>
             <WhatsAppIcon sx={{ fontSize: 20, color: "#4caf50", mr: 1 }} />
             <Link
-              href="https://wa.me/541127682286"
+              href="https://wa.me/541135939460"
               target="_blank"
               underline="none"
               sx={{ color: "#009688", fontWeight: 500 }}
@@ -35,7 +35,7 @@ const Footer = () => {
           <Box display="flex" alignItems="center" mb={1}>
             <PhoneIcon sx={{ fontSize: 20, color: "text.secondary", mr: 1 }} />
             <Typography variant="body2" color="text.secondary">
-              +54 11 27682286 | +54 11 21650320
+              +54 11 35939460 | +54 11 21650320
             </Typography>
           </Box>
           <Box display="flex" alignItems="center">

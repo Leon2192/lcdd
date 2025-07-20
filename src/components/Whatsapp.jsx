@@ -13,7 +13,7 @@ const Whatsapp = () => {
       }}
     >
       <Link
-        href="https://wa.me/541127682286"
+        href="https://wa.me/541135939460"
         target="_blank"
         rel="noopener noreferrer"
         underline="none"
