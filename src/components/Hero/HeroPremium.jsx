@@ -57,7 +57,7 @@ background: {
           description: "La emocion de tus 15 empoieza aca.",
           image: "/images/15.jpg",
           shift: true,
-          link: "https://fiestasxv.lacasadeldetalle.com.ar/",
+          link: "https://xv.lacasadeldetalle.com.ar/",
         },
         {
           title: "Código QR",
