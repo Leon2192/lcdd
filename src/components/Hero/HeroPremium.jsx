@@ -60,18 +60,18 @@ background: {
           link: "https://xv.lacasadeldetalle.com.ar/",
         },
         {
-          title: "Código QR",
+          title: "Casamientos QR",
           description: "Con QR tu invitacion se comparte facil y tus invitados tambien sus fotos .",
           image: "/images/qr.webp",
           highlight: true,
           link: "https://qr-casamientos.lacasadeldetalle.com.ar/",
         },
         {
-          title: " Casamiento",
+          title: " Casamientos Black",
           description: "¡Romanticas, unicas y listas para compartir!",
           image: "/images/test4.jpeg",
           shift: true,
-          link: "https://casamientospremium.lacasadeldetalle.com.ar/",
+          link: "https://demo21.lacasadeldetalle.com.ar/",
         },
        
       ],
