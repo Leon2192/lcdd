@@ -1,178 +1,90 @@
-import {
-    Box,
-    Typography,
-    Grid,
-    Card,
-    CardContent,
-    CardMedia,
-    Fade,
-    Button,
-  } from "@mui/material";
-  import { useInView } from "react-intersection-observer";
-  
-  const productos = [
-    {
-      image: "/imagenes/ifisica.jpeg",
-      title: "Invitaciones impresas",
-      subtitle:
-        "Invitaciones con papel importado, creadas especialmente para vos. Con el mismo estilo creamos la decoración de tu fiesta!",
-    },
-    {
-      image: "/imagenes/idigital.webp",
-      title: "Invitaciones digitales",
-      subtitle:
-        "Diseñamos tus invitaciones digitales para enviar por mail o whatsapp!",
-    },
-    {
-      image: "/imagenes/souvenirs.jpeg",
-      title: "Souvenirs personalizados",
-      subtitle:
-        "Regalá a tus invitados un souvenir super original para que nunca se olviden de tu fiesta!",
-    },
-  ];
-  
-  const Servicios = () => {
-    const { ref, inView } = useInView({
-      triggerOnce: true,
-      threshold: 0.2,
-    });
-  
-    return (
-      <Box
-        ref={ref}
-        sx={{
-          py: 6,
-          px: 2,
-          textAlign: "center",
-          fontFamily:
-            "'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif",
-        }}
-      >
-        <Typography
-          variant="h4"
-          sx={{
-            fontWeight: "bold",
-            color: "#333",
-            mb: 4,
-          }}
-        >
-          Nuestros productos
-        </Typography>
-  
-        <Grid container spacing={4} justifyContent="center">
-          {productos.map((producto, index) => (
-            <Grid
-              item
-              xs={12}
-              sm={6}
-              md={4}
-              key={index}
-              display="flex"
-              justifyContent="center"
-            >
-              <Fade
-                in={inView}
-                timeout={800}
-                style={{ transitionDelay: `${index * 300}ms` }}
-              >
-                <Card
-                  sx={{
-                    width: 300,
-                    height: 460,
-                    borderRadius: 3,
-                    overflow: "hidden",
-                    boxShadow: 4,
-                    display: "flex",
-                    flexDirection: "column",
-                  }}
-                >
-                  <CardMedia
-                    component="img"
-                    image={producto.image}
-                    alt={producto.title}
-                    sx={{
-                      height: 200,
-                      objectFit: "cover",
-                    }}
-                  />
-                  <CardContent
-                    sx={{
-                      flexGrow: 1,
-                      px: 2,
-                      py: 2,
-                      display: "flex",
-                      flexDirection: "column",
-                      justifyContent: "space-between",
-                      textAlign: "center",
-                    }}
-                  >
-                    <Box>
-                      <Typography
-                        variant="h6"
-                        fontWeight="bold"
-                        gutterBottom
-                        sx={{
-                          fontSize: "1.15rem",
-                          lineHeight: 1.4,
-                        }}
-                      >
-                        {producto.title}
-                      </Typography>
-                      <Typography
-                        variant="body1"
-                        color="text.secondary"
-                        sx={{
-                          fontSize: "1rem",
-                          lineHeight: 1.6,
-                          overflow: "hidden",
-                          textOverflow: "ellipsis",
-                          display: "-webkit-box",
-                          WebkitLineClamp: 3,
-                          WebkitBoxOrient: "vertical",
-                        }}
-                      >
-                        {producto.subtitle}
-                      </Typography>
-                    </Box>
-                    <a
-  href="https://wa.me/5491135939460"
-  target="_blank"
-  rel="noopener noreferrer"
-  style={{ textDecoration: "none" }}
->
-  <Button
-    variant="outlined"
-    sx={{
-      borderRadius: 999,
-      px: 3,
-      py: 0.8,
-      fontSize: "0.9rem",
-      fontWeight: 500,
-      color: "#555",
-      borderColor: "#bbb",
-      fontFamily:
-        "'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif",
-      transition: "all 0.3s ease",
-      "&:hover": {
-        backgroundColor: "#f0e6f6",
-        borderColor: "#aaa",
-      },
-    }}
-  >
-   Consultar servicio
-  </Button>
-</a>
+// src/components/Servicios/Servicios.jsx
+import { Container, Title, Grid, Card, Image, Text } from '@mantine/core';
 
+export function Servicios() {
+  return (
+    <Container size="lg" py="xl" id='servicios'>
+      <Title order={2} ta="center" mb="lg">
+        Nuestros Servicios
+      </Title>
 
-                  </CardContent>
-                </Card>
-              </Fade>
-            </Grid>
-          ))}
-        </Grid>
-      </Box>
-    );
-  };
-  
-  export default Servicios;
-  
+      <Grid gutter="lg">
+        {/* 1) Invitaciones digitales */}
+        <Grid.Col span={{ base: 12, md: 3 }}>
+          <Card shadow="md" radius="md" withBorder>
+            <Card.Section>
+              <Image
+                src="https://i.etsystatic.com/21274866/r/il/55e900/2692058642/il_1080xN.2692058642_daq8.jpg"
+                alt="Invitaciones digitales"
+                height={180}
+              />
+            </Card.Section>
+            <Title order={3} mt="md">
+              Invitaciones digitales
+            </Title>
+            <Text c="dimmed" mt="xs">
+              Invitaciones únicas, modernas y listas para compartir en cualquier dispositivo.
+            </Text>
+          </Card>
+        </Grid.Col>
+
+        {/* 2) Invitaciones físicas */}
+        <Grid.Col span={{ base: 12, md: 3 }}>
+          <Card shadow="md" radius="md" withBorder>
+            <Card.Section>
+              <Image
+                src="https://images.unsplash.com/photo-1641317136698-284db1e10c1b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW52aXRhY2lvbmVzJTIwZmlzaWNhc3xlbnwwfHwwfHx8MA%3D%3D"
+                alt="Invitaciones físicas"
+                height={180}
+              />
+            </Card.Section>
+            <Title order={3} mt="md">
+              Invitaciones físicas
+            </Title>
+            <Text c="dimmed" mt="xs">
+              Diseños impresos en papeles de calidad, con acabados personalizados.
+            </Text>
+          </Card>
+        </Grid.Col>
+
+        {/* 3) Papelería */}
+        <Grid.Col span={{ base: 12, md: 3 }}>
+          <Card shadow="md" radius="md" withBorder>
+            <Card.Section>
+              <Image
+                src="https://plus.unsplash.com/premium_photo-1661657801128-459e612ef2c6?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8aW52aXRhY2lvbmVzJTIwZmlzaWNhc3xlbnwwfHwwfHx8MA%3D%3D"
+                alt="Papelería"
+                height={180}
+              />
+            </Card.Section>
+            <Title order={3} mt="md">
+              Papelería
+            </Title>
+            <Text c="dimmed" mt="xs">
+              Tarjetas, etiquetas y detalles gráficos que complementan tu evento.
+            </Text>
+          </Card>
+        </Grid.Col>
+
+        {/* 4) Souvenirs personalizados */}
+        <Grid.Col span={{ base: 12, md: 3 }}>
+          <Card shadow="md" radius="md" withBorder>
+            <Card.Section>
+              <Image
+                src="https://images.unsplash.com/photo-1711509424209-0ac59fd8fe4e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8c291dmVuaXJzJTIwcGVyc29uYWxpemFkb3N8ZW58MHx8MHx8fDA%3D"
+                alt="Souvenirs personalizados"
+                height={180}
+              />
+            </Card.Section>
+            <Title order={3} mt="md">
+              Souvenirs personalizados
+            </Title>
+            <Text c="dimmed" mt="xs">
+              Recuerdos únicos y hechos a medida para sorprender a tus invitados.
+            </Text>
+          </Card>
+        </Grid.Col>
+      </Grid>
+    </Container>
+  );
+}
