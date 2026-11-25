@@ -6,7 +6,7 @@ type CategoryCardProps = {
   name: string
   to: string
   image?: Pick<CatalogImage, 'src' | 'alt'> &
-    Partial<Pick<CatalogImage, 'width' | 'height' | 'fit'>>
+    Partial<Pick<CatalogImage, 'width' | 'height' | 'fit' | 'objectPosition'>>
 }
 export function CategoryCard({ name, to, image }: CategoryCardProps) {
   return (
@@ -21,6 +21,11 @@ export function CategoryCard({ name, to, image }: CategoryCardProps) {
             width={image.width ?? 480}
             height={image.height ?? 360}
             data-fit={image.fit}
+            style={
+              image.objectPosition
+                ? { objectPosition: image.objectPosition }
+                : undefined
+            }
           />
         ) : (
           <MediaPlaceholder />

@@ -19,6 +19,14 @@ const antiresacaIllustration: LocalImage = {
   height: 1500,
   fit: 'contain',
 }
+const saveTheDate: LocalImage = {
+  src: '/media/products/save-the-date.webp',
+  alt: 'Tarjeta Save the date con foto de una pareja y un calendario al pie',
+  width: 736,
+  height: 1104,
+  origin: 'lcdd-supplied',
+  fit: 'contain',
+}
 export const visualAssets: {
   banners: Record<'details' | 'combos', LocalImage>
   logo: LocalImage | null
@@ -83,30 +91,39 @@ export const visualAssets: {
     },
   },
   categories: {
+    'experiencias-y-detalles-para-eventos': {
+      src: '/media/categories/experiencias-y-detalles.webp',
+      alt: 'Exhibidor de detalles para invitados decorado con flores y un cartel de agradecimiento',
+      width: 736,
+      height: 1307,
+      origin: 'lcdd-supplied',
+      fit: 'contain',
+    },
     'kits-para-eventos': {
-      src: '/media/categories/kits-para-eventos-v01.webp',
-      alt: 'Kits',
-      width: 1000,
-      height: 750,
+      src: '/media/categories/kits.webp',
+      alt: 'Kit de baño con artículos etiquetados dispuestos en una bandeja',
+      width: 736,
+      height: 736,
+      origin: 'lcdd-supplied',
+      objectPosition: '50% 60%',
     },
     'souvenirs-personalizados': {
-      src: '/media/categories/souvenirs-personalizados-v01.webp',
-      alt: 'Souvenirs personalizados',
-      width: 1000,
-      height: 750,
+      src: '/media/categories/souvenirs-personalizados.webp',
+      alt: 'Frascos de recuerdo con etiquetas florales personalizadas',
+      width: 736,
+      height: 981,
+      origin: 'lcdd-supplied',
+      objectPosition: '50% 58%',
     },
     'detalles-de-mesa': {
-      src: '/media/categories/detalles-de-mesa-v01.webp',
-      alt: 'Detalles de mesa',
-      width: 1000,
-      height: 750,
+      src: '/media/categories/papeleria-eventos.webp',
+      alt: 'Tarjeta de número de mesa con el retrato de una pareja sobre un soporte dorado',
+      width: 736,
+      height: 736,
+      origin: 'lcdd-supplied',
+      objectPosition: '50% 48%',
     },
-    'invitaciones-digitales': {
-      src: '/media/categories/invitaciones-digitales-v01.webp',
-      alt: 'Invitaciones digitales',
-      width: 1000,
-      height: 750,
-    },
+    'invitaciones-digitales': saveTheDate,
   },
   products: {
     'P-015': [antiresacaIllustration],
@@ -140,16 +157,7 @@ export const visualAssets: {
         fit: 'contain',
       },
     ],
-    'P-014': [
-      {
-        src: '/media/products/save-the-date.webp',
-        alt: 'Tarjeta Save the date con un retrato de pareja en blanco y negro',
-        width: 864,
-        height: 1536,
-        origin: 'lcdd-supplied',
-        fit: 'contain',
-      },
-    ],
+    'P-014': [saveTheDate],
     'P-001': [antiresacaIllustration],
     'P-002': [
       {

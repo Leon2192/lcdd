@@ -241,6 +241,33 @@ describe('Fichas oficiales', () => {
       expect(screen.queryByRole('combobox')).toBeNull()
     },
   )
+  it('reutiliza el mismo archivo de Save the date en catálogo, ficha y carrito', async () => {
+    const product = getProduct('P-014')
+    if (!product) throw new Error('Falta Save the date')
+    const path = getProductPath(product)
+    const source = '/media/products/save-the-date.webp'
+    const router = visit('/catalogo?categoria=invitaciones-digitales')
+    const category = within(
+      screen.getByRole('region', { name: 'Invitaciones digitales' }),
+    )
+    const card = category.getByRole('link', { name: /Save the date/ })
+    expect(within(card).getByRole('img')).toHaveAttribute('src', source)
+    fireEvent.click(card)
+    expect(router.state.location.pathname).toBe(path)
+    const gallery = within(
+      screen.getByRole('region', { name: 'Galería de Save the date' }),
+    )
+    const image = gallery.getByRole('img')
+    expect(image).toHaveAttribute('src', source)
+    expect(image).toHaveAttribute('width', '736')
+    expect(image).toHaveAttribute('height', '1104')
+    fireEvent.click(screen.getByRole('button', { name: 'Agregar a mi pedido' }))
+    await act(() => router.navigate('/arma-tu-pedido'))
+    const selection = within(
+      screen.getByRole('region', { name: 'Tu selección' }),
+    )
+    expect(selection.getByRole('img')).toHaveAttribute('src', source)
+  }, 15_000)
   it('ofrece consulta directa para Carpa QR y conserva su discrepancia en los datos', () => {
     visit('/catalogo/producto/p-011-carpa-qr')
     expect(

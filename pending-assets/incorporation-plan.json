@@ -9,42 +9,6 @@
     "alt": "Home principal"
   },
   {
-    "name": "Kits",
-    "file": "categories/kits-para-eventos-v01.webp",
-    "width": 1000,
-    "height": 750,
-    "kind": "categories",
-    "key": "kits-para-eventos",
-    "alt": "Kits"
-  },
-  {
-    "name": "Souvenirs personalizados",
-    "file": "categories/souvenirs-personalizados-v01.webp",
-    "width": 1000,
-    "height": 750,
-    "kind": "categories",
-    "key": "souvenirs-personalizados",
-    "alt": "Souvenirs personalizados"
-  },
-  {
-    "name": "Detalles de mesa",
-    "file": "categories/detalles-de-mesa-v01.webp",
-    "width": 1000,
-    "height": 750,
-    "kind": "categories",
-    "key": "detalles-de-mesa",
-    "alt": "Detalles de mesa"
-  },
-  {
-    "name": "Invitaciones digitales",
-    "file": "categories/invitaciones-digitales-v01.webp",
-    "width": 1000,
-    "height": 750,
-    "kind": "categories",
-    "key": "invitaciones-digitales",
-    "alt": "Invitaciones digitales"
-  },
-  {
     "name": "Vasos personalizados",
     "file": "products/P-003/P-003_principal_01_v01.webp",
     "width": 1200,

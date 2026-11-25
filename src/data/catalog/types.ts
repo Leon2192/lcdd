@@ -7,6 +7,7 @@ export type CatalogImage = {
   readonly height: number
   readonly origin?: 'lcdd-supplied'
   readonly fit?: 'contain'
+  readonly objectPosition?: `${number}% ${number}%`
 }
 export type Category = {
   readonly id: string

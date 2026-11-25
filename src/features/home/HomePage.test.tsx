@@ -195,7 +195,7 @@ describe('Home LCDD', () => {
       within(carousel).queryByRole('button', { name: /Agregar/ }),
     ).not.toBeInTheDocument()
   })
-  it('muestra Sin imagen en las ilustraciones anteriores y conserva fotos entregadas en destacados', () => {
+  it('conserva las imágenes entregadas en categorías y destacados y oculta el hero ilustrativo', () => {
     renderHome()
     const hero = screen.getByRole('region', {
       name: 'Hacé de tu evento un momento único',
@@ -205,7 +205,18 @@ describe('Home LCDD', () => {
     const categories = screen.getByRole('region', {
       name: 'Encontrá el detalle ideal para tu evento',
     })
-    expect(within(categories).getAllByText('Sin imagen')).toHaveLength(5)
+    expect(within(categories).queryByText('Sin imagen')).not.toBeInTheDocument()
+    expect(
+      within(categories)
+        .getAllByRole('img')
+        .map((image) => image.getAttribute('src')),
+    ).toEqual([
+      '/media/categories/kits.webp',
+      '/media/categories/souvenirs-personalizados.webp',
+      '/media/categories/experiencias-y-detalles.webp',
+      '/media/categories/papeleria-eventos.webp',
+      '/media/products/save-the-date.webp',
+    ])
     const featured = screen.getByRole('region', {
       name: 'Productos destacados',
     })
