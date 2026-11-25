@@ -112,12 +112,31 @@ describe('Catálogo y categorías', () => {
     expect(screen.getAllByRole('article')).toHaveLength(
       getCategoryProducts(category.id).length,
     )
-    const sidebar = within(screen.getByRole('main')).getByRole('navigation', {
-      name: 'Categorías del catálogo',
-    })
     expect(
-      within(sidebar).getByRole('link', { name: category.name }),
-    ).toBeVisible()
+      within(screen.getByRole('main')).queryByRole('navigation', {
+        name: 'Categorías del catálogo',
+      }),
+    ).not.toBeInTheDocument()
+  })
+  it('abre desde Inicio solo la categoría seleccionada y sus productos', () => {
+    const router = visit('/')
+    const categories = within(
+      screen.getByRole('region', {
+        name: 'Encontrá el detalle ideal para tu evento',
+      }),
+    )
+    fireEvent.click(categories.getByRole('link', { name: /\bKits\b/ }))
+    const main = within(screen.getByRole('main'))
+    expect(router.state.location.pathname).toBe(
+      '/catalogo/categoria/kits-para-eventos',
+    )
+    expect(main.getByText('Nuestro catálogo')).toBeVisible()
+    expect(main.getByRole('heading', { name: 'Kits', level: 1 })).toBeVisible()
+    expect(
+      main.queryByRole('link', { name: 'Souvenirs personalizados' }),
+    ).not.toBeInTheDocument()
+    expect(main.getByRole('searchbox')).toBeVisible()
+    expect(main.getAllByRole('article')).toHaveLength(4)
   })
   it('busca por nombre sin depender de tildes y recupera el estado vacío', async () => {
     const user = userEvent.setup()

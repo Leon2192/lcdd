@@ -78,20 +78,6 @@
   .catalog-grid > * {
     min-width: 0;
   }
-  .catalog-category-nav {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-  .catalog-category-nav a {
-    display: flex;
-    justify-content: space-between;
-    gap: 12px;
-    align-items: center;
-    min-height: 44px;
-    padding: 8px;
-    border-bottom: 1px solid var(--lcdd-border);
-  }
   .catalog-search {
     margin-block: 20px;
     max-width: 32rem;

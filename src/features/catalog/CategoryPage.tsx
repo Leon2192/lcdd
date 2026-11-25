@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/Button'
 import { EmptyState } from '@/components/ui/EmptyState'
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
 import { getCategory, getCategoryProducts } from '@/data/catalog/catalog'
-import { CategoryNavigation, CatalogMissing } from './components/CatalogShared'
+import { CatalogMissing } from './components/CatalogShared'
 const normalize = (text: string) =>
   text
     .normalize('NFD')
@@ -34,48 +34,42 @@ export function CategoryPage() {
         <p className="eyebrow">Nuestro catálogo</p>
         <h1>{category.name}</h1>
       </header>
-      <div className="catalog-layout">
-        <CategoryNavigation />
-        <section
-          className="catalog-results"
-          aria-labelledby="category-products"
-        >
-          <h2 id="category-products">Productos de esta categoría</h2>
-          <div className="catalog-search">
-            <span className="catalog-search-icon">
-              <Icon name="search" />
-            </span>
-            <Input
-              type="search"
-              label="Buscar en esta categoría"
-              placeholder="Buscá un producto por su nombre"
-              value={query}
-              onChange={(event) => {
-                const next = new URLSearchParams(params)
-                if (event.target.value) next.set('q', event.target.value)
-                else next.delete('q')
-                setParams(next, { replace: true })
-              }}
-            />
+      <section className="catalog-results" aria-labelledby="category-products">
+        <h2 id="category-products">Productos de esta categoría</h2>
+        <div className="catalog-search">
+          <span className="catalog-search-icon">
+            <Icon name="search" />
+          </span>
+          <Input
+            type="search"
+            label="Buscar en esta categoría"
+            placeholder="Buscá un producto por su nombre"
+            value={query}
+            onChange={(event) => {
+              const next = new URLSearchParams(params)
+              if (event.target.value) next.set('q', event.target.value)
+              else next.delete('q')
+              setParams(next, { replace: true })
+            }}
+          />
+        </div>
+        {products.length ? (
+          <div
+            className={products.length <= 2 ? 'catalog-small-selection' : ''}
+          >
+            <ProductGrid products={products} />
           </div>
-          {products.length ? (
-            <div
-              className={products.length <= 2 ? 'catalog-small-selection' : ''}
-            >
-              <ProductGrid products={products} />
-            </div>
-          ) : (
-            <EmptyState
-              headingAs="h3"
-              title="No encontramos productos"
-              description="Probá con otro nombre."
-              action={
-                <Button onClick={() => setParams({})}>Limpiar búsqueda</Button>
-              }
-            />
-          )}
-        </section>
-      </div>
+        ) : (
+          <EmptyState
+            headingAs="h3"
+            title="No encontramos productos"
+            description="Probá con otro nombre."
+            action={
+              <Button onClick={() => setParams({})}>Limpiar búsqueda</Button>
+            }
+          />
+        )}
+      </section>
     </div>
   )
 }
