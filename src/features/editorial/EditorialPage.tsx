@@ -1,4 +1,3 @@
-import { IllustrativeNotice } from '@/components/ui/IllustrativeNotice'
 import { Link } from 'react-router'
 import { Container } from '@/components/ui/Container'
 import { Section } from '@/components/ui/Section'
@@ -44,17 +43,9 @@ export function EditorialPage({ kind }: EditorialPageProps) {
           </div>
           <HomeMedia
             slot={kind === 'inspiration' ? 'inspiration-1' : 'about'}
-            label={
-              kind === 'inspiration'
-                ? 'Composición de inspiración'
-                : 'Imagen institucional'
-            }
           />
         </Container>
       </Section>
-      <Container>
-        <p className="editorial-notice">{editorialContent.notice}</p>
-      </Container>
       {kind === 'inspiration' ? (
         <>
           <Section aria-labelledby="collections-heading">
@@ -63,9 +54,8 @@ export function EditorialPage({ kind }: EditorialPageProps) {
                 <p className="eyebrow">Inspiración y combinaciones</p>
                 <h2 id="collections-heading">Encontrá tu punto de partida</h2>
                 <p>
-                  Las colecciones del catálogo son propuestas conceptuales. Los
-                  productos se eligen individualmente; no representan combos ni
-                  condiciones comerciales aprobadas.
+                  Explorá las colecciones y elegí los productos que quieras
+                  combinar para tu evento.
                 </p>
               </div>
               <nav
@@ -104,24 +94,17 @@ export function EditorialPage({ kind }: EditorialPageProps) {
                             loading="lazy"
                             decoding="async"
                           />
-                          <IllustrativeNotice src={image.src} />
                         </>
                       ) : (
-                        <MediaPlaceholder label="Composición provisional · Fotografía pendiente" />
+                        <MediaPlaceholder />
                       )}
                     </div>
                     <div className="editorial-copy">
-                      <p className="eyebrow">
-                        Colección conceptual · Propuesta
-                      </p>
                       <h2 id={`${collection.id}-title`}>{collection.name}</h2>
                       <p>
                         Explorá los productos de esta selección y consultá las
                         opciones disponibles para tu evento.
                       </p>
-                      <Link to="/arma-tu-pedido" className="home-text-link">
-                        Revisá tu pedido <Icon name="arrow" />
-                      </Link>
                     </div>
                   </div>
                   <ProductRail
@@ -140,7 +123,7 @@ export function EditorialPage({ kind }: EditorialPageProps) {
         <Section>
           <Container>
             <div className="editorial-story">
-              <HomeMedia slot="about" label="Detalle institucional" />
+              <HomeMedia slot="about" />
               <div className="editorial-copy">
                 <p className="eyebrow">{siteConfig.name}</p>
                 <h2>
@@ -181,7 +164,7 @@ export function EditorialPage({ kind }: EditorialPageProps) {
                         ][index]
                       : [
                           'Compartí el tipo de celebración y su contexto.',
-                          'Consultá por los productos del catálogo oficial.',
+                          'Consultá por los productos que elegiste.',
                           'Definí los detalles con LCDD antes de confirmar.',
                         ][index]}
                   </p>

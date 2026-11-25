@@ -10,6 +10,8 @@ export const siteConfig = {
       url: 'https://www.instagram.com/lacasadeldetalle_arg/',
     },
     whatsapp: {
+      defaultMessage:
+        '¡Hola! Me gustaría recibir más información sobre los productos de La Casa del Detalle.',
       displayNumber: '1135939460',
       internationalNumber: '5491135939460',
       // Verificación manual del propietario: abre la conversación LCDD (Fase 05.1).

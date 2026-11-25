@@ -82,13 +82,17 @@ describe('Rutas, metadatos y enlaces', () => {
     ['/nosotros', 'Nosotros'],
     ['/profesionales', 'Profesionales'],
   ])(
-    'identifica %s como página editorial con textos propuestos',
+    'identifica %s como página editorial sin mostrar estados internos',
     async (path, label) => {
       visit(path)
       expect(
         await screen.findByRole('heading', { level: 1, name: label }),
       ).toBeVisible()
-      expect(screen.getByText(/Contenido editorial propuesto/)).toBeVisible()
+      expect(
+        screen.queryByText(
+          /contenido editorial propuesto|pendiente de validación/i,
+        ),
+      ).not.toBeInTheDocument()
       expect(getPageMetadata(path).kind).toBe('page')
     },
   )

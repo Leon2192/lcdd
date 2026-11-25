@@ -62,7 +62,7 @@ export function QuotationPage() {
         </h1>
         <EmptyState
           title="Primero elegí qué querés consultar"
-          description="La solicitud estructurada necesita al menos un producto o servicio. También podés consultar el contacto institucional sin una selección."
+          description="Agregá un producto o servicio a tu pedido para solicitar una cotización. También podés consultarnos por WhatsApp."
           action={
             <Link to="/catalogo" className="button button--primary">
               Explorar catálogo
@@ -91,10 +91,6 @@ export function QuotationPage() {
         </p>
       </header>
       <OrderSteps current="event" />
-      <p className="order-notice">
-        Los campos del evento son opcionales mientras se valida el formulario
-        comercial. Estos datos se descartan al recargar.
-      </p>
       <div className="order-layout">
         <form
           className="quotation-form"

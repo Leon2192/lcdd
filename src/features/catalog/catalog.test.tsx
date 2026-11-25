@@ -66,7 +66,7 @@ describe('Catálogo y categorías', () => {
     const router = visit('/catalogo')
     expect(screen.getAllByRole('article')).toHaveLength(14)
     await user.click(
-      screen.getByRole('checkbox', { name: 'Kits para eventos (2)' }),
+      screen.getByRole('checkbox', { name: 'Kits para eventos' }),
     )
     expect(screen.getAllByRole('article')).toHaveLength(2)
     expect(router.state.location.search).toContain('kits-para-eventos')
@@ -88,6 +88,12 @@ describe('Catálogo y categorías', () => {
     expect(screen.getAllByRole('article')).toHaveLength(
       getCategoryProducts(category.id).length,
     )
+    const sidebar = within(screen.getByRole('main')).getByRole('navigation', {
+      name: 'Categorías del catálogo',
+    })
+    expect(
+      within(sidebar).getByRole('link', { name: category.name }),
+    ).toBeVisible()
   })
   it('busca por nombre sin depender de tildes y recupera el estado vacío', async () => {
     const user = userEvent.setup()
@@ -117,14 +123,12 @@ describe('Fichas oficiales', () => {
       expect(within(related).getAllByRole('article')).toHaveLength(
         product.relatedProducts.ids.length,
       )
-      expect(
-        screen.getByText('Descripción preliminar · En revisión'),
-      ).toBeVisible()
+      expect(screen.getByRole('heading', { name: 'Descripción' })).toBeVisible()
       if (getOrderRule(product).kind === 'quantity')
         expect(screen.getByRole('spinbutton')).toHaveValue(null)
       else expect(screen.queryByRole('spinbutton')).toBeNull()
       expect(document.body.textContent).not.toMatch(
-        /\$|ARS|comprar ahora|checkout/i,
+        /\$|ARS|comprar ahora|checkout|preliminar|pendiente de validación|\bP-\d{3}\b/i,
       )
       expect(
         screen.getByRole('navigation', { name: 'Ruta de navegación' }),
@@ -146,19 +150,24 @@ describe('Fichas oficiales', () => {
       const product = catalog.products.find((p) => p.id === id)
       if (!product) throw new Error('Sin producto')
       visit(getProductPath(product))
-      expect(
-        screen.getByText('Servicio digital · Sin selector de unidades.'),
-      ).toBeVisible()
+      expect(screen.getByText('Servicio digital')).toBeVisible()
       expect(screen.queryByRole('spinbutton')).toBeNull()
     },
   )
-  it('conserva explícitamente la discrepancia Carpa QR', () => {
+  it('ofrece consulta directa para Carpa QR y conserva su discrepancia en los datos', () => {
     visit('/catalogo/producto/p-011-carpa-qr')
     expect(
-      screen.getByText(
-        /tarjetas\/unidades e inclusión del servicio digital pendientes/,
-      ),
+      screen.getByText('Consultanos por las opciones disponibles.'),
     ).toBeVisible()
+    expect(
+      screen.getByRole('button', { name: 'Consultar por este producto' }),
+    ).toBeVisible()
+    expect(
+      screen.queryByRole('button', { name: 'Agregar a mi pedido' }),
+    ).not.toBeInTheDocument()
+    expect(
+      catalog.pendingNotes.some((note) => note.productId === 'P-011'),
+    ).toBe(true)
     expect(screen.queryByRole('spinbutton')).toBeNull()
   })
   it('agrega desde la ficha y permite revisar una selección real', async () => {
@@ -169,7 +178,7 @@ describe('Fichas oficiales', () => {
       screen.getByRole('button', { name: 'Agregar a mi pedido' }),
     )
     expect(
-      screen.getByText('Vasos personalizados se agregó a tu pedido.'),
+      screen.getByText('Producto agregado al carrito', { selector: 'p' }),
     ).toBeVisible()
     await user.click(screen.getByRole('link', { name: 'Ver mi pedido' }))
     await screen.findByRole('heading', { level: 1, name: 'Armá tu pedido' })

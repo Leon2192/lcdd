@@ -1,0 +1,6 @@
+docs/handoff/
+src/data/catalog/catalog.generated.ts
+dist/
+.agents/
+.codex/
+.aws/

@@ -13,6 +13,7 @@ export type AddResult = 'added' | 'exists' | 'invalid' | 'consultation'
 export type OrderState = {
   lines: OrderLine[]
   notice: string
+  additionCount: number
   add: (id: string, quantity: number | null) => AddResult
   updateQuantity: (id: string, quantity: number) => boolean
   remove: (id: string) => void
@@ -24,6 +25,7 @@ export function createOrderStore(
   const recovered = readOrder(storage)
   const store = createStore<OrderState>()((set, get) => ({
     ...recovered,
+    additionCount: 0,
     add: (id, quantity) => {
       const product = getProduct(id)
       if (!product) return 'invalid'
@@ -40,7 +42,10 @@ export function createOrderStore(
       )
         return 'invalid'
       if (get().lines.some((line) => line.productId === id)) return 'exists'
-      set({ lines: [...get().lines, result.data] })
+      set((state) => ({
+        lines: [...state.lines, result.data],
+        additionCount: state.additionCount + 1,
+      }))
       return 'added'
     },
     updateQuantity: (id, quantity) => {

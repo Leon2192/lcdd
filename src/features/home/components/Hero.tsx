@@ -18,12 +18,7 @@ export function Hero() {
             <Icon name="arrow" />
           </Link>
         </div>
-        <HomeMedia
-          slot="hero"
-          label="Imagen principal del evento"
-          className="hero-media"
-          priority
-        />
+        <HomeMedia slot="hero" className="hero-media" priority />
       </Container>
     </section>
   )

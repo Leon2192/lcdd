@@ -1,0 +1,14 @@
+{
+  "semi": false,
+  "singleQuote": true,
+  "endOfLine": "lf",
+  "overrides": [
+    {
+      "files": "src/data/catalog/catalog.generated.ts",
+      "options": {
+        "semi": true,
+        "singleQuote": false
+      }
+    }
+  ]
+}

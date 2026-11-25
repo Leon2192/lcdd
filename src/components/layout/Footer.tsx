@@ -10,12 +10,8 @@ export function Footer({ onContact }: { onContact: () => void }) {
     <footer className="site-footer">
       <Container>
         <div className="footer-grid">
-          <div className="stack">
+          <div>
             <Brand />
-            <Link to="/arma-tu-pedido" className="button button--secondary">
-              <Icon name="cart" />
-              Armá tu pedido
-            </Link>
           </div>
           <nav aria-label="Categorías del catálogo">
             <h2>Productos</h2>

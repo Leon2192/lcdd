@@ -17,7 +17,6 @@ export const featuredProducts = featuredSelection.productIds.map((id) => {
 
 // Textos de UI-01 vigente; revisión institucional pendiente. No son nuevos claims.
 export const homeContent = {
-  notice: 'Vista previa · Textos e imágenes pendientes de validación.',
   hero: {
     eyebrow: 'Detalles personalizados para eventos',
     title: 'Hacé de tu evento un momento único',

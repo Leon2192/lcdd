@@ -1,4 +1,3 @@
-import { IllustrativeNotice } from '@/components/ui/IllustrativeNotice'
 import { Link } from 'react-router'
 import { Icon } from '@/components/ui/Icon'
 import { MediaPlaceholder } from '@/components/ui/MediaPlaceholder'
@@ -13,17 +12,14 @@ export function ProductCard({ name, to, image, note }: ProductCardProps) {
     <article className="product-card">
       <Link to={to} className="card-link">
         {image ? (
-          <>
-            <img
-              src={image.src}
-              alt={image.alt}
-              loading="lazy"
-              decoding="async"
-              width="480"
-              height="600"
-            />
-            <IllustrativeNotice src={image.src} />
-          </>
+          <img
+            src={image.src}
+            alt={image.alt}
+            loading="lazy"
+            decoding="async"
+            width="480"
+            height="600"
+          />
         ) : (
           <MediaPlaceholder />
         )}

@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import { FloatingWhatsApp } from '@/components/layout/FloatingWhatsApp'
 import { PageMetadata } from '@/components/PageMetadata'
 import { Button } from '@/components/ui/Button'
 import { siteConfig } from '@/config/site'
@@ -28,6 +29,9 @@ export function RouteErrorPage() {
         <a className="button button--outline" href="/catalogo">
           Volver al catálogo
         </a>
+      </div>
+      <div className="site-floating-actions">
+        <FloatingWhatsApp />
       </div>
     </main>
   )

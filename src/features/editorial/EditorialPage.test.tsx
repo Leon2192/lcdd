@@ -30,13 +30,22 @@ describe('Páginas editoriales V1.0', () => {
         ).toHaveAttribute('href', getProductPath(product))
       }
     }
-    expect(screen.getByText(/no representan combos/)).toBeVisible()
+    expect(
+      screen.getByText(/elegí los productos que quieras combinar/),
+    ).toBeVisible()
+    expect(
+      screen.queryByText(/aprobadas|propuesta conceptual/i),
+    ).not.toBeInTheDocument()
   })
   it.each(['about', 'professionals'] as const)(
-    'identifica los textos %s como propuesta y permite continuar el recorrido',
+    'mantiene el recorrido comercial de %s sin mostrar estados editoriales',
     (kind) => {
       visit(kind)
-      expect(screen.getByText(/Contenido editorial propuesto/)).toBeVisible()
+      expect(
+        screen.queryByText(
+          /contenido editorial propuesto|pendiente de validación/i,
+        ),
+      ).not.toBeInTheDocument()
       expect(screen.getAllByRole('heading', { level: 1 })).toHaveLength(1)
       expect(
         screen.getByRole('link', { name: 'Armá tu pedido' }),

@@ -1,7 +1,8 @@
 import { RouteMetadata } from '@/routes/RouteMetadata'
 import { getValidatedWhatsAppUrl } from '@/lib/whatsapp'
 import { Icon } from '@/components/ui/Icon'
-import { useOrder } from '@/features/order'
+import { FloatingWhatsApp } from '@/components/layout/FloatingWhatsApp'
+import { OrderToast, useOrder } from '@/features/order'
 import { QuotationSession } from '@/features/quotation'
 import { useState } from 'react'
 import { Outlet } from 'react-router'
@@ -30,6 +31,10 @@ export function RootLayout() {
           <Outlet context={context} />
         </main>
         <Footer onContact={() => setContactOpen(true)} />
+        <div className="site-floating-actions">
+          <OrderToast />
+          <FloatingWhatsApp />
+        </div>
         <Modal
           open={contactOpen}
           onOpenChange={setContactOpen}

@@ -106,12 +106,12 @@ describe('Activación de WhatsApp 05.1', () => {
     ).toHaveAttribute('href', 'https://wa.me/5491135939460')
   })
   it.each([
-    ['p-011-carpa-qr', 'P-011'],
-    ['p-008-capitan-de-mesa', 'P-008'],
-    ['p-012-numeros-de-mesa', 'P-012'],
+    ['p-011-carpa-qr', 'Carpa QR'],
+    ['p-008-capitan-de-mesa', 'Capitán de mesa'],
+    ['p-012-numeros-de-mesa', 'Números de mesa'],
   ])(
     'prepara consulta contextualizada de %s sin imponer modalidad',
-    async (slug, id) => {
+    async (slug, name) => {
       const user = userEvent.setup()
       visit(`/catalogo/producto/${slug}`)
       await user.click(
@@ -126,7 +126,8 @@ describe('Activación de WhatsApp 05.1', () => {
       const text = new URL(link.getAttribute('href') ?? '').searchParams.get(
         'text',
       )
-      expect(text).toContain(id)
+      expect(text).toContain(name)
+      expect(text).not.toMatch(/\bP-\d{3}\b/)
       expect(text).toContain('Necesito asesoramiento')
       expect(text).not.toContain('Cantidad: 1')
       expect(

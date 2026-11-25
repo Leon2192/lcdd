@@ -30,13 +30,13 @@ afterEach(() => {
 })
 describe('Integración local de recursos aprobados', () => {
   it('mantiene placeholders mientras no existan fotografías', () => {
-    render(<HomeMedia slot="hero" label="Hero pendiente" />)
+    render(<HomeMedia slot="hero" />)
     expect(screen.queryByRole('img')).toBeNull()
-    expect(screen.getByText('Hero pendiente')).toBeVisible()
+    expect(screen.getByText('Sin imagen')).toBeVisible()
   })
   it('incorpora Hero por registro sin reconstruir componente ni cargarlo diferido', () => {
     visualAssets.home = { hero: fixture }
-    render(<HomeMedia slot="hero" label="Hero" priority />)
+    render(<HomeMedia slot="hero" priority />)
     const image = screen.getByRole('img')
     expect(image).toHaveAttribute('src', fixture.src)
     expect(image).toHaveAttribute('width', '1200')

@@ -1,7 +1,5 @@
 // Propuestas de texto V1.0; sin aprobación institucional definitiva.
 export const editorialContent = {
-  notice:
-    'Contenido editorial propuesto · Pendiente de validación institucional.',
   about: {
     title: 'Los grandes momentos están hechos de pequeños detalles',
     intro:

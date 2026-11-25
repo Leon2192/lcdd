@@ -37,13 +37,13 @@ export function reconcileOrder(
     return {
       lines: [],
       notice:
-        'No pudimos recuperar el pedido guardado: formato o versión no compatibles. Podés iniciar una nueva selección.',
+        'No pudimos recuperar el pedido guardado. Podés iniciar una nueva selección.',
     }
   if (parsed.data.catalogRevision !== revision)
     return {
       lines: [],
       notice:
-        'El catálogo cambió. Por seguridad, volvé a seleccionar los productos y sus cantidades.',
+        'El catálogo cambió. Volvé a seleccionar los productos y sus cantidades.',
     }
   const lines: OrderLine[] = []
   for (const candidate of parsed.data.lines) {
@@ -69,7 +69,7 @@ export function reconcileOrder(
     notice:
       lines.length === parsed.data.lines.length
         ? ''
-        : 'Se descartaron referencias eliminadas, repetidas o inválidas. Revisá tu selección antes de continuar.',
+        : 'Recuperamos parte de tu pedido. Revisá tu selección antes de continuar.',
   }
 }
 export function orderEnvelope(lines: readonly OrderLine[]) {

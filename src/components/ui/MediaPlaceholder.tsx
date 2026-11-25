@@ -1,14 +1,9 @@
-export function MediaPlaceholder({
-  label = 'Fotografía pendiente de validación',
-}: {
-  label?: string
-}) {
+import { Icon } from '@/components/ui/Icon'
+export function MediaPlaceholder() {
   return (
     <div className="media-placeholder">
-      <span className="placeholder-mark" aria-hidden="true">
-        ✧
-      </span>
-      <span>{label}</span>
+      <Icon name="image" />
+      <span>Sin imagen</span>
     </div>
   )
 }

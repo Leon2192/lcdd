@@ -3,10 +3,7 @@ import { Icon } from '@/components/ui/Icon'
 import { homeContent } from '@/features/home/home-content'
 export function ValueProposition() {
   return (
-    <section
-      className="home-values"
-      aria-label="Propuesta de valor provisional"
-    >
+    <section className="home-values" aria-label="Detalles para tu evento">
       <Container>
         <ul>
           {homeContent.values.map((item) => (

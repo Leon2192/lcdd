@@ -62,7 +62,7 @@ describe('Formulario candidato', () => {
   })
 })
 describe('Mensaje y WhatsApp', () => {
-  it('incluye nombres oficiales, IDs, cantidades semánticas, servicios y datos aportados', () => {
+  it('incluye nombres oficiales, cantidades semánticas, servicios y datos aportados', () => {
     const message = generateQuotationMessage(lines, {
       ...emptyQuotation,
       name: 'María & José',
@@ -72,11 +72,9 @@ describe('Mensaje y WhatsApp', () => {
       comments: 'Diseño: corazón ♥\nGracias & saludos',
     })
     expect(message).toContain(
-      '- Vasos personalizados (P-003) — Cantidad de unidades: 25',
+      '- Vasos personalizados — Cantidad de unidades: 25',
     )
-    expect(message).toContain(
-      '- Invitaciones digitales (P-013) — Servicio digital',
-    )
+    expect(message).toContain('- Invitaciones digitales — Servicio digital')
     expect(message).toContain('Nombre: María & José')
     expect(message).toContain('Fecha del evento: 15/01/2027')
     expect(message).toContain('Localidad: Lanús')
@@ -131,7 +129,8 @@ describe('Mensaje y WhatsApp', () => {
   })
   it('permite consulta contextualizada sin completar cantidades pendientes', () => {
     const message = generateDirectConsultation('P-011')
-    expect(message).toContain('Carpa QR (P-011)')
+    expect(message).toContain('Carpa QR')
+    expect(message).not.toMatch(/\bP-\d{3}\b/)
     expect(message).not.toMatch(/cantidad: 1|incluye|enviado/i)
     expect(() => generateDirectConsultation('P-999')).toThrow()
   })

@@ -1,4 +1,3 @@
-import { IllustrativeNotice } from '@/components/ui/IllustrativeNotice'
 import { useState } from 'react'
 import { Link, useSearchParams } from 'react-router'
 import { Button } from '@/components/ui/Button'
@@ -52,16 +51,13 @@ export function OrderPage() {
       )}
       {reference && (
         <p>
-          La referencia anterior no agrega productos automáticamente.{' '}
           <Link to={getProductPath(reference)}>
             Elegir {reference.name} desde su ficha
           </Link>
           .
         </p>
       )}
-      {referenceId && !reference && (
-        <p>La referencia indicada no existe en el catálogo oficial.</p>
-      )}
+      {referenceId && !reference && <p>No encontramos ese producto.</p>}
       {!lines.length ? (
         <EmptyState
           title="Tu pedido está vacío"
@@ -94,7 +90,6 @@ export function OrderPage() {
                               width={image.width}
                               height={image.height}
                             />
-                            <IllustrativeNotice src={image.src} />
                           </>
                         ) : (
                           <MediaPlaceholder />
@@ -118,9 +113,7 @@ export function OrderPage() {
                                 )
                             }}
                           />
-                        ) : (
-                          <p>Servicio digital · Sin unidades.</p>
-                        )}
+                        ) : null}
                         <p className="field-hint">
                           {getLineLabel(product.id, line.quantity)}
                         </p>
@@ -159,7 +152,6 @@ export function OrderPage() {
           {suggestions.length > 0 && (
             <section className="order-suggestions">
               <h2>También te puede interesar</h2>
-              <p>Sugerencias de Productos en revisión.</p>
               <ProductRail
                 products={suggestions}
                 label="Sugerencias para tu pedido"

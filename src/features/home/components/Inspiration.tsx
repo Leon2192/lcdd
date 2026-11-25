@@ -22,21 +22,9 @@ export function Inspiration() {
           </Link>
         </div>
         <div className="inspiration-collage">
-          <HomeMedia
-            slot="inspiration-1"
-            label="Ambientación de referencia"
-            className="inspiration-frame"
-          />
-          <HomeMedia
-            slot="inspiration-2"
-            label="Detalle personalizado"
-            className="inspiration-frame"
-          />
-          <HomeMedia
-            slot="inspiration-3"
-            label="Presentación de referencia"
-            className="inspiration-frame"
-          />
+          <HomeMedia slot="inspiration-1" className="inspiration-frame" />
+          <HomeMedia slot="inspiration-2" className="inspiration-frame" />
+          <HomeMedia slot="inspiration-3" className="inspiration-frame" />
         </div>
       </Container>
     </Section>

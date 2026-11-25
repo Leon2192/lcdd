@@ -21,7 +21,11 @@ type IconName =
   | 'monitor'
   | 'calendar'
   | 'users'
+  | 'image'
+  | 'check'
 const paths: Record<Exclude<IconName, 'whatsapp'>, string> = {
+  image: 'M3 3h18v18H3zM3 17l6-6 4 4 3-3 5 5M16 8h.01',
+  check: 'm5 12 4 4L19 6',
   search: 'M10.5 3a7.5 7.5 0 1 1 0 15 7.5 7.5 0 0 1 0-15Zm5.3 12.8L22 22',
   heart:
     'M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8L12 21l8.8-8.6a5.5 5.5 0 0 0 0-7.8Z',

@@ -1,6 +1,5 @@
 import { useOutletContext } from 'react-router'
 import type { LayoutContext } from '@/layouts/layout-context'
-import { Container } from '@/components/ui/Container'
 import { Hero } from '@/features/home/components/Hero'
 import { ValueProposition } from '@/features/home/components/ValueProposition'
 import { HomeCategories } from '@/features/home/components/HomeCategories'
@@ -11,14 +10,10 @@ import { HowItWorks } from '@/features/home/components/HowItWorks'
 import { EventTypes } from '@/features/home/components/EventTypes'
 import { HomeConversion } from '@/features/home/components/HomeConversion'
 import { HomeContact } from '@/features/home/components/HomeContact'
-import { homeContent } from '@/features/home/home-content'
 export function HomePage() {
   const { openContact } = useOutletContext<LayoutContext>()
   return (
     <div className="home">
-      <Container>
-        <p className="home-provisional">{homeContent.notice}</p>
-      </Container>
       <Hero />
       <ValueProposition />
       <HomeCategories />

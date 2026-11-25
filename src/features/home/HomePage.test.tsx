@@ -42,10 +42,10 @@ describe('Home LCDD', () => {
       '¿Tenés dudas o una idea especial?',
     ])
     expect(
-      screen.getByText(
-        'Vista previa · Textos e imágenes pendientes de validación.',
+      screen.queryByText(
+        /vista previa|pendientes de validación|selección de demostración/i,
       ),
-    ).toBeVisible()
+    ).not.toBeInTheDocument()
   })
   it('mantiene el marcador agrupado para que icono y número no desplacen el texto a otra celda', () => {
     renderHome()
@@ -108,13 +108,11 @@ describe('Home LCDD', () => {
     ])
     expect(featuredProducts).not.toHaveLength(0)
   })
-  it('rotula los destacados de muestra y enlaza fichas sin agregar al pedido', () => {
+  it('muestra los destacados y enlaza sus fichas sin agregar al pedido', () => {
     renderHome()
     expect(
-      screen.getByText(
-        'Selección de demostración · Pendiente de aprobación comercial.',
-      ),
-    ).toBeVisible()
+      screen.queryByText(/selección de demostración|pendiente de aprobación/i),
+    ).not.toBeInTheDocument()
     const carousel = screen.getByRole('region', {
       name: 'Productos destacados',
     })
@@ -127,18 +125,16 @@ describe('Home LCDD', () => {
       within(carousel).queryByRole('button', { name: /Agregar/ }),
     ).not.toBeInTheDocument()
   })
-  it('identifica las ilustraciones IA incorporadas y conserva placeholders de recursos faltantes', () => {
+  it('conserva las imágenes y presenta un placeholder discreto para recursos faltantes', () => {
     renderHome()
     expect(screen.getAllByRole('img').length).toBeGreaterThan(0)
     expect(
-      screen.getAllByText('Ilustración IA · No es foto real').length,
-    ).toBeGreaterThan(0)
+      screen.queryByText(/ilustración IA|no es foto real/i),
+    ).not.toBeInTheDocument()
     expect(
       screen.getAllByRole('img', { name: 'Home principal' })[0],
     ).toHaveAttribute('src', '/media/home/hero-v01.webp')
-    expect(
-      screen.getAllByText('Fotografía pendiente de validación').length,
-    ).toBeGreaterThan(0)
+    expect(screen.getAllByText('Sin imagen').length).toBeGreaterThan(0)
     expect(document.querySelector('img[src*="lcdd-original"]')).toBeNull()
     expect(document.querySelector('[style*="Mockup"]')).toBeNull()
   })
@@ -156,7 +152,7 @@ describe('Home LCDD', () => {
       }),
     ).toBeVisible()
     expect(
-      screen.getByRole('checkbox', { name: 'Kits para eventos (2)' }),
+      screen.getByRole('checkbox', { name: 'Kits para eventos' }),
     ).toBeVisible()
   })
   it('permite acceder a inspiración y profesionales mediante destinos existentes', () => {

@@ -8,22 +8,12 @@ import { Carousel } from '@/components/ui/Carousel'
 import { ProductCard } from '@/components/ui/ProductCard'
 import { Section } from '@/components/ui/Section'
 import { SectionHeading } from '@/components/ui/SectionHeading'
-import {
-  featuredProducts,
-  featuredSelection,
-} from '@/features/home/home-content'
+import { featuredProducts } from '@/features/home/home-content'
 export function FeaturedProducts() {
   return (
     <Section className="home-featured" aria-labelledby="home-featured-title">
       <Container>
-        <SectionHeading
-          id="home-featured-title"
-          description={
-            featuredSelection.status === 'demonstration'
-              ? 'Selección de demostración · Pendiente de aprobación comercial.'
-              : ''
-          }
-        >
+        <SectionHeading id="home-featured-title">
           Productos destacados
         </SectionHeading>
         <Carousel

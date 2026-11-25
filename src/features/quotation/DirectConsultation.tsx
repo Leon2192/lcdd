@@ -16,7 +16,6 @@ export function DirectConsultation({ productId }: { productId: string }) {
         onOpenChange={setOpen}
         title="Consulta por el producto"
       >
-        <p>Consulta directa, sin fijar cantidades ni condiciones pendientes.</p>
         <MessageReview
           message={generateDirectConsultation(productId)}
           label="Mensaje de consulta"

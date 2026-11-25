@@ -4,14 +4,16 @@ Base local de la plataforma web LCDD, orientada a productos personalizados, souv
 
 **V1.0 — Finalización integral local autorizada.** Fase 06 aprobada por Dirección Técnica. Incluye páginas editoriales, recorrido comercial y entrega portable. Textos institucionales, fotografías, logo limpio y definiciones comerciales siguen pendientes; no se autoriza publicación. [Guía breve de recursos](docs/REPLACE_RESOURCES.md) y [estado operativo](docs/LOCAL_V1_SUMMARY.md).
 
+**V1.1 — Interfaz comercial.** El encabezado muestra el carrito y la cantidad de productos distintos seleccionados. Cada alta válida muestra una confirmación durante cinco segundos con acceso a «Armá tu pedido». El acceso flotante abre WhatsApp con un mensaje de consulta preparado. Las fichas conservan una marca discreta en las imágenes ilustrativas y los espacios sin recurso muestran «Sin imagen». Los estados comerciales y el origen de los recursos se conservan en sus registros internos.
+
 ## Entorno
 
-Windows + WSL2, Ubuntu 24.04, Node 24, npm 11 y VS Code. Trabajar desde `~/projects/lcdd-web` en Ubuntu. `.nvmrc` fija la línea 24 y `engines` exige Node 24/npm 11.
+Windows + WSL2, Ubuntu 24.04, Node 24, npm 11 y VS Code. Trabajar desde `~/projects/lcdd-web` en Ubuntu. `engines` exige Node 24/npm 11.
 
 ## Instalación y uso local
 
 ```bash
-nvm use
+nvm use 24
 npm ci
 npm run dev
 ```
@@ -62,7 +64,7 @@ Cormorant Garamond Variable y DM Sans Variable 5.3.0 se distribuyen localmente c
 
 ## Home y revisión manual
 
-La Home reproduce la estructura de UI-01 con Hero, propuesta de valor, cinco categorías oficiales, destacados de demostración, inspiración, Nosotros, Profesionales, cómo funciona, eventos mobile, CTAs, contacto y footer. No contiene fotos definitivas: los espacios están rotulados. Los textos y la selección de destacados permanecen provisionales.
+La Home reproduce la estructura de UI-01 con Hero, propuesta de valor, cinco categorías oficiales, destacados de demostración, inspiración, Nosotros, Profesionales, cómo funciona, eventos mobile, CTAs, contacto y footer. Las imágenes actuales se sirven desde recursos locales y sus orígenes se registran en `src/config/image-attribution.ts`. Los espacios sin recurso muestran «Sin imagen».
 
 La selección de demostración está centralizada en `src/features/home/home-content.ts`. Las identidades proceden de Productos y se verifican contra su JSON oficial. Sin precios, cantidades mínimas ni cambios en Carpa QR. Los enlaces de productos y categorías llegan al catálogo funcional de Fase 04. Los CTA de pedido llevan a la selección funcional de Fase 05.
 
@@ -90,7 +92,7 @@ El desplegable de tipo de evento usa una lista contenida al ancho del formulario
 
 Metadatos por ruta, noindex/robots y fallback de errores, mejoras de foco/recuperación/anuncios, React-vendor separado y registro local de imágenes aprobado. El mayor chunk baja de ~502 a ~288 kB; los bytes iniciales totales no se reducen. No se midieron Lighthouse ni Core Web Vitals. Auditoría npm externa del propietario: 0 vulnerabilidades conocidas en su informe; agente bloqueado por DNS. Sin dependencias nuevas.
 
-Vite/preview se limitan a 127.0.0.1; Vite bloquea docs/handoff y carpetas sensibles: respuesta 403 comprobada en su middleware real; la comprobación por puerto queda pendiente en WSL. /inspiracion, /nosotros y /profesionales están implementadas; sus textos y colecciones se identifican como propuestas. Noindex no es control de acceso. Toda publicación requiere decisión independiente; el cierre V1.0 autoriza el ZIP local.
+Vite/preview se limitan a 127.0.0.1; Vite bloquea docs/handoff y carpetas sensibles: respuesta 403 comprobada en su middleware real; la comprobación por puerto queda pendiente en WSL. /inspiracion, /nosotros y /profesionales están implementadas. La interfaz comercial omite los estados internos de textos y colecciones. Noindex no es control de acceso. Toda publicación requiere decisión independiente; el cierre V1.0 autoriza el ZIP local.
 
 ## Cierre definitivo V1.0 — recursos ilustrativos
 

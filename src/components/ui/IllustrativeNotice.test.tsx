@@ -8,7 +8,7 @@ describe('Identificación de ilustraciones IA', () => {
     'identifica visiblemente %s sin presentarla como fotografía real',
     (src) => {
       render(<IllustrativeNotice src={src} />)
-      expect(screen.getByText('Ilustración IA · No es foto real')).toBeVisible()
+      expect(screen.getByText('Imagen ilustrativa')).toBeVisible()
     },
   )
   it('no atribuye IA a recursos desconocidos o fotografías futuras', () => {

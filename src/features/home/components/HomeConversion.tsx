@@ -12,7 +12,7 @@ export function HomeConversion() {
       aria-labelledby="home-conversion-title"
     >
       <Container className="conversion-composition">
-        <HomeMedia slot="conversion" label="Detalle de presentación" />
+        <HomeMedia slot="conversion" />
         <div className="editorial-copy">
           <p className="eyebrow">Armá tu pedido</p>
           <h2 id="home-conversion-title">{content.title}</h2>

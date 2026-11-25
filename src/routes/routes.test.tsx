@@ -1,7 +1,7 @@
 import { render, screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { createMemoryRouter, RouterProvider } from 'react-router'
-import { describe, expect, it } from 'vitest'
+import { describe, expect, it, vi } from 'vitest'
 import { navigation } from '@/config/navigation'
 import { siteConfig } from '@/config/site'
 import { routes } from '@/routes/routes'
@@ -12,7 +12,7 @@ function renderRoute(path = '/') {
   return router
 }
 
-describe('Rutas y estructura provisional', () => {
+describe('Rutas y estructura pública', () => {
   it.each(navigation)(
     'resuelve $path con el título $label',
     async ({ path, label }) => {
@@ -39,8 +39,10 @@ describe('Rutas y estructura provisional', () => {
         ).toHaveAttribute('aria-current', 'page')
       } else {
         expect(
-          screen.getAllByRole('link', { name: label }).length,
-        ).toBeGreaterThan(0)
+          screen.getByRole('link', {
+            name: 'Armá tu pedido, 0 productos seleccionados',
+          }),
+        ).toHaveAttribute('href', '/arma-tu-pedido')
       }
     },
   )
@@ -105,6 +107,37 @@ describe('Rutas y estructura provisional', () => {
       `https://wa.me/${siteConfig.contact.whatsapp.internationalNumber}`,
     )
   })
+  it('mantiene WhatsApp flotante al navegar y permite activarlo con teclado', async () => {
+    const user = userEvent.setup()
+    const router = renderRoute('/catalogo')
+    const name = 'Consultanos por WhatsApp (abre una pestaña nueva)'
+    const link = screen.getByRole('link', { name })
+    const url = new URL(link.getAttribute('href') ?? '')
+    expect(url.origin).toBe('https://wa.me')
+    expect(url.pathname).toBe('/5491135939460')
+    expect(url.searchParams.get('text')).toBe(
+      '¡Hola! Me gustaría recibir más información sobre los productos de La Casa del Detalle.',
+    )
+    expect(link).toHaveAttribute('target', '_blank')
+    expect(link).toHaveAttribute('rel', 'noopener noreferrer')
+    expect(link.querySelector('[data-icon="whatsapp"]')).not.toBeNull()
+    expect(screen.queryByRole('dialog')).not.toBeInTheDocument()
+    const activated = vi.fn((event: Event) => event.preventDefault())
+    link.addEventListener('click', activated)
+    link.focus()
+    expect(link).toHaveFocus()
+    await user.keyboard('{Enter}')
+    expect(activated).toHaveBeenCalledOnce()
+    expect(router.state.location.pathname).toBe('/catalogo')
+    await user.click(
+      screen.getByRole('link', {
+        name: 'Armá tu pedido, 0 productos seleccionados',
+      }),
+    )
+    await screen.findByRole('heading', { level: 1, name: 'Armá tu pedido' })
+    expect(screen.getByRole('link', { name })).toBe(link)
+  })
+
   it('ofrece la demo solo como ruta de desarrollo y fuera de la navegación comercial', async () => {
     renderRoute('/__dev/design-system')
     expect(
@@ -116,8 +149,6 @@ describe('Rutas y estructura provisional', () => {
     expect(
       screen.queryByRole('link', { name: 'Sistema de diseño' }),
     ).not.toBeInTheDocument()
-    expect(
-      screen.getAllByText('Fotografía pendiente de validación').length,
-    ).toBeGreaterThan(0)
+    expect(screen.getAllByText('Sin imagen').length).toBeGreaterThan(0)
   })
 })

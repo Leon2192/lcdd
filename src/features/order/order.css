@@ -104,13 +104,10 @@
     max-width: 160px;
   }
   .order-item-media .media-placeholder {
-    aspect-ratio: 4/3;
+    aspect-ratio: 4 / 5;
     min-height: 0;
     font-size: 0.75rem;
     padding: 12px;
-  }
-  .order-item-media .placeholder-mark {
-    font-size: 1.5rem;
   }
   .order-item-media img {
     width: 100%;
@@ -186,11 +183,6 @@
   }
   .order-selection [role='status'] {
     margin-top: 12px;
-  }
-  .order-view-link {
-    display: inline-flex;
-    align-items: center;
-    min-height: 44px;
   }
   .quotation-form {
     display: grid;

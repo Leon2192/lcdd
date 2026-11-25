@@ -23,7 +23,7 @@ export function generateQuotationMessage(
     .map((line) => {
       const product = getProduct(line.productId)
       if (!product) throw new Error('Producto inexistente')
-      return `- ${product.name} (${product.id}) — ${getLineLabel(product.id, line.quantity)}`
+      return `- ${product.name} — ${getLineLabel(product.id, line.quantity)}`
     })
     .join('\n')
   const fields = [
@@ -44,5 +44,5 @@ export function generateQuotationMessage(
 export function generateDirectConsultation(productId: string): string {
   const product = catalog.products.find((item) => item.id === productId)
   if (!product) throw new Error('Producto inexistente')
-  return `Hola, quisiera consultar desde la web de LCDD por ${product.name} (${product.id}). Necesito asesoramiento sobre su modalidad, cantidades y opciones disponibles. Gracias.`
+  return `Hola, quisiera consultar desde la web de LCDD por ${product.name}. Necesito asesoramiento sobre su modalidad, cantidades y opciones disponibles. Gracias.`
 }

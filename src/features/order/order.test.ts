@@ -121,7 +121,9 @@ describe('Persistencia validada', () => {
     )
     const store = createOrderStore(storage)
     expect(store.getState().lines).toEqual([])
-    expect(store.getState().notice).toMatch(/versión/)
+    expect(store.getState().notice).toMatch(
+      /No pudimos recuperar el pedido guardado/,
+    )
     expect(storage.getItem(ORDER_STORAGE_KEY)).toBeNull()
   })
   it('obliga a revisar selección si el catálogo cambió', () => {

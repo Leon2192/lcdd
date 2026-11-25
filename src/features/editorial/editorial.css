@@ -43,11 +43,6 @@
     border-radius: var(--lcdd-radius-panel);
     overflow: hidden;
   }
-  .editorial-notice {
-    font-size: 0.75rem;
-    color: var(--lcdd-muted);
-    margin-block: 1rem 0;
-  }
   .editorial-topics {
     display: grid;
     gap: 1rem;
@@ -116,55 +111,6 @@
   }
   .editorial-collection .product-rail {
     margin-block-start: 1.5rem;
-  }
-  /* Decoración abstracta, sin representar fotografías ni características de productos. */
-  .media-placeholder,
-  .home-media-placeholder {
-    position: relative;
-    isolation: isolate;
-    overflow: hidden;
-    background:
-      radial-gradient(
-        ellipse at 10% 5%,
-        var(--lcdd-background),
-        transparent 62%
-      ),
-      linear-gradient(
-        140deg,
-        var(--lcdd-sand),
-        var(--lcdd-neutral) 55%,
-        var(--lcdd-rose)
-      );
-  }
-  .media-placeholder::before,
-  .home-media-placeholder::before {
-    content: '';
-    position: absolute;
-    z-index: -1;
-    width: 65%;
-    aspect-ratio: 1;
-    border: 1px solid var(--lcdd-control-border);
-    border-radius: 50% 50% 0 0;
-    opacity: 0.35;
-    transform: rotate(25deg);
-    inset: 12% -15% auto auto;
-  }
-  .media-placeholder::after,
-  .home-media-placeholder::after {
-    content: '';
-    position: absolute;
-    z-index: -1;
-    width: 55%;
-    aspect-ratio: 1;
-    border: 1px solid var(--lcdd-control-border);
-    border-radius: 50%;
-    opacity: 0.3;
-    inset: auto auto -20% -12%;
-  }
-  .media-placeholder > span:last-child,
-  .home-media-placeholder small {
-    max-width: 26ch;
-    text-wrap: balance;
   }
   @media (width >= 48rem) {
     .editorial-hero-grid {

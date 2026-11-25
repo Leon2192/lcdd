@@ -11,7 +11,7 @@ export function AboutAndProfessionals() {
     <Section className="home-about">
       <Container className="about-composition">
         <section className="about-editorial" aria-labelledby="home-about-title">
-          <HomeMedia slot="about" label="Imagen institucional" />
+          <HomeMedia slot="about" />
           <div className="editorial-copy">
             <p className="eyebrow">{about.eyebrow}</p>
             <h2 id="home-about-title">{siteConfig.name}</h2>

@@ -14,7 +14,7 @@ export function ProductGallery({
   return (
     <section className="catalog-gallery" aria-label={`Galería de ${name}`}>
       {image ? (
-        <>
+        <div className="catalog-gallery-image">
           <img
             className="catalog-main-image"
             decoding="async"
@@ -24,11 +24,9 @@ export function ProductGallery({
             height={image.height}
           />
           <IllustrativeNotice src={image.src} />
-        </>
+        </div>
       ) : (
-        <MediaPlaceholder
-          label={`Fotografía de ${name} pendiente de validación`}
-        />
+        <MediaPlaceholder />
       )}
       {images.length > 1 && (
         <div

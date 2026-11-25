@@ -159,9 +159,7 @@ describe('Tarjetas y estados', () => {
         />
       </MemoryRouter>,
     )
-    expect(
-      screen.getAllByText('Fotografía pendiente de validación'),
-    ).toHaveLength(2)
+    expect(screen.getAllByText('Sin imagen')).toHaveLength(2)
     expect(
       screen.getByRole('link', { name: /Vasos personalizados/ }),
     ).toHaveAttribute('href', '/catalogo/producto/P-003')

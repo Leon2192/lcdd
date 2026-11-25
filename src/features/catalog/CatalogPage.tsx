@@ -9,7 +9,6 @@ import {
   getCategoryPath,
   getCategoryProducts,
 } from '@/data/catalog/catalog'
-import { CatalogNotice, OrderPreviewLink } from './components/CatalogShared'
 export function CatalogPage() {
   const [params, setParams] = useSearchParams()
   const selected = params.getAll('categoria')
@@ -35,7 +34,6 @@ export function CatalogPage() {
         <h1>Todos nuestros productos</h1>
         <p>Explorá las cinco categorías de La Casa del Detalle.</p>
       </header>
-      <CatalogNotice />
       <div className="catalog-layout">
         <aside className="catalog-sidebar">
           <details className="catalog-filter-disclosure" open>
@@ -45,7 +43,7 @@ export function CatalogPage() {
               {catalog.categories.map((category) => (
                 <Checkbox
                   key={category.id}
-                  label={`${category.name} (${getCategoryProducts(category.id).length})`}
+                  label={category.name}
                   checked={selected.includes(category.id)}
                   onChange={() => toggle(category.id)}
                 />
@@ -84,7 +82,6 @@ export function CatalogPage() {
           )}
         </div>
       </div>
-      <OrderPreviewLink />
     </div>
   )
 }

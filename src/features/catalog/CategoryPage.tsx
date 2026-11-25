@@ -6,12 +6,7 @@ import { Button } from '@/components/ui/Button'
 import { EmptyState } from '@/components/ui/EmptyState'
 import { Breadcrumbs } from '@/components/ui/Breadcrumbs'
 import { getCategory, getCategoryProducts } from '@/data/catalog/catalog'
-import {
-  CatalogNotice,
-  CategoryNavigation,
-  CatalogMissing,
-  OrderPreviewLink,
-} from './components/CatalogShared'
+import { CategoryNavigation, CatalogMissing } from './components/CatalogShared'
 const normalize = (text: string) =>
   text
     .normalize('NFD')
@@ -39,7 +34,6 @@ export function CategoryPage() {
         <p className="eyebrow">Nuestro catálogo</p>
         <h1>{category.name}</h1>
       </header>
-      <CatalogNotice />
       <div className="catalog-layout">
         <CategoryNavigation />
         <section
@@ -64,7 +58,6 @@ export function CategoryPage() {
               }}
             />
           </div>
-          <p role="status">{products.length} productos</p>
           {products.length ? (
             <div
               className={products.length <= 2 ? 'catalog-small-selection' : ''}
@@ -83,7 +76,6 @@ export function CategoryPage() {
           )}
         </section>
       </div>
-      <OrderPreviewLink />
     </div>
   )
 }

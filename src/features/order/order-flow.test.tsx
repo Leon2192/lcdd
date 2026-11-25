@@ -58,7 +58,7 @@ describe('Recorrido de pedido y cotización', () => {
     )
     expect(
       screen.getByRole('link', {
-        name: 'Armá tu pedido, 1 productos seleccionados',
+        name: 'Armá tu pedido, 1 producto seleccionado',
       }),
     ).toHaveAttribute('href', '/arma-tu-pedido')
     await user.clear(screen.getByRole('spinbutton'))
@@ -66,7 +66,7 @@ describe('Recorrido de pedido y cotización', () => {
     await user.click(
       screen.getByRole('button', { name: 'Agregar a mi pedido' }),
     )
-    expect(screen.getByText(/La cantidad no se sumó ni cambió/)).toBeVisible()
+    expect(screen.getByText(/Este producto ya está en tu pedido/)).toBeVisible()
     expect(orderStore.getState().lines[0]?.quantity).toBe(20)
     expect(orderStore.getState().lines).toHaveLength(1)
   })
@@ -178,7 +178,7 @@ describe('Recorrido de pedido y cotización', () => {
     )
     expect(message).toHaveProperty(
       'value',
-      expect.stringContaining('Save the date (P-014) — Servicio digital'),
+      expect.stringContaining('Save the date — Servicio digital'),
     )
     expect(copy).not.toHaveBeenCalled()
     expect(
@@ -296,7 +296,7 @@ describe('Recorrido de pedido y cotización', () => {
     expect(orderStore.getState().lines).toHaveLength(1)
     expect(
       screen.getByRole('link', {
-        name: 'Armá tu pedido, 1 productos seleccionados',
+        name: 'Armá tu pedido, 1 producto seleccionado',
       }),
     ).toBeVisible()
   })

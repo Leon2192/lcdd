@@ -18,25 +18,21 @@ export function ProductInformation({ product }: { product: Product }) {
       status: product.variants.status,
       values: product.variants.options,
     },
-  ]
+  ].filter(
+    (section) => section.status === 'confirmed' && section.values?.length,
+  )
   return (
     <>
-      <section>
-        <h2>
-          {product.description.status === 'confirmed'
-            ? 'Descripción'
-            : 'Descripción preliminar · En revisión'}
-        </h2>
-        {product.description.value && <p>{product.description.value}</p>}
-      </section>
-      <section>
-        <h2>Opciones del producto</h2>
-        {sections
-          .filter(
-            (section) =>
-              section.status === 'confirmed' && section.values?.length,
-          )
-          .map((section) => (
+      {product.description.value && (
+        <section>
+          <h2>Descripción</h2>
+          <p>{product.description.value}</p>
+        </section>
+      )}
+      {sections.length > 0 && (
+        <section>
+          <h2>Opciones del producto</h2>
+          {sections.map((section) => (
             <div key={section.title}>
               <h3>{section.title}</h3>
               <ul>
@@ -46,16 +42,8 @@ export function ProductInformation({ product }: { product: Product }) {
               </ul>
             </div>
           ))}
-        {sections.some(
-          (section) =>
-            section.status !== 'confirmed' || !section.values?.length,
-        ) && (
-          <p>
-            Características, personalización y variantes pendientes de
-            validación comercial. No se ofrecen opciones sin confirmar.
-          </p>
-        )}
-      </section>
+        </section>
+      )}
       <OrderSelection key={product.id} product={product} />
       <DirectConsultation
         key={`consult-${product.id}`}
