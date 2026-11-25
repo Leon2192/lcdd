@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { fireEvent, render, screen, within } from '@testing-library/react'
+import { render, screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { MemoryRouter } from 'react-router'
 import { describe, expect, it, vi } from 'vitest'
@@ -127,21 +127,37 @@ describe('Acciones y controles', () => {
     await user.click(increase)
     await user.click(increase)
     expect(increase).toBeDisabled()
-    fireEvent.change(screen.getByRole('spinbutton'), { target: { value: '1' } })
-    expect(screen.getByRole('spinbutton')).toHaveValue(1)
-    fireEvent.change(screen.getByRole('spinbutton'), {
-      target: { value: '-1' },
-    })
-    fireEvent.blur(screen.getByRole('spinbutton'))
-    expect(screen.getByRole('spinbutton')).toHaveValue(1)
-    fireEvent.change(screen.getByRole('spinbutton'), {
-      target: { value: '1.5' },
-    })
-    fireEvent.blur(screen.getByRole('spinbutton'))
-    expect(screen.getByRole('spinbutton')).toHaveValue(1)
-    await user.clear(screen.getByRole('spinbutton'))
-    await user.type(screen.getByRole('spinbutton'), '2')
-    expect(screen.getByRole('spinbutton')).toHaveValue(2)
+    const select = screen.getByRole('combobox', { name: 'Cantidad de muestra' })
+    expect(
+      within(select)
+        .getAllByRole('option')
+        .map((option) => option.textContent),
+    ).toEqual(['0', '1', '2'])
+    await user.selectOptions(select, '1')
+    expect(select).toHaveValue('1')
+    await user.selectOptions(select, '2')
+    expect(select).toHaveValue('2')
+  })
+  it('mantiene visible una cantidad guardada fuera del rango hasta elegir otra', async () => {
+    const user = userEvent.setup()
+    const onChange = vi.fn()
+    render(
+      <QuantitySelector
+        label="Cantidad"
+        min={10}
+        max={200}
+        value={6}
+        onChange={onChange}
+      />,
+    )
+    const select = screen.getByRole('combobox', { name: 'Cantidad' })
+    expect(select).toHaveDisplayValue('6 (guardada)')
+    expect(
+      within(select).getByRole('option', { name: '6 (guardada)' }),
+    ).toBeDisabled()
+    expect(onChange).not.toHaveBeenCalled()
+    await user.selectOptions(select, '10')
+    expect(onChange).toHaveBeenCalledExactlyOnceWith(10)
   })
 })
 

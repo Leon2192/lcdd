@@ -1,5 +1,7 @@
 import { getProduct } from '@/data/catalog/catalog'
 import type { Product } from '@/data/catalog/types'
+export const orderQuantityRange = { min: 10, max: 200 } as const
+
 export type OrderRule =
   { kind: 'quantity' | 'service'; label: string } | { kind: 'consultation' }
 export function getOrderRule(product: Product): OrderRule {

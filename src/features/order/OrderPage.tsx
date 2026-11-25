@@ -14,7 +14,7 @@ import {
 import { ProductRail } from '@/components/ui/ProductRail'
 import { useOrder } from './use-order'
 import { selectOrderProducts, selectSuggestions } from './selectors'
-import { getLineLabel } from './rules'
+import { getLineLabel, orderQuantityRange } from './rules'
 import { OrderSummary } from './components/OrderSummary'
 import { OrderSteps } from './components/OrderSteps'
 export function OrderPage() {
@@ -105,7 +105,7 @@ export function OrderPage() {
                           <QuantitySelector
                             label={`Cantidad para ${product.name}`}
                             value={line.quantity}
-                            min={1}
+                            {...orderQuantityRange}
                             onChange={(value) => {
                               if (update(product.id, value))
                                 setStatus(

@@ -96,6 +96,9 @@
     margin-block: 20px;
     max-width: 32rem;
   }
+  .catalog-product-heading {
+    margin-block: 1rem;
+  }
   .catalog-detail {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
@@ -126,7 +129,7 @@
     height: auto;
     aspect-ratio: 4/5;
     object-fit: contain;
-    background: var(--color-sand);
+    background: var(--lcdd-white);
   }
   .catalog-thumbnails {
     display: flex;

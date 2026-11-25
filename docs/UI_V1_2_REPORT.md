@@ -2,6 +2,8 @@
 
 El catálogo operativo tiene **16 productos, cinco categorías y cuatro productos en Kits**. «Kits para eventos» pasa a llamarse «Kits» y conserva `/catalogo/categoria/kits-para-eventos`. El enlace descriptivo anterior del kit genérico lleva a esa categoría para elegir formato. Los campos comerciales de los demás productos, las colecciones y la selección de destacados se conservan. Las referencias existentes a P-001 conservan el identificador y resuelven a Bolsa.
 
+**Ajustes posteriores a la entrega.** Bolsa y Pillow muestran la ilustración original del kit antiresaca y sus dos WebP específicos salen del build. El título de la ficha precede a la galería, el fondo de las imágenes contenidas es blanco y el selector de ficha y pedido ofrece cantidades de 10 a 200. La tabla registra la integración inicial.
+
 ## Productos y recursos
 
 | Destino                              | ID                                     | WebP                            | Integración                              |

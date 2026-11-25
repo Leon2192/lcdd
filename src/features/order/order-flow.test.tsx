@@ -33,17 +33,20 @@ describe('Recorrido de pedido y cotización', () => {
   it('no inventa una cantidad inicial y muestra errores sin agregar', async () => {
     const user = userEvent.setup()
     visit('/catalogo/producto/p-003-vasos-personalizados')
-    const quantity = screen.getByRole('spinbutton')
-    expect(quantity).toHaveValue(null)
+    const quantity = screen.getByRole('combobox')
+    expect(quantity).toHaveValue('')
     await user.click(
       screen.getByRole('button', { name: 'Agregar a mi pedido' }),
     )
-    expect(
-      screen.getByText(/Ingresá una cantidad entera positiva/),
-    ).toBeVisible()
+    expect(screen.getByText(/Elegí una cantidad del 10 al 200/)).toBeVisible()
     expect(quantity).toHaveAttribute('aria-invalid', 'true')
     expect(orderStore.getState().lines).toEqual([])
-    await user.type(quantity, '0')
+    const choices = within(quantity)
+      .getAllByRole('option')
+      .filter((option) => !option.hasAttribute('disabled'))
+    expect(choices.map((option) => option.textContent)).toEqual(
+      Array.from({ length: 191 }, (_, index) => String(index + 10)),
+    )
     await user.click(
       screen.getByRole('button', { name: 'Agregar a mi pedido' }),
     )
@@ -52,7 +55,7 @@ describe('Recorrido de pedido y cotización', () => {
   it('agrega, informa repetidos y actualiza el indicador del header', async () => {
     const user = userEvent.setup()
     visit('/catalogo/producto/p-003-vasos-personalizados')
-    await user.type(screen.getByRole('spinbutton'), '20')
+    await user.selectOptions(screen.getByRole('combobox'), '20')
     await user.click(
       screen.getByRole('button', { name: 'Agregar a mi pedido' }),
     )
@@ -61,8 +64,7 @@ describe('Recorrido de pedido y cotización', () => {
         name: 'Armá tu pedido, 1 producto seleccionado',
       }),
     ).toHaveAttribute('href', '/arma-tu-pedido')
-    await user.clear(screen.getByRole('spinbutton'))
-    await user.type(screen.getByRole('spinbutton'), '30')
+    await user.selectOptions(screen.getByRole('combobox'), '30')
     await user.click(
       screen.getByRole('button', { name: 'Agregar a mi pedido' }),
     )
@@ -74,20 +76,20 @@ describe('Recorrido de pedido y cotización', () => {
     const user = userEvent.setup()
     orderStore.getState().add('P-003', 20)
     visit('/catalogo/producto/p-013-invitaciones-digitales')
-    expect(screen.queryByRole('spinbutton')).toBeNull()
+    expect(screen.queryByRole('combobox')).toBeNull()
     await user.click(
       screen.getByRole('button', { name: 'Agregar a mi pedido' }),
     )
     await user.click(screen.getByRole('link', { name: 'Ver mi pedido' }))
     await screen.findByRole('heading', { level: 1, name: 'Armá tu pedido' })
     expect(orderStore.getState().lines).toHaveLength(2)
-    expect(screen.getAllByRole('spinbutton')).toHaveLength(1)
+    expect(screen.getAllByRole('combobox')).toHaveLength(1)
     await user.click(
       screen.getByRole('button', {
         name: 'Aumentar cantidad para vasos personalizados',
       }),
     )
-    expect(screen.getByRole('spinbutton')).toHaveValue(21)
+    expect(screen.getByRole('combobox')).toHaveValue('21')
     await user.click(
       screen.getByRole('button', { name: 'Quitar Invitaciones digitales' }),
     )
@@ -262,7 +264,7 @@ describe('Recorrido de pedido y cotización', () => {
     async (path) => {
       const user = userEvent.setup()
       visit(path)
-      expect(screen.queryByRole('spinbutton')).toBeNull()
+      expect(screen.queryByRole('combobox')).toBeNull()
       expect(
         screen.queryByRole('button', { name: 'Agregar a mi pedido' }),
       ).toBeNull()

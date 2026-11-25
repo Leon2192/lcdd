@@ -249,7 +249,7 @@ describe('Home LCDD', () => {
     const guide = screen.getByRole('region', { name: '¿Cómo armar tu pedido?' })
     expect(within(guide).getAllByRole('listitem')).toHaveLength(4)
     expect(screen.queryByText(/solicitud enviada/i)).not.toBeInTheDocument()
-    expect(screen.queryByRole('spinbutton')).not.toBeInTheDocument()
+    expect(screen.queryByRole('combobox')).not.toBeInTheDocument()
     expect(
       screen.queryByText(/garantía|descuento|checkout/i),
     ).not.toBeInTheDocument()

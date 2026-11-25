@@ -36,6 +36,10 @@ export function ProductDetailPage() {
           { label: product.name },
         ]}
       />
+      <header className="catalog-product-heading">
+        <p className="eyebrow">{category?.name}</p>
+        <h1 data-product-focus>{product.name}</h1>
+      </header>
       <div className="catalog-detail">
         <ProductGallery
           key={product.id}
@@ -43,8 +47,6 @@ export function ProductDetailPage() {
           images={getProductMedia(product)}
         />
         <div className="catalog-product-copy">
-          <p className="eyebrow">{category?.name}</p>
-          <h1>{product.name}</h1>
           <ProductInformation product={product} />
         </div>
       </div>

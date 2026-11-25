@@ -12,6 +12,13 @@ export type HomeMediaSlot =
 type CategoryId = (typeof officialCatalog.categories)[number]['id']
 type ProductId = (typeof officialCatalog.products)[number]['id']
 type CollectionId = (typeof officialCatalog.collections)[number]['id']
+const antiresacaIllustration: LocalImage = {
+  src: '/media/products/P-001/P-001_principal_01_v01.webp',
+  alt: 'Imagen ilustrativa de un kit antiresaca',
+  width: 1200,
+  height: 1500,
+  fit: 'contain',
+}
 export const visualAssets: {
   logo: LocalImage | null
   home: Partial<Record<HomeMediaSlot, LocalImage>>
@@ -93,16 +100,7 @@ export const visualAssets: {
     },
   },
   products: {
-    'P-015': [
-      {
-        src: '/media/products/kit-antiresaca-pillow.webp',
-        alt: 'Cajas blancas con formato Pillow y diseño personalizado de kit antiresaca',
-        width: 1220,
-        height: 1007,
-        origin: 'lcdd-supplied',
-        fit: 'contain',
-      },
-    ],
+    'P-015': [antiresacaIllustration],
     'P-016': [
       {
         src: '/media/products/kit-antiresaca-craft.webp',
@@ -143,16 +141,7 @@ export const visualAssets: {
         fit: 'contain',
       },
     ],
-    'P-001': [
-      {
-        src: '/media/products/kit-antiresaca-bolsa.webp',
-        alt: 'Bolsas blancas con cordón y diseños personalizados de kit antiresaca',
-        width: 1536,
-        height: 1536,
-        origin: 'lcdd-supplied',
-        fit: 'contain',
-      },
-    ],
+    'P-001': [antiresacaIllustration],
     'P-002': [
       {
         src: '/media/products/kit-de-bano.webp',

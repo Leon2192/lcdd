@@ -1,27 +1,23 @@
 import { useRef, useState } from 'react'
 import type { FormEvent } from 'react'
-import { Input } from '@/components/ui/Input'
+import { QuantitySelector } from '@/components/ui/QuantitySelector'
 import { Button } from '@/components/ui/Button'
-import { getOrderRule } from '../rules'
-import { quantitySchema } from '../persistence'
+import { getOrderRule, orderQuantityRange } from '../rules'
 import { useOrder } from '../use-order'
 import type { Product } from '@/data/catalog/types'
 export function OrderSelection({ product }: { product: Product }) {
   const rule = getOrderRule(product)
-  const quantityRef = useRef<HTMLInputElement>(null)
+  const quantityRef = useRef<HTMLSelectElement>(null)
   const add = useOrder((state) => state.add)
-  const [quantity, setQuantity] = useState('')
+  const [quantity, setQuantity] = useState<number | null>(null)
   const [error, setError] = useState('')
   const [status, setStatus] = useState('')
   function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
     if (rule.kind === 'consultation') return
-    const number = rule.kind === 'service' ? null : Number(quantity)
-    if (
-      rule.kind === 'quantity' &&
-      (!quantity.trim() || !quantitySchema.safeParse(number).success)
-    ) {
-      setError('Ingresá una cantidad entera positiva.')
+    const number = rule.kind === 'service' ? null : quantity
+    if (rule.kind === 'quantity' && number === null) {
+      setError('Elegí una cantidad del 10 al 200.')
       setStatus('')
       quantityRef.current?.focus()
       return
@@ -49,19 +45,17 @@ export function OrderSelection({ product }: { product: Product }) {
         {rule.kind === 'service' ? (
           <p>Servicio digital</p>
         ) : (
-          <Input
+          <QuantitySelector
             ref={quantityRef}
             label={rule.label}
-            type="number"
-            inputMode="numeric"
-            step="1"
             value={quantity}
-            onChange={(event) => {
-              setQuantity(event.target.value)
+            {...orderQuantityRange}
+            showSteppers={false}
+            onChange={(next) => {
+              setQuantity(next)
               setError('')
               setStatus('')
             }}
-            placeholder="Ingresá la cantidad que querés consultar"
             {...(error ? { error } : {})}
           />
         )}

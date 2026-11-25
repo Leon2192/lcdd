@@ -1,4 +1,11 @@
-import { act, fireEvent, render, screen, within } from '@testing-library/react'
+import {
+  act,
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+  within,
+} from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { createMemoryRouter, RouterProvider } from 'react-router'
 import { describe, it, expect, beforeEach } from 'vitest'
@@ -156,8 +163,8 @@ describe('Fichas oficiales', () => {
         ).not.toBeInTheDocument()
 
       if (getOrderRule(product).kind === 'quantity')
-        expect(screen.getByRole('spinbutton')).toHaveValue(null)
-      else expect(screen.queryByRole('spinbutton')).toBeNull()
+        expect(screen.getByRole('combobox')).toHaveValue('')
+      else expect(screen.queryByRole('combobox')).toBeNull()
       expect(document.body.textContent).not.toMatch(
         /\$|ARS|comprar ahora|checkout|preliminar|pendiente de validación|\bP-\d{3}\b/i,
       )
@@ -191,7 +198,7 @@ describe('Fichas oficiales', () => {
       if (!product) throw new Error('Sin producto')
       visit(getProductPath(product))
       expect(screen.getByText('Servicio digital')).toBeVisible()
-      expect(screen.queryByRole('spinbutton')).toBeNull()
+      expect(screen.queryByRole('combobox')).toBeNull()
     },
   )
   it('ofrece consulta directa para Carpa QR y conserva su discrepancia en los datos', () => {
@@ -208,12 +215,36 @@ describe('Fichas oficiales', () => {
     expect(
       catalog.pendingNotes.some((note) => note.productId === 'P-011'),
     ).toBe(true)
-    expect(screen.queryByRole('spinbutton')).toBeNull()
+    expect(screen.queryByRole('combobox')).toBeNull()
+  })
+  it('enfoca el título y presenta la galería antes de la descripción al abrir una ficha', async () => {
+    visit('/catalogo?categoria=kits-para-eventos')
+    fireEvent.click(screen.getByRole('link', { name: /Kit antiresaca Pillow/ }))
+    const title = await screen.findByRole('heading', {
+      name: 'Kit antiresaca Pillow',
+      level: 1,
+    })
+    await waitFor(() => expect(title).toHaveFocus())
+    const gallery = screen.getByRole('region', {
+      name: 'Galería de Kit antiresaca Pillow',
+    })
+    expect(
+      title.compareDocumentPosition(gallery) & Node.DOCUMENT_POSITION_FOLLOWING,
+    ).toBeTruthy()
+    expect(
+      gallery.compareDocumentPosition(
+        screen.getByRole('heading', { name: 'Descripción' }),
+      ) & Node.DOCUMENT_POSITION_FOLLOWING,
+    ).toBeTruthy()
+    expect(within(gallery).getByRole('img')).toHaveAttribute(
+      'src',
+      '/media/products/P-001/P-001_principal_01_v01.webp',
+    )
   })
   it('agrega desde la ficha y permite revisar una selección real', async () => {
     const user = userEvent.setup()
     visit('/catalogo/producto/p-003-vasos-personalizados')
-    await user.type(screen.getByRole('spinbutton'), '25')
+    await user.selectOptions(screen.getByRole('combobox'), '25')
     await user.click(
       screen.getByRole('button', { name: 'Agregar a mi pedido' }),
     )
@@ -223,7 +254,7 @@ describe('Fichas oficiales', () => {
     await user.click(screen.getByRole('link', { name: 'Ver mi pedido' }))
     await screen.findByRole('heading', { level: 1, name: 'Armá tu pedido' })
     expect(screen.getByRole('heading', { name: 'Tu selección' })).toBeVisible()
-    expect(screen.getByRole('spinbutton')).toHaveValue(25)
+    expect(screen.getByRole('combobox')).toHaveValue('25')
     expect(
       JSON.parse(localStorage.getItem('lcdd:order') ?? '{}').lines,
     ).toHaveLength(1)
@@ -284,8 +315,8 @@ it('cotiza los tres formatos por separado y permite modificar y quitar una líne
     expect(
       screen.getByRole('heading', { name: kit.name, level: 1 }),
     ).toBeVisible()
-    fireEvent.change(screen.getByRole('spinbutton'), {
-      target: { value: String(index + 2) },
+    fireEvent.change(screen.getByRole('combobox'), {
+      target: { value: String(index + 12) },
     })
     fireEvent.click(screen.getByRole('button', { name: 'Agregar a mi pedido' }))
   }
@@ -295,9 +326,9 @@ it('cotiza los tres formatos por separado y permite modificar y quitar una líne
     }),
   ).toBeVisible()
   expect(JSON.parse(localStorage.getItem('lcdd:order') ?? '{}').lines).toEqual([
-    { productId: 'P-001', kind: 'quantity', quantity: 2 },
-    { productId: 'P-015', kind: 'quantity', quantity: 3 },
-    { productId: 'P-016', kind: 'quantity', quantity: 4 },
+    { productId: 'P-001', kind: 'quantity', quantity: 12 },
+    { productId: 'P-015', kind: 'quantity', quantity: 13 },
+    { productId: 'P-016', kind: 'quantity', quantity: 14 },
   ])
   await act(() => router.navigate('/arma-tu-pedido'))
   fireEvent.click(
@@ -306,17 +337,24 @@ it('cotiza los tres formatos por separado y permite modificar y quitar una líne
     }),
   )
   expect(
-    screen.getByRole('spinbutton', {
+    screen.getByRole('combobox', {
       name: 'Cantidad para Kit antiresaca Pillow',
     }),
-  ).toHaveValue(4)
+  ).toHaveValue('14')
   for (const kit of kits) {
     const media = getProductMedia(kit)[0]
     if (!media) throw new Error('Falta la imagen de un kit')
-    const selection = screen.getByRole('region', { name: 'Tu selección' })
-    expect(
-      within(selection).getByRole('img', { name: media.alt }),
-    ).toHaveAttribute('src', media.src)
+    const selection = within(
+      screen.getByRole('region', { name: 'Tu selección' }),
+    )
+    const item = selection
+      .getByRole('heading', { name: kit.name })
+      .closest('article')
+    if (!item) throw new Error('Falta el producto en el pedido')
+    expect(within(item).getByRole('img', { name: media.alt })).toHaveAttribute(
+      'src',
+      media.src,
+    )
   }
 
   await act(() => router.navigate('/cotizacion'))
@@ -329,9 +367,9 @@ it('cotiza los tres formatos por separado y permite modificar y quitar una líne
   const message = new URL(link.getAttribute('href') ?? '').searchParams.get(
     'text',
   )
-  expect(message).toContain('Kit antiresaca Bolsa — Cantidad de kits: 2')
-  expect(message).toContain('Kit antiresaca Pillow — Cantidad de kits: 4')
-  expect(message).toContain('Kit antiresaca Craft — Cantidad de kits: 4')
+  expect(message).toContain('Kit antiresaca Bolsa — Cantidad de kits: 12')
+  expect(message).toContain('Kit antiresaca Pillow — Cantidad de kits: 14')
+  expect(message).toContain('Kit antiresaca Craft — Cantidad de kits: 14')
 
   await act(() => router.navigate('/arma-tu-pedido'))
   fireEvent.click(

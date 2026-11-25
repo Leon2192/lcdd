@@ -8,6 +8,8 @@ Base local de la plataforma web LCDD, orientada a productos personalizados, souv
 
 **V1.2 — Catálogo y recursos comerciales.** El catálogo operativo tiene 16 productos en cinco categorías. Kits conserva su URL y reúne Kits de baño, Kit antiresaca Bolsa, Pillow y Craft. Las selecciones guardadas de la revisión anterior conservan las líneas válidas y requieren volver a elegir el formato del kit genérico. En Inicio, hasta 767 px, las categorías y los destacados aparecen antes del hero.
 
+En las fichas y el pedido, las cantidades nuevas se eligen en una lista de 10 a 200. Los valores ya guardados siguen disponibles hasta que se cambien. Al abrir una ficha desde el catálogo, la página enfoca el título situado sobre la galería. Bolsa y Pillow comparten la ilustración anterior del kit antiresaca.
+
 ## Entorno
 
 Windows + WSL2, Ubuntu 24.04, Node 24, npm 11 y VS Code. Trabajar desde `~/projects/lcdd-web` en Ubuntu. `engines` exige Node 24/npm 11.

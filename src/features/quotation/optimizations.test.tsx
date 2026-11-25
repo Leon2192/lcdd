@@ -387,7 +387,7 @@ describe('Revisión accesible y fechas', () => {
         name: 'Aumentar cantidad para vasos personalizados',
       }),
     )
-    expect(screen.getByRole('spinbutton')).toHaveValue(21)
+    expect(screen.getByRole('combobox')).toHaveValue('21')
     expect(
       screen.getByRole('button', { name: 'Quitar Vasos personalizados' }),
     ).toBeVisible()

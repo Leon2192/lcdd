@@ -10,10 +10,13 @@ export function RouteMetadata() {
     previous.current = pathname
     const frame = requestAnimationFrame(() => {
       const main = document.querySelector('main')
-      // La navegación no debe interrumpir a quien ya empezó a usar el formulario.
-      if (document.activeElement && main?.contains(document.activeElement))
-        return
       const heading = main?.querySelector<HTMLElement>('h1')
+      // La ficha abre por el título junto a la galería, incluso desde un relacionado.
+      if (
+        !heading?.hasAttribute('data-product-focus') &&
+        main?.contains(document.activeElement)
+      )
+        return
       if (!heading) return
       heading.setAttribute('tabindex', '-1')
       heading.focus({ preventScroll: true })
