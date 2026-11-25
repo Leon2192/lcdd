@@ -28,15 +28,7 @@ import {
 } from '@/data/catalog/catalog'
 import { routes } from '@/routes/routes'
 import { ProductGallery } from './components/ProductGallery'
-const productsWithoutImage = new Set([
-  'P-001',
-  'P-003',
-  'P-004',
-  'P-010',
-  'P-011',
-  'P-012',
-  'P-015',
-])
+const productsWithoutImage = new Set(['P-001'])
 
 function visit(path: string) {
   const router = createMemoryRouter(routes, { initialEntries: [path] })
@@ -316,7 +308,10 @@ describe('Fichas oficiales', () => {
         screen.getByRole('heading', { name: 'Descripción' }),
       ) & Node.DOCUMENT_POSITION_FOLLOWING,
     ).toBeTruthy()
-    expect(within(gallery).getByText('Sin imagen')).toBeVisible()
+    expect(within(gallery).getByRole('img')).toHaveAttribute(
+      'src',
+      '/media/products/kit-antiresaca-pillow.webp',
+    )
   })
   it('agrega desde la ficha y permite revisar una selección real', async () => {
     const user = userEvent.setup()
@@ -427,12 +422,17 @@ it('cotiza los tres formatos por separado y permite modificar y quitar una líne
       .getByRole('heading', { name: kit.name })
       .closest('article')
     if (!item) throw new Error('Falta el producto en el pedido')
-    if (kit.id === 'P-016' && media) {
+    if (kit.id === 'P-001') {
+      expect(within(item).getByText('Sin imagen')).toBeVisible()
+    } else {
+      if (!media) throw new Error('Falta la imagen del formato seleccionado')
+      const file =
+        kit.id === 'P-015'
+          ? 'kit-antiresaca-pillow.webp'
+          : 'kit-antiresaca-craft.webp'
       expect(
         within(item).getByRole('img', { name: media.alt }),
-      ).toHaveAttribute('src', '/media/products/kit-antiresaca-craft.webp')
-    } else {
-      expect(within(item).getByText('Sin imagen')).toBeVisible()
+      ).toHaveAttribute('src', `/media/products/${file}`)
     }
   }
 

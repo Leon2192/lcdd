@@ -8,7 +8,7 @@ Base local de la plataforma web LCDD, orientada a productos personalizados, souv
 
 **V1.2 — Catálogo y recursos comerciales.** El catálogo operativo tiene 16 productos en cinco categorías. Kits conserva su URL y reúne Kits de baño, Kit antiresaca Bolsa, Pillow y Craft. Las selecciones guardadas de la revisión anterior conservan las líneas válidas y requieren volver a elegir el formato del kit genérico. En Inicio, hasta 767 px, las categorías y los destacados aparecen antes del hero.
 
-En las fichas y el pedido, las cantidades nuevas se eligen en una lista de 10 a 200. Los valores ya guardados siguen disponibles hasta que se cambien. Al abrir una ficha desde el catálogo, la página enfoca el título situado sobre la galería. Bolsa y Pillow muestran «Sin imagen» mientras la ilustración anterior queda en el registro.
+En las fichas y el pedido, las cantidades nuevas se eligen en una lista de 10 a 200. Los valores ya guardados siguen disponibles hasta que se cambien. Al abrir una ficha desde el catálogo, la página enfoca el título situado sobre la galería. El formato Bolsa muestra «Sin imagen». Pillow cuenta con su propia imagen entregada por LCDD.
 
 **V1.3 — Inicio mobile y navegación.** Inicio mobile abre con una franja comercial y dos banners locales antes de las categorías. Los banners y las imágenes actuales entregadas por LCDD se muestran públicamente. Las ilustraciones anteriores muestran «Sin imagen». La franja y el carrusel se pueden pausar y respetan la preferencia de movimiento reducido. La configuración local de Vercel permite acceder a rutas internas y reserva las rutas de archivos para sus recursos. El historial recupera el desplazamiento al usar Atrás o Adelante.
 

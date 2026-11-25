@@ -223,7 +223,13 @@ describe('Home LCDD', () => {
     expect(
       within(featured).getByRole('img', { name: /Kit de baño con artículos/ }),
     ).toHaveAttribute('src', '/media/products/kit-de-bano.webp')
-    expect(within(featured).getAllByText('Sin imagen')).toHaveLength(2)
+    expect(
+      within(featured).getByRole('img', { name: /Vasos blancos con sorbetes/ }),
+    ).toHaveAttribute('src', '/media/products/vasos-personalizados.webp')
+    expect(
+      within(featured).getByRole('img', { name: /Abanicos rectangulares/ }),
+    ).toHaveAttribute('src', '/media/products/abanicos-personalizados.webp')
+    expect(within(featured).queryByText('Sin imagen')).not.toBeInTheDocument()
   })
   it('lleva desde la acción principal al catálogo con el catálogo de Fase 04', async () => {
     const user = userEvent.setup()

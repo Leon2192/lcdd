@@ -126,7 +126,16 @@ export const visualAssets: {
     'invitaciones-digitales': saveTheDate,
   },
   products: {
-    'P-015': [antiresacaIllustration],
+    'P-015': [
+      {
+        src: '/media/products/kit-antiresaca-pillow.webp',
+        alt: 'Cajas blancas con formato Pillow, ilustraciones y nombres personalizados',
+        width: 1220,
+        height: 1013,
+        origin: 'lcdd-supplied',
+        fit: 'contain',
+      },
+    ],
     'P-016': [
       {
         src: '/media/products/kit-antiresaca-craft.webp',
@@ -171,18 +180,22 @@ export const visualAssets: {
     ],
     'P-003': [
       {
-        src: '/media/products/P-003/P-003_principal_01_v01.webp',
-        alt: 'Vasos personalizados',
-        width: 1200,
-        height: 1500,
+        src: '/media/products/vasos-personalizados.webp',
+        alt: 'Vasos blancos con sorbetes y nombres personalizados',
+        width: 1220,
+        height: 1484,
+        origin: 'lcdd-supplied',
+        fit: 'contain',
       },
     ],
     'P-004': [
       {
-        src: '/media/products/P-004/P-004_principal_01_v01.webp',
-        alt: 'Abanicos personalizados',
-        width: 1200,
-        height: 1500,
+        src: '/media/products/abanicos-personalizados.webp',
+        alt: 'Abanicos rectangulares con diseño floral, nombres y mango de madera',
+        width: 1220,
+        height: 1620,
+        origin: 'lcdd-supplied',
+        fit: 'contain',
       },
     ],
     'P-005': [
@@ -217,26 +230,32 @@ export const visualAssets: {
     ],
     'P-010': [
       {
-        src: '/media/products/P-010/P-010_principal_01_v01.webp',
-        alt: 'Espejitos personalizados',
-        width: 1200,
-        height: 1500,
+        src: '/media/products/espejitos-personalizados.webp',
+        alt: 'Cuatro espejitos redondos con nombres y motivos florales rojos',
+        width: 1220,
+        height: 1206,
+        origin: 'lcdd-supplied',
+        fit: 'contain',
       },
     ],
     'P-011': [
       {
-        src: '/media/products/P-011/P-011_principal_01_v01.webp',
-        alt: 'Carpa QR',
-        width: 1200,
-        height: 1500,
+        src: '/media/products/carpa-qr.webp',
+        alt: 'Dos tarjetas de mesa plegadas con códigos QR y diseño floral azul',
+        width: 1197,
+        height: 1457,
+        origin: 'lcdd-supplied',
+        fit: 'contain',
       },
     ],
     'P-012': [
       {
-        src: '/media/products/P-012/P-012_principal_01_v01.webp',
-        alt: 'Números de mesa',
-        width: 1200,
-        height: 1500,
+        src: '/media/products/numeros-de-mesa.webp',
+        alt: 'Tarjeta plegada con el número cinco y un motivo de hojas',
+        width: 1207,
+        height: 1213,
+        origin: 'lcdd-supplied',
+        fit: 'contain',
       },
     ],
     'P-013': [

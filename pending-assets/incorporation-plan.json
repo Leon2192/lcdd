@@ -9,51 +9,6 @@
     "alt": "Home principal"
   },
   {
-    "name": "Vasos personalizados",
-    "file": "products/P-003/P-003_principal_01_v01.webp",
-    "width": 1200,
-    "height": 1500,
-    "kind": "products",
-    "key": "P-003",
-    "alt": "Vasos personalizados"
-  },
-  {
-    "name": "Abanicos personalizados",
-    "file": "products/P-004/P-004_principal_01_v01.webp",
-    "width": 1200,
-    "height": 1500,
-    "kind": "products",
-    "key": "P-004",
-    "alt": "Abanicos personalizados"
-  },
-  {
-    "name": "Espejitos personalizados",
-    "file": "products/P-010/P-010_principal_01_v01.webp",
-    "width": 1200,
-    "height": 1500,
-    "kind": "products",
-    "key": "P-010",
-    "alt": "Espejitos personalizados"
-  },
-  {
-    "name": "Carpa QR",
-    "file": "products/P-011/P-011_principal_01_v01.webp",
-    "width": 1200,
-    "height": 1500,
-    "kind": "products",
-    "key": "P-011",
-    "alt": "Carpa QR"
-  },
-  {
-    "name": "Números de mesa",
-    "file": "products/P-012/P-012_principal_01_v01.webp",
-    "width": 1200,
-    "height": 1500,
-    "kind": "products",
-    "key": "P-012",
-    "alt": "Números de mesa"
-  },
-  {
     "name": "Inspiración 1",
     "file": "home/inspiration-1-v01.webp",
     "width": 1200,
