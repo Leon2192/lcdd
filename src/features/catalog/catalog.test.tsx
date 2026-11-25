@@ -259,21 +259,17 @@ describe('Fichas oficiales', () => {
     )
     expect(selection.getByRole('img')).toHaveAttribute('src', source)
   }, 15_000)
-  it('ofrece consulta directa para Carpa QR y conserva su discrepancia en los datos', () => {
+  it('ofrece cantidad de tarjetas y conserva la nota sobre el servicio digital de Carpa QR', () => {
     visit('/catalogo/producto/p-011-carpa-qr')
     expect(
-      screen.getByText('Consultanos por las opciones disponibles.'),
-    ).toBeVisible()
+      screen.getByRole('combobox', { name: 'Cantidad de tarjetas' }),
+    ).toHaveValue('')
     expect(
-      screen.getByRole('button', { name: 'Consultar por este producto' }),
+      screen.getByRole('button', { name: 'Agregar a mi pedido' }),
     ).toBeVisible()
-    expect(
-      screen.queryByRole('button', { name: 'Agregar a mi pedido' }),
-    ).not.toBeInTheDocument()
     expect(
       catalog.pendingNotes.some((note) => note.productId === 'P-011'),
     ).toBe(true)
-    expect(screen.queryByRole('combobox')).toBeNull()
   })
   it('abre la ficha desde el encabezado sin desplazar la página al enfocar el título', async () => {
     visit('/catalogo?categoria=kits-para-eventos')

@@ -70,16 +70,22 @@ describe('Selección y reglas comerciales', () => {
       expect(store.getState().lines[0]?.quantity).toBeNull()
     },
   )
-  it.each(['P-008', 'P-011', 'P-012'])(
-    'no impone modalidad al producto pendiente %s',
-    (id) => {
+  it.each([
+    ['P-008', 'Cantidad'],
+    ['P-011', 'Cantidad de tarjetas'],
+    ['P-012', 'Cantidad'],
+  ])(
+    'agrega %s con cantidad explícita y recupera su línea guardada',
+    (id, label) => {
       const product = getProduct(id)
       if (!product) throw new Error('Sin producto')
-      expect(getOrderRule(product).kind).toBe('consultation')
+      expect(getOrderRule(product)).toEqual({ kind: 'quantity', label })
       const store = createOrderStore(storage)
-      expect(store.getState().add(id, 20)).toBe('consultation')
-      expect(store.getState().add(id, null)).toBe('consultation')
-      expect(store.getState().lines).toEqual([])
+      expect(store.getState().add(id, null)).toBe('invalid')
+      expect(store.getState().add(id, 20)).toBe('added')
+      expect(createOrderStore(storage).getState().lines).toEqual([
+        { productId: id, kind: 'quantity', quantity: 20 },
+      ])
     },
   )
   it('no permite referencias fuera del catálogo', () => {
@@ -143,7 +149,7 @@ describe('Persistencia validada', () => {
         { productId: 'P-003', kind: 'quantity', quantity: 30 },
         { productId: 'P-999', kind: 'quantity', quantity: 10 },
         { productId: 'P-013', kind: 'service', quantity: 2 },
-        { productId: 'P-011', kind: 'quantity', quantity: 10 },
+        { productId: 'P-011', kind: 'service', quantity: null },
         { productId: 'P-004', kind: 'quantity', quantity: -1 },
       ]),
     )

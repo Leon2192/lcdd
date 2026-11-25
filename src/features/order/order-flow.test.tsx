@@ -176,31 +176,36 @@ describe('Recorrido de pedido y cotización', () => {
     expect(orderStore.getState().lines).toHaveLength(0)
   })
   it.each([
-    '/catalogo/producto/p-011-carpa-qr',
-    '/catalogo/producto/p-008-capitan-de-mesa',
-    '/catalogo/producto/p-012-numeros-de-mesa',
+    ['p-011-carpa-qr', 'Carpa QR', 'Cantidad de tarjetas'],
+    ['p-008-capitan-de-mesa', 'Capitán de mesa', 'Cantidad'],
+    ['p-012-numeros-de-mesa', 'Números de mesa', 'Cantidad'],
   ])(
-    'mantiene consulta directa segura ante reglas pendientes: %s',
-    async (path) => {
+    'permite agregar y cotizar %s sin perder la consulta directa',
+    async (slug, name, label) => {
       const user = userEvent.setup()
-      visit(path)
-      expect(screen.queryByRole('combobox')).toBeNull()
+      visit(`/catalogo/producto/${slug}`)
       expect(
-        screen.queryByRole('button', { name: 'Agregar a mi pedido' }),
-      ).toBeNull()
-      await user.click(
         screen.getByRole('button', { name: 'Consultar por este producto' }),
+      ).toBeVisible()
+      const selector = screen.getByRole('combobox', { name: label })
+      expect(selector).toHaveValue('')
+      await user.selectOptions(selector, '30')
+      await user.click(
+        screen.getByRole('button', { name: 'Agregar a mi pedido' }),
       )
-      const modal = screen.getByRole('dialog', {
-        name: 'Consulta por el producto',
-      })
+      await user.click(screen.getByRole('link', { name: 'Ver mi pedido' }))
+      const quote = await screen.findByRole(
+        'link',
+        { name: 'Cotizar mi pedido' },
+        { timeout: 4_000 },
+      )
       expect(
-        within(modal).getByRole('textbox', { name: 'Mensaje de consulta' }),
-      ).toHaveProperty(
-        'value',
-        expect.stringContaining('Necesito asesoramiento sobre su modalidad'),
-      )
-      expect(orderStore.getState().lines).toHaveLength(0)
+        screen.getByRole('combobox', { name: `Cantidad para ${name}` }),
+      ).toHaveValue('30')
+      expect(
+        new URL(quote.getAttribute('href') ?? '').searchParams.get('text'),
+      ).toContain(`${name} — ${label}: 30`)
+      expect(orderStore.getState().lines).toHaveLength(1)
     },
   )
   it('conserva la selección al continuar explorando y no muestra importes', async () => {

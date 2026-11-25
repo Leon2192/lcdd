@@ -10,7 +10,7 @@ Componentes: OrderSelection, OrderPage, OrderSummary y OrderSteps. Se reutilizan
 
 Desde cada ficha elegible se ingresa una cantidad sin valor automático, o se selecciona un servicio sin unidades. Un mensaje accesible confirma solo una adición efectiva. Repetir un ID conserva la línea y avisa: ni suma ni reemplaza. Cambiar cantidad requiere edición explícita del pedido. No existen variantes reales confirmadas que justifiquen múltiples configuraciones del mismo ID.
 
-P-008, P-011 y P-012 tienen consulta contextualizada para revisar su modalidad pendiente; no se aceptan silenciosamente líneas estructuradas incompletas. Los nueve físicos restantes y dos servicios permiten el recorrido estructurado. Todas las reglas y su respaldo están en COMMERCIAL_RULES.
+P-008 (Capitán de mesa) y P-012 (Números de mesa) aceptan una cantidad sin especificar la unidad comercial. P-011 (Carpa QR) usa la etiqueta «Cantidad de tarjetas». La consulta directa sigue disponible en las tres fichas y la inclusión del servicio digital de Carpa QR se conserva como decisión pendiente.
 
 Ruta `/arma-tu-pedido`: título editorial, dos etapas, lista con placeholders, edición/eliminación, resumen sin dinero, continuar explorando y solicitar cotización. No hay suma global de unidades heterogéneas. El vaciado solicita confirmación. Las sugerencias se derivan de relacionados oficiales, excluyen IDs seleccionados y repetidos, y no bloquean continuar. El parámetro legado `?producto=P-003` muestra enlace a ficha; nunca agrega automáticamente.
 

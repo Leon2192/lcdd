@@ -26,7 +26,7 @@ it('anuncia únicamente altas exitosas y desaparece a los cinco segundos', () =>
 
   act(() => {
     orderStore.getState().add('P-003', 0)
-    orderStore.getState().add('P-011', 3)
+    orderStore.getState().add('P-011', null)
   })
   expect(live).toBeEmptyDOMElement()
   expect(action()).not.toBeInTheDocument()

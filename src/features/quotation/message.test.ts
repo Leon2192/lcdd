@@ -92,7 +92,7 @@ describe('Mensaje y WhatsApp', () => {
       generateQuotationMessage(lines, { ...emptyQuotation, dateUnknown: true }),
     ).toContain('Fecha del evento: por definir')
   })
-  it('no genera solicitudes estructuradas vacías, sin cantidad o con modalidad pendiente', () => {
+  it('no genera solicitudes estructuradas vacías, sin cantidad o con una modalidad incompatible', () => {
     expect(() => generateQuotationMessage([], emptyQuotation)).toThrow()
     expect(() =>
       generateQuotationMessage(
@@ -102,7 +102,7 @@ describe('Mensaje y WhatsApp', () => {
     ).toThrow()
     expect(() =>
       generateQuotationMessage(
-        [{ productId: 'P-011', kind: 'quantity', quantity: 10 }],
+        [{ productId: 'P-011', kind: 'service', quantity: null }],
         emptyQuotation,
       ),
     ).toThrow()

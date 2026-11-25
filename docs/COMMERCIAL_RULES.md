@@ -31,20 +31,20 @@ Marketing conserva 46 entradas de manifiesto válidas (bytes/SHA-256). Productos
 
 ## Propuestas y decisiones técnicas provisionales
 
-| Tema                      | Implementación local                                                         | Estado                                                                                              |
-| ------------------------- | ---------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
-| Productos por cantidad    | P-001/002/003/004/005/006/007/009/010, cantidad ingresada explícitamente     | Referencia para cotizar; unidad/etiqueta de la propuesta original, condiciones no aprobadas         |
-| Servicios                 | P-013/P-014 seleccionados una vez, quantity:null                             | Tratamiento digital autorizado por la orden actual; funcionalidades/entrega pendientes              |
-| P-008/P-012               | Consulta contextualizada; no se impone mesas ni unidades                     | Unidad definitiva pendiente en decisiones.json                                                      |
-| P-011 Carpa QR            | Consulta contextualizada; fuera de selección numérica estructurada           | JSON Productos: tarjetas; matriz/Comercial: unidades; inclusión del servicio pendiente              |
-| Cantidad vacía            | No se agrega como 1 ni como pendiente                                        | No se autorizaron solicitudes físicas incompletas; consulta directa disponible                      |
-| Entero positivo           | Mayor que cero, entero seguro de JavaScript                                  | Integridad técnica, no mínimo comercial. No se aplican mínimos/condiciones inventados               |
-| Selección repetida        | Se informa que ya existe; no suma ni reemplaza. Edición explícita en pedido  | Solución técnica conservadora, pendiente política comercial definitiva de duplicados/variantes      |
-| Variantes/personalización | No se ofrecen opciones pendientes ni se exige diseño final                   | Valores verificados ausentes. Comentarios opcionales en formulario, solo en memoria                 |
-| Campos del evento         | Nombre, tipo, fecha, localidad, comentarios; opcionales en vista de revisión | Candidatos de cotizacion.json, obligatoriedad NO aprobada                                           |
-| Fecha por definir         | Opción explícita provisional; omite fecha numérica                           | No inventa fecha ni plazos; revisar aprobación del formulario final                                 |
-| Mensaje                   | Plantilla preliminar, revisión y copia manual                                | COM-03/04 y cotizacion.json no aprobados como textos definitivos                                    |
-| WhatsApp internacional    | Enlace habilitado por acción explícita                                       | Propietario verificó manualmente la conversación 5491135939460 en 05.1. No acredita envío/recepción |
+| Tema                      | Implementación local                                                                  | Estado                                                                                              |
+| ------------------------- | ------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------- |
+| Productos por cantidad    | P-001/002/003/004/005/006/007/009/010, cantidad ingresada explícitamente              | Referencia para cotizar; unidad/etiqueta de la propuesta original, condiciones no aprobadas         |
+| Servicios                 | P-013/P-014 seleccionados una vez, quantity:null                                      | Tratamiento digital autorizado por la orden actual; funcionalidades/entrega pendientes              |
+| P-008/P-012               | Selector y cotización con etiqueta «Cantidad»; consulta contextualizada disponible    | Unidad definitiva pendiente en decisiones.json                                                      |
+| P-011 Carpa QR            | Selector y cotización con «Cantidad de tarjetas»; consulta contextualizada disponible | JSON Productos: tarjetas; matriz/Comercial: unidades; inclusión del servicio pendiente              |
+| Cantidad vacía            | No se agrega como 1 ni como pendiente                                                 | No se autorizaron solicitudes físicas incompletas; consulta directa disponible                      |
+| Entero positivo           | Mayor que cero, entero seguro de JavaScript                                           | Integridad técnica, no mínimo comercial. No se aplican mínimos/condiciones inventados               |
+| Selección repetida        | Se informa que ya existe; no suma ni reemplaza. Edición explícita en pedido           | Solución técnica conservadora, pendiente política comercial definitiva de duplicados/variantes      |
+| Variantes/personalización | No se ofrecen opciones pendientes ni se exige diseño final                            | Valores verificados ausentes. Comentarios opcionales en formulario, solo en memoria                 |
+| Campos del evento         | Nombre, tipo, fecha, localidad, comentarios; opcionales en vista de revisión          | Candidatos de cotizacion.json, obligatoriedad NO aprobada                                           |
+| Fecha por definir         | Opción explícita provisional; omite fecha numérica                                    | No inventa fecha ni plazos; revisar aprobación del formulario final                                 |
+| Mensaje                   | Plantilla preliminar, revisión y copia manual                                         | COM-03/04 y cotizacion.json no aprobados como textos definitivos                                    |
+| WhatsApp internacional    | Enlace habilitado por acción explícita                                                | Propietario verificó manualmente la conversación 5491135939460 en 05.1. No acredita envío/recepción |
 
 No se solicita teléfono nuevamente ni correo sin justificación. No hay restricciones geográficas, fechas mínimas, promesas de entrega o variantes ficticias. Los relacionados y colecciones siguen propuestos, no combos ni ofertas. Los campos opcionales permiten probar una vista preliminar sin inventar obligatoriedad: esto no confirma aceptación comercial definitiva de solicitudes con datos del evento incompletos.
 

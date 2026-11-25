@@ -86,7 +86,7 @@ Para revisar, ejecutar Vite localmente y abrir `/` en Chrome de Windows a 320, 3
 
 Desde una ficha elegible, elegí una cantidad o un servicio digital. `/arma-tu-pedido` permite editar cantidades, quitar y vaciar. **Cotizar mi pedido** abre la conversación con la selección actual y sus cantidades. La ruta anterior `/cotizacion` lleva al pedido.
 
-Solo se persisten IDs/cantidades y metadatos en lcdd:order. Los datos del evento quedan en memoria al navegar y se descartan al recargar. P-008/P-011/P-012 ofrecen consulta contextualizada por unidad pendiente; no se inventan reglas. Repetir un producto no suma cantidades. Nuevas bibliotecas: Zustand 5.1.0, React Hook Form 7.92.0 y Zod 4.6.7, instaladas por el usuario y verificadas con el lockfile.
+Solo se persisten IDs/cantidades y metadatos en lcdd:order. Capitán de mesa (P-008), Carpa QR (P-011) y Números de mesa (P-012) se agregan con una cantidad explícita y conservan la consulta directa. Repetir un producto no suma cantidades. Nuevas bibliotecas: Zustand 5.1.0, React Hook Form 7.92.0 y Zod 4.6.7, instaladas por el usuario y verificadas con el lockfile.
 
 ## Optimización 05.1
 

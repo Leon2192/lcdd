@@ -5,16 +5,16 @@ export const orderQuantityRange = { min: 10, max: 200 } as const
 export type OrderRule =
   { kind: 'quantity' | 'service'; label: string } | { kind: 'consultation' }
 export function getOrderRule(product: Product): OrderRule {
-  // Carpa QR conserva la discrepancia de modalidad registrada en el catálogo.
-  if (
-    product.identityStatus !== 'confirmed' ||
-    product.id === 'P-011' ||
-    product.selection.mode === 'tables_or_units'
-  )
-    return { kind: 'consultation' }
+  if (product.identityStatus !== 'confirmed') return { kind: 'consultation' }
   if (product.selection.mode === 'service')
     return { kind: 'service', label: 'Servicio digital' }
-  return { kind: 'quantity', label: product.selection.label }
+  return {
+    kind: 'quantity',
+    label:
+      product.selection.mode === 'tables_or_units'
+        ? 'Cantidad'
+        : product.selection.label,
+  }
 }
 export function getLineLabel(
   productId: string,
