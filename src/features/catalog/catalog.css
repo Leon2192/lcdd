@@ -152,11 +152,17 @@
   }
   .catalog-request {
     display: grid;
-    gap: 12px;
-    border-top: 1px solid var(--lcdd-border);
-    padding-top: 24px;
+    gap: 16px;
+    margin-top: 24px;
   }
-  .catalog-request .button {
+  .catalog-request > .order-selection {
+    margin-top: 0;
+  }
+  .catalog-request > .button,
+  .catalog-request .order-selection .button {
+    width: 100%;
+    min-height: 3.5rem;
+    padding-inline: 1rem;
     white-space: normal;
     text-align: center;
   }

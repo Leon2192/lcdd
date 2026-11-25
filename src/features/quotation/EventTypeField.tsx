@@ -15,11 +15,7 @@ const normalize = (value: string) =>
     .toLocaleLowerCase('es-AR')
 
 // Combobox select-only: evita el popup nativo que puede exceder el viewport en Windows.
-export function EventTypeField({
-  onValueChange,
-}: {
-  onValueChange: () => void
-}) {
+export function EventTypeField() {
   const { control } = useFormContext<QuotationData>()
   const { field, fieldState } = useController({ control, name: 'eventType' })
   const id = useId()
@@ -64,10 +60,7 @@ export function EventTypeField({
   function choose(index: number) {
     const option = options[index]
     if (!option) return
-    if (field.value !== option.value) {
-      field.onChange(option.value)
-      onValueChange()
-    }
+    if (field.value !== option.value) field.onChange(option.value)
     field.onBlur()
     setOpen(false)
     trigger.current?.focus({ preventScroll: true })

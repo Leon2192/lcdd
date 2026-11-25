@@ -3,7 +3,6 @@ import userEvent from '@testing-library/user-event'
 import { afterEach, describe, it, expect, vi } from 'vitest'
 import { encodeWhatsAppUrl, generateQuotationMessage } from './message'
 import { emptyQuotation } from './schema'
-import { EventSummary } from './EventSummary'
 import { MessageReview } from './MessageReview'
 afterEach(() => vi.restoreAllMocks())
 describe('Mensajes seguros y confirmaciones', () => {
@@ -22,13 +21,11 @@ describe('Mensajes seguros y confirmaciones', () => {
       [{ productId: 'P-003', kind: 'quantity', quantity: 25 }],
       data,
     )
-    render(
-      <>
-        <EventSummary data={data} />
-        <MessageReview message={message} />
-      </>,
-    )
-    expect(screen.getByText(payload)).toBeVisible()
+    render(<MessageReview message={message} />)
+    expect(
+      screen.getByRole('textbox', { name: 'Mensaje preparado' }),
+    ).toHaveValue(message)
+    expect(message).toContain(payload)
     expect(document.querySelector('img')).toBeNull()
     expect(document.querySelector('script')).toBeNull()
     const href = screen

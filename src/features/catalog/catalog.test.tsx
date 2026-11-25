@@ -1,3 +1,4 @@
+import * as whatsapp from '@/lib/whatsapp'
 import {
   act,
   fireEvent,
@@ -249,6 +250,14 @@ describe('Fichas oficiales', () => {
     await waitFor(() => expect(title).toHaveFocus())
     expect(scrollTo).toHaveBeenCalledWith(0, 0)
     expect(scrollToTitle).not.toHaveBeenCalled()
+    const add = screen.getByRole('button', { name: 'Agregar a mi pedido' })
+    const consult = screen.getByRole('button', {
+      name: 'Consultar por este producto',
+    })
+    expect(add.closest('.catalog-request')).toBe(consult.parentElement)
+    expect(
+      add.compareDocumentPosition(consult) & Node.DOCUMENT_POSITION_FOLLOWING,
+    ).toBeTruthy()
     const gallery = screen.getByRole('region', {
       name: 'Galería de Kit antiresaca Pillow',
     })
@@ -381,16 +390,15 @@ it('cotiza los tres formatos por separado y permite modificar y quitar una líne
     )
   }
 
+  const open = vi.spyOn(whatsapp, 'openWhatsApp').mockReturnValue(true)
   await act(() => router.navigate('/cotizacion'))
-  fireEvent.click(
-    screen.getByRole('button', { name: 'Revisar solicitud de cotización' }),
-  )
-  const link = await screen.findByRole('link', {
-    name: 'Enviar solicitud por WhatsApp',
+  await act(async () => {
+    fireEvent.click(
+      screen.getByRole('button', { name: 'Cotizar por WhatsApp' }),
+    )
   })
-  const message = new URL(link.getAttribute('href') ?? '').searchParams.get(
-    'text',
-  )
+  expect(open).toHaveBeenCalledOnce()
+  const message = open.mock.calls[0]?.[0]
   expect(message).toContain('Kit antiresaca Bolsa — Cantidad de kits: 12')
   expect(message).toContain('Kit antiresaca Pillow — Cantidad de kits: 14')
   expect(message).toContain('Kit antiresaca Craft — Cantidad de kits: 14')

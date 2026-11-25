@@ -5,14 +5,14 @@ import { describe, it, expect, vi } from 'vitest'
 import { EventTypeField } from './EventTypeField'
 import { emptyQuotation, quotationResolver } from './schema'
 import type { QuotationData } from './schema'
-function Harness({ changed }: { changed: () => void }) {
+function Harness() {
   const methods = useForm<QuotationData>({
     defaultValues: emptyQuotation,
     resolver: quotationResolver,
   })
   return (
     <FormProvider {...methods}>
-      <EventTypeField onValueChange={changed} />
+      <EventTypeField />
       <button type="button">Siguiente campo</button>
       <button type="button" onClick={() => methods.reset(emptyQuotation)}>
         Limpiar
@@ -21,10 +21,8 @@ function Harness({ changed }: { changed: () => void }) {
   )
 }
 function setup() {
-  const changed = vi.fn()
-  render(<Harness changed={changed} />)
+  render(<Harness />)
   return {
-    changed,
     combo: screen.getByRole('combobox', { name: 'Tipo de evento (opcional)' }),
   }
 }
@@ -38,7 +36,7 @@ describe('Selector de evento contenido en el formulario', () => {
   })
   it('permite abrir, recorrer y confirmar por teclado sin enviar el formulario', async () => {
     const user = userEvent.setup()
-    const { combo, changed } = setup()
+    const { combo } = setup()
     combo.focus()
     await user.keyboard('{ArrowDown}{End}')
     expect(combo).toHaveAttribute('aria-expanded', 'true')
@@ -48,7 +46,6 @@ describe('Selector de evento contenido en el formulario', () => {
     expect(combo).toHaveTextContent('Otro')
     expect(combo).toHaveFocus()
     expect(screen.queryByRole('listbox')).toBeNull()
-    expect(changed).toHaveBeenCalledOnce()
   })
   it('busca por letras y permite dejar nuevamente el campo vacío', async () => {
     const user = userEvent.setup()
@@ -62,7 +59,7 @@ describe('Selector de evento contenido en el formulario', () => {
   })
   it('Escape cancela la exploración sin cambiar la selección confirmada', async () => {
     const user = userEvent.setup()
-    const { combo, changed } = setup()
+    const { combo } = setup()
     combo.focus()
     await user.keyboard('c{Enter}')
     expect(combo).toHaveTextContent('Casamiento')
@@ -70,11 +67,10 @@ describe('Selector de evento contenido en el formulario', () => {
     expect(combo).toHaveTextContent('Casamiento')
     expect(combo).toHaveAttribute('aria-expanded', 'false')
     expect(combo).toHaveFocus()
-    expect(changed).toHaveBeenCalledOnce()
   })
   it('Tab cierra y sigue el orden de foco sin confirmar otra opción', async () => {
     const user = userEvent.setup()
-    const { combo, changed } = setup()
+    const { combo } = setup()
     combo.focus()
     await user.keyboard(' {End}{Tab}')
     expect(screen.queryByRole('listbox')).toBeNull()
@@ -82,18 +78,17 @@ describe('Selector de evento contenido en el formulario', () => {
       screen.getByRole('button', { name: 'Siguiente campo' }),
     ).toHaveFocus()
     expect(combo).toHaveValue('')
-    expect(changed).not.toHaveBeenCalled()
   })
   it('cierra con clic exterior sin robar el foco ni cambiar el valor', async () => {
     const user = userEvent.setup()
-    const { combo, changed } = setup()
+    const { combo } = setup()
     await user.click(combo)
     await user.click(screen.getByRole('button', { name: 'Siguiente campo' }))
     expect(screen.queryByRole('listbox')).toBeNull()
     expect(
       screen.getByRole('button', { name: 'Siguiente campo' }),
     ).toHaveFocus()
-    expect(changed).not.toHaveBeenCalled()
+    expect(combo).toHaveValue('')
   })
   it('responde al reset de React Hook Form', async () => {
     const user = userEvent.setup()

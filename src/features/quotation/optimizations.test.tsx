@@ -1,45 +1,15 @@
 import { fireEvent, render, screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { createMemoryRouter, RouterProvider } from 'react-router'
-import {
-  beforeAll,
-  afterAll,
-  afterEach,
-  beforeEach,
-  describe,
-  it,
-  expect,
-  vi,
-} from 'vitest'
+import { afterEach, beforeEach, describe, it, expect, vi } from 'vitest'
 import { routes } from '@/routes/routes'
 import { orderStore } from '@/features/order/store'
 import { ORDER_STORAGE_KEY } from '@/features/order/persistence'
 import { siteConfig } from '@/config/site'
-import { getValidatedWhatsAppUrl } from '@/lib/whatsapp'
-const scroll = vi.fn()
-const originalScroll = Object.getOwnPropertyDescriptor(
-  HTMLElement.prototype,
-  'scrollIntoView',
-)
-beforeAll(() =>
-  Object.defineProperty(HTMLElement.prototype, 'scrollIntoView', {
-    configurable: true,
-    value: scroll,
-  }),
-)
-afterAll(() => {
-  if (originalScroll)
-    Object.defineProperty(
-      HTMLElement.prototype,
-      'scrollIntoView',
-      originalScroll,
-    )
-  else Reflect.deleteProperty(HTMLElement.prototype, 'scrollIntoView')
-})
+import * as whatsapp from '@/lib/whatsapp'
 beforeEach(() => {
   orderStore.getState().clear()
   localStorage.clear()
-  scroll.mockClear()
 })
 afterEach(() => {
   vi.restoreAllMocks()
@@ -64,12 +34,14 @@ describe('Activación de WhatsApp 05.1', () => {
       '5491135939460',
     )
     const message = 'María & José + 🎉\n¿Cotización? #evento'
-    const url = getValidatedWhatsAppUrl(message)
+    const url = whatsapp.getValidatedWhatsAppUrl(message)
     expect(url).not.toBeNull()
     if (!url) throw new Error('Enlace no habilitado')
     expect(new URL(url).pathname).toBe('/5491135939460')
     expect(new URL(url).searchParams.get('text')).toBe(message)
-    expect(getValidatedWhatsAppUrl()).toBe('https://wa.me/5491135939460')
+    expect(whatsapp.getValidatedWhatsAppUrl()).toBe(
+      'https://wa.me/5491135939460',
+    )
   })
   it.each([
     'Consultar WhatsApp',
@@ -141,84 +113,14 @@ describe('Activación de WhatsApp 05.1', () => {
       expect(orderStore.getState().lines).toHaveLength(0)
     },
   )
-  it('ofrece WhatsApp como acción principal y conserva pedido y persistencia al activarlo', async () => {
-    const user = userEvent.setup()
-    orderStore.getState().add('P-003', 25)
-    orderStore.getState().add('P-013', null)
-    await quotation()
-    await user.type(
-      screen.getByRole('textbox', { name: 'Tu nombre (opcional)' }),
-      'María & José',
-    )
-    await user.click(
-      screen.getByRole('button', { name: 'Revisar solicitud de cotización' }),
-    )
-    const link = await screen.findByRole('link', {
-      name: 'Enviar solicitud por WhatsApp',
-    })
-    expect(link).toHaveClass('button--primary')
-    expect(screen.getByRole('button', { name: 'Copiar mensaje' })).toHaveClass(
-      'button--outline',
-    )
-    const message = screen.getByRole('textbox', { name: 'Mensaje preparado' })
-    expect(message).toHaveProperty(
-      'value',
-      new URL(link.getAttribute('href') ?? '').searchParams.get('text'),
-    )
-    const saved = localStorage.getItem(ORDER_STORAGE_KEY)
-    link.addEventListener('click', (event) => event.preventDefault(), {
-      once: true,
-    })
-    await user.click(link)
-    expect(orderStore.getState().lines).toHaveLength(2)
-    expect(localStorage.getItem(ORDER_STORAGE_KEY)).toBe(saved)
-    expect(
-      screen.queryByText(
-        /solicitud enviada|mensaje recibido|compra confirmada/i,
-      ),
-    ).toBeNull()
-  })
 })
-describe('Revisión accesible y fechas', () => {
-  it('invalida el mensaje al cambiar el selector sin perder los demás datos', async () => {
-    const user = userEvent.setup()
-    orderStore.getState().add('P-003', 20)
-    await quotation()
-    await user.type(
-      screen.getByRole('textbox', { name: 'Tu nombre (opcional)' }),
-      'Ana',
-    )
-    await user.click(
-      screen.getByRole('button', { name: 'Revisar solicitud de cotización' }),
-    )
-    expect(
-      await screen.findByRole('textbox', { name: 'Mensaje preparado' }),
-    ).toBeVisible()
-    await user.click(
-      screen.getByRole('combobox', { name: 'Tipo de evento (opcional)' }),
-    )
-    await user.click(screen.getByRole('option', { name: 'Cumpleaños' }))
-    expect(
-      screen.queryByRole('textbox', { name: 'Mensaje preparado' }),
-    ).toBeNull()
-    expect(
-      screen.getByRole('textbox', { name: 'Tu nombre (opcional)' }),
-    ).toHaveValue('Ana')
-    await user.click(
-      screen.getByRole('button', { name: 'Revisar solicitud de cotización' }),
-    )
-    expect(
-      await screen.findByRole('textbox', { name: 'Mensaje preparado' }),
-    ).toHaveProperty(
-      'value',
-      expect.stringContaining('Tipo de evento: Cumpleaños'),
-    )
-  })
 
+describe('Cotización directa y datos del evento', () => {
   it.each(['Fiesta de XV', 'Casamiento', 'Cumpleaños', 'Otro'])(
-    'refleja la opción aprobada %s en resumen y WhatsApp',
+    'incluye la opción aprobada %s al abrir WhatsApp',
     async (eventType) => {
       const user = userEvent.setup()
+      const open = vi.spyOn(whatsapp, 'openWhatsApp').mockReturnValue(true)
       orderStore.getState().add('P-003', 20)
       await quotation()
       const select = screen.getByRole('combobox', {
@@ -239,137 +141,50 @@ describe('Revisión accesible y fechas', () => {
         'Otro',
       ])
       await user.click(screen.getByRole('option', { name: eventType }))
+      expect(open).not.toHaveBeenCalled()
       await user.click(
-        screen.getByRole('button', { name: 'Revisar solicitud de cotización' }),
+        screen.getByRole('button', { name: 'Cotizar por WhatsApp' }),
       )
-      expect(
-        await screen.findByRole('region', {
-          name: 'Datos del evento para revisar',
-        }),
-      ).toHaveTextContent(eventType)
-      expect(
-        screen.getByRole('textbox', { name: 'Mensaje preparado' }),
-      ).toHaveProperty(
-        'value',
+      expect(open).toHaveBeenCalledExactlyOnceWith(
         expect.stringContaining(`Tipo de evento: ${eventType}`),
       )
-      const link = screen.getByRole('link', {
-        name: 'Enviar solicitud por WhatsApp',
-      })
-      expect(
-        new URL(link.getAttribute('href') ?? '').searchParams.get('text'),
-      ).toContain(`Tipo de evento: ${eventType}`)
-      await user.click(
-        screen.getByRole('button', { name: 'Editar datos del evento' }),
-      )
-      expect(select).toHaveValue(eventType)
-      await user.click(select)
-      await user.click(
-        screen.getByRole('option', { name: 'Seleccioná el tipo de evento' }),
-      )
-      await user.click(
-        screen.getByRole('button', { name: 'Revisar solicitud de cotización' }),
-      )
-      expect(
-        await screen.findByRole('textbox', { name: 'Mensaje preparado' }),
-      ).toHaveProperty('value', expect.not.stringContaining('Tipo de evento:'))
     },
   )
 
-  it.each([
-    [false, 'smooth'],
-    [true, 'auto'],
-  ])(
-    'desplaza y enfoca revisión respetando reduced-motion=%s',
-    async (reduce, behavior) => {
-      const user = userEvent.setup()
-      vi.stubGlobal('matchMedia', vi.fn().mockReturnValue({ matches: reduce }))
-      orderStore.getState().add('P-003', 20)
-      await quotation()
-      await user.click(
-        screen.getByRole('button', { name: 'Revisar solicitud de cotización' }),
-      )
-      const heading = await screen.findByRole('heading', {
-        name: 'Revisá tu solicitud',
-      })
-      expect(heading).toHaveFocus()
-      expect(heading).toHaveAttribute('tabindex', '-1')
-      expect(scroll).toHaveBeenCalledWith({ block: 'start', behavior })
-    },
-  )
-  it('vuelve a los datos con foco y conserva valores sin persistir información personal', async () => {
+  it('mantiene fecha nativa y envía DD/MM/AAAA al abrir WhatsApp', async () => {
     const user = userEvent.setup()
-    orderStore.getState().add('P-003', 20)
-    await quotation()
-    await user.type(
-      screen.getByRole('textbox', { name: 'Tu nombre (opcional)' }),
-      'Ana',
-    )
-    await user.click(
-      screen.getByRole('button', { name: 'Revisar solicitud de cotización' }),
-    )
-    await user.click(
-      await screen.findByRole('button', { name: 'Editar datos del evento' }),
-    )
-    expect(
-      screen.getByRole('heading', {
-        level: 1,
-        name: 'Contanos sobre tu evento',
-      }),
-    ).toHaveFocus()
-    expect(
-      screen.getByRole('textbox', { name: 'Tu nombre (opcional)' }),
-    ).toHaveValue('Ana')
-    expect(
-      screen.queryByRole('textbox', { name: 'Mensaje preparado' }),
-    ).toBeNull()
-    expect(localStorage.getItem(ORDER_STORAGE_KEY)).not.toContain('Ana')
-  })
-  it('mantiene fecha nativa con es-AR y resume en DD/MM/AAAA con opciones de evento aprobadas', async () => {
-    const user = userEvent.setup()
+    const open = vi.spyOn(whatsapp, 'openWhatsApp').mockReturnValue(true)
     orderStore.getState().add('P-003', 20)
     await quotation()
     const date = screen.getByLabelText('Fecha del evento (opcional)')
     expect(date).toHaveAttribute('type', 'date')
     expect(date).toHaveAttribute('lang', 'es-AR')
     fireEvent.change(date, { target: { value: '2027-01-05' } })
-    expect(
-      screen.getByRole('combobox', { name: 'Tipo de evento (opcional)' }),
-    ).toBeVisible()
-    expect(screen.getByRole('combobox')).toHaveValue('')
     await user.click(
-      screen.getByRole('button', { name: 'Revisar solicitud de cotización' }),
+      screen.getByRole('button', { name: 'Cotizar por WhatsApp' }),
     )
-    const summary = await screen.findByRole('region', {
-      name: 'Datos del evento para revisar',
-    })
-    expect(summary).toHaveTextContent('05/01/2027')
-    expect(
-      screen.getByRole('textbox', { name: 'Mensaje preparado' }),
-    ).toHaveProperty(
-      'value',
+    expect(open).toHaveBeenCalledExactlyOnceWith(
       expect.stringContaining('Fecha del evento: 05/01/2027'),
     )
+    expect(open.mock.calls[0]?.[0]).not.toContain('Tipo de evento:')
   })
-  it('anuncia copia confirmada sin afirmar envío ni recepción', async () => {
+
+  it('informa si WhatsApp no está disponible y conserva la selección', async () => {
     const user = userEvent.setup()
-    const copy = vi.spyOn(navigator.clipboard, 'writeText').mockResolvedValue()
+    vi.spyOn(whatsapp, 'openWhatsApp').mockReturnValue(false)
     orderStore.getState().add('P-013', null)
+    const saved = localStorage.getItem(ORDER_STORAGE_KEY)
     await quotation()
     await user.click(
-      screen.getByRole('button', { name: 'Revisar solicitud de cotización' }),
+      screen.getByRole('button', { name: 'Cotizar por WhatsApp' }),
     )
-    await user.click(
-      await screen.findByRole('button', { name: 'Copiar mensaje' }),
+    expect(screen.getByRole('alert')).toHaveTextContent(
+      'WhatsApp no está disponible',
     )
-    expect(copy).toHaveBeenCalledOnce()
-    const status = screen.getByText(
-      'Mensaje copiado. Podés pegarlo en WhatsApp.',
-    )
-    expect(status).toHaveAttribute('role', 'status')
-    expect(status).toHaveAttribute('aria-atomic', 'true')
     expect(orderStore.getState().lines).toHaveLength(1)
+    expect(localStorage.getItem(ORDER_STORAGE_KEY)).toBe(saved)
   })
+
   it('mantiene relacionados en una pista accesible sin bloquear edición del pedido', async () => {
     const user = userEvent.setup()
     orderStore.getState().add('P-003', 20)

@@ -44,11 +44,13 @@ export function ProductInformation({ product }: { product: Product }) {
           ))}
         </section>
       )}
-      <OrderSelection key={product.id} product={product} />
-      <DirectConsultation
-        key={`consult-${product.id}`}
-        productId={product.id}
-      />
+      <div className="catalog-request">
+        <OrderSelection key={product.id} product={product} />
+        <DirectConsultation
+          key={`consult-${product.id}`}
+          productId={product.id}
+        />
+      </div>
     </>
   )
 }

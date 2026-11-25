@@ -23,3 +23,10 @@ export function getValidatedWhatsAppUrl(message?: string): string | null {
     ? `https://wa.me/${contact.internationalNumber}`
     : encodeWhatsAppUrl(contact.internationalNumber, message)
 }
+
+export function openWhatsApp(message: string): boolean {
+  const url = getValidatedWhatsAppUrl(message)
+  if (!url) return false
+  window.location.assign(url)
+  return true
+}

@@ -132,11 +132,11 @@ export function OrderPage() {
                   )
                 })}
               </div>
-              <div className="order-actions">
+              <div className="order-actions order-utility-actions">
                 <Link to="/catalogo" className="button button--outline">
-                  Seguir explorando productos
+                  Ver más productos
                 </Link>
-                <Button variant="ghost" onClick={() => setClearOpen(true)}>
+                <Button variant="outline" onClick={() => setClearOpen(true)}>
                   Vaciar pedido
                 </Button>
               </div>
