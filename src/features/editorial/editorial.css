@@ -112,6 +112,11 @@
   .editorial-collection .product-rail {
     margin-block-start: 1.5rem;
   }
+  @media (width < 48rem) {
+    .editorial-story > .home-media {
+      display: none;
+    }
+  }
   @media (width >= 48rem) {
     .editorial-hero-grid {
       grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);

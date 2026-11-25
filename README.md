@@ -12,7 +12,7 @@ En las fichas y el pedido, las cantidades nuevas se eligen en una lista de 10 a 
 
 **V1.3 — Inicio mobile y navegación.** Inicio mobile abre con una franja comercial y dos banners locales antes de las categorías. Los banners y las imágenes actuales entregadas por LCDD se muestran públicamente. Las ilustraciones anteriores muestran «Sin imagen». La franja y el carrusel se pueden pausar y respetan la preferencia de movimiento reducido. La configuración local de Vercel permite acceder a rutas internas y reserva las rutas de archivos para sus recursos. El historial recupera el desplazamiento al usar Atrás o Adelante.
 
-**V1.4 — Imágenes de categorías.** Las cinco categorías de Inicio muestran los WebP entregados por LCDD. Invitaciones digitales y Save the date comparten el mismo archivo. Las ilustraciones anteriores se preservan como recursos de trabajo fuera del build público.
+**V1.4 — Imágenes de categorías.** Las cinco categorías de Inicio muestran los WebP entregados por LCDD. Invitaciones digitales y Save the date comparten el mismo archivo. Las ilustraciones anteriores se preservan como recursos de trabajo fuera del build público. Inicio de escritorio reutiliza los dos banners en el hero y omite los bloques de presentación que esperan recursos gráficos.
 
 ## Entorno
 

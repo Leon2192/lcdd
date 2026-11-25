@@ -36,7 +36,6 @@ function firstRegions() {
   const labels = {
     'Encontrá el detalle ideal para tu evento': 'categories',
     'Productos destacados': 'featured',
-    'Hacé de tu evento un momento único': 'hero',
     'Detalles para tu evento': 'values',
     'Banners comerciales': 'banners',
   }
@@ -75,13 +74,11 @@ describe('Home LCDD', () => {
         .getAllByRole('heading', { level: 2 })
         .map((node) => node.textContent),
     ).toEqual([
+      'Los detalles hacen la diferencia',
       'Encontrá el detalle ideal para tu evento',
       'Productos destacados',
-      'Ideas y combinaciones para tu evento',
-      'La Casa del Detalle',
       '¿Organizás eventos? Trabajemos juntos',
       '¿Cómo armar tu pedido?',
-      'Hagamos algo especial',
       '¿Tenés dudas o una idea especial?',
     ])
     expect(
@@ -98,7 +95,7 @@ describe('Home LCDD', () => {
       expect(firstRegions()).toEqual(
         width < 768
           ? ['banners', 'categories']
-          : ['hero', 'values', 'categories', 'featured'],
+          : ['banners', 'values', 'categories', 'featured'],
       )
       expect(screen.getAllByRole('heading', { level: 1 })).toHaveLength(1)
     },
@@ -110,7 +107,12 @@ describe('Home LCDD', () => {
       name: 'Encontrá el detalle ideal para tu evento',
     })
     act(() => viewport.setWidth(768))
-    expect(firstRegions()).toEqual(['hero', 'values', 'categories', 'featured'])
+    expect(firstRegions()).toEqual([
+      'banners',
+      'values',
+      'categories',
+      'featured',
+    ])
     expect(
       screen.getByRole('region', {
         name: 'Encontrá el detalle ideal para tu evento',
@@ -195,13 +197,19 @@ describe('Home LCDD', () => {
       within(carousel).queryByRole('button', { name: /Agregar/ }),
     ).not.toBeInTheDocument()
   })
-  it('conserva las imágenes entregadas en categorías y destacados y oculta el hero ilustrativo', () => {
+  it('muestra los banners, categorías y destacados sin espacios sin imagen en escritorio', () => {
     renderHome()
-    const hero = screen.getByRole('region', {
-      name: 'Hacé de tu evento un momento único',
-    })
-    expect(within(hero).getByText('Sin imagen')).toBeVisible()
-    expect(within(hero).queryByRole('img')).not.toBeInTheDocument()
+    const main = within(screen.getByRole('main'))
+    const banners = main.getByRole('region', { name: 'Banners comerciales' })
+    expect(
+      Array.from(banners.querySelectorAll('img'), (image) =>
+        image.getAttribute('src'),
+      ),
+    ).toEqual([
+      '/media/home/banner-detalles.webp',
+      '/media/home/banner-combos.webp',
+    ])
+    expect(main.queryByText('Sin imagen')).not.toBeInTheDocument()
     const categories = screen.getByRole('region', {
       name: 'Encontrá el detalle ideal para tu evento',
     })
@@ -234,9 +242,7 @@ describe('Home LCDD', () => {
   it('lleva desde la acción principal al catálogo con el catálogo de Fase 04', async () => {
     const user = userEvent.setup()
     const router = renderHome()
-    await user.click(
-      screen.getByRole('link', { name: 'Explorá nuestros productos' }),
-    )
+    await user.click(screen.getByRole('link', { name: 'Explorá el catálogo' }))
     expect(router.state.location.pathname).toBe('/catalogo')
     expect(
       screen.getByRole('heading', {
@@ -246,10 +252,13 @@ describe('Home LCDD', () => {
     ).toBeVisible()
     expect(screen.getByRole('checkbox', { name: 'Kits' })).toBeVisible()
   })
-  it('permite acceder a inspiración y profesionales mediante destinos existentes', () => {
+  it('conserva el acceso a Inspiración desde el menú y a Profesionales desde Inicio', () => {
     renderHome()
+    const navigation = within(
+      screen.getByRole('navigation', { name: 'Navegación principal' }),
+    )
     expect(
-      screen.getByRole('link', { name: 'Ver inspiración' }),
+      navigation.getByRole('link', { name: 'Inspiración' }),
     ).toHaveAttribute('href', '/inspiracion')
     expect(
       screen.getByRole('link', { name: 'Más info para profesionales' }),

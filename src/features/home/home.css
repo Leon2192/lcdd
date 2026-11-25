@@ -649,6 +649,47 @@
     background: var(--lcdd-primary);
     width: 0.875rem;
   }
+  @media (width >= 48rem) {
+    .home-banner-slider {
+      width: min(calc(100% - 2 * var(--lcdd-gutter)), var(--lcdd-container));
+      margin-inline: auto;
+      margin-top: 1rem;
+    }
+    .home-banner-stage {
+      border-radius: var(--lcdd-radius-panel);
+    }
+    .home-banner {
+      min-height: clamp(21rem, 32vw, 28rem);
+      padding: 0;
+      background: var(--lcdd-sand);
+    }
+    .home-banner > img {
+      inset: 0 0 0 auto;
+      width: 50%;
+    }
+    .home-banner::before {
+      display: none;
+    }
+    .home-banner-copy {
+      align-self: center;
+      width: 50%;
+      padding: clamp(1.75rem, 5vw, 4.5rem);
+      gap: 0.875rem;
+    }
+    .home-banner-copy h2 {
+      font-size: clamp(2.5rem, 4.2vw, 4rem);
+    }
+    .home-banner-copy p,
+    .home-banner-copy .button {
+      font-size: var(--lcdd-text-body);
+    }
+    .home-about--professionals .professionals-editorial {
+      padding: 1.5rem;
+      border: 0;
+      border-radius: var(--lcdd-radius-panel);
+      background: var(--lcdd-sand);
+    }
+  }
   @media (width < 48rem) {
     .home {
       --lcdd-section-space: 1.125rem;

@@ -4,11 +4,10 @@ import { siteConfig } from '@/config/site'
 import { CommercialStrip } from '@/features/home/components/CommercialStrip'
 import { HomeBanners } from '@/features/home/components/HomeBanners'
 import type { LayoutContext } from '@/layouts/layout-context'
-import { Hero } from '@/features/home/components/Hero'
+import { homeContent } from '@/features/home/home-content'
 import { ValueProposition } from '@/features/home/components/ValueProposition'
 import { HomeCategories } from '@/features/home/components/HomeCategories'
 import { FeaturedProducts } from '@/features/home/components/FeaturedProducts'
-import { Inspiration } from '@/features/home/components/Inspiration'
 import { AboutAndProfessionals } from '@/features/home/components/AboutAndProfessionals'
 import { HowItWorks } from '@/features/home/components/HowItWorks'
 import { EventTypes } from '@/features/home/components/EventTypes'
@@ -34,28 +33,17 @@ export function HomePage() {
   )
   return (
     <div className="home">
-      {editorial ? (
-        <>
-          <Hero priority />
-          <ValueProposition />
-        </>
-      ) : (
-        <>
-          <h1 className="sr-only">{siteConfig.name}</h1>
-          <CommercialStrip />
-          <HomeBanners />
-        </>
-      )}
+      <h1 className="sr-only">
+        {editorial ? homeContent.hero.title : siteConfig.name}
+      </h1>
+      {!editorial && <CommercialStrip />}
+      <HomeBanners />
+      {editorial && <ValueProposition />}
       <HomeCategories />
-      {editorial && (
-        <>
-          <FeaturedProducts />
-          <Inspiration />
-        </>
-      )}
-      <AboutAndProfessionals />
+      {editorial && <FeaturedProducts />}
+      <AboutAndProfessionals showAbout={!editorial} />
       {editorial ? <HowItWorks /> : <EventTypes />}
-      <HomeConversion />
+      {!editorial && <HomeConversion />}
       {editorial && <HomeContact onContact={openContact} />}
     </div>
   )
