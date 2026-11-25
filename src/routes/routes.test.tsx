@@ -21,7 +21,7 @@ describe('Rutas y estructura pública', () => {
         await screen.findByRole('heading', {
           name:
             path === '/'
-              ? 'Hacé de tu evento un momento único'
+              ? 'La Casa del Detalle'
               : path === '/catalogo'
                 ? 'Todos nuestros productos'
                 : label,
@@ -78,7 +78,7 @@ describe('Rutas y estructura pública', () => {
     await user.click(screen.getByRole('link', { name: 'Volver al inicio' }))
     expect(
       screen.getByRole('heading', {
-        name: 'Hacé de tu evento un momento único',
+        name: 'La Casa del Detalle',
         level: 1,
       }),
     ).toBeVisible()

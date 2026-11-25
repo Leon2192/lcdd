@@ -4,6 +4,9 @@ import { afterEach } from 'vitest'
 
 afterEach(cleanup)
 
+// jsdom no realiza el desplazamiento nativo de ScrollRestoration.
+window.scrollTo = () => {}
+
 // jsdom no implementa los comportamientos nativos de HTMLDialogElement.
 // Se simula solo la API de apertura; las pruebas de foco ejercitan el componente real.
 if (typeof HTMLDialogElement !== 'undefined') {

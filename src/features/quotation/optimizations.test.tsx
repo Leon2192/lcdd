@@ -76,6 +76,11 @@ describe('Activación de WhatsApp 05.1', () => {
     'Contactanos por WhatsApp',
     'WhatsApp: 1135939460',
   ])('activa el contacto institucional desde %s', async (name) => {
+    vi.stubGlobal('matchMedia', () => ({
+      matches: true,
+      addEventListener: vi.fn(),
+      removeEventListener: vi.fn(),
+    }))
     const user = userEvent.setup()
     visit('/')
     expect(screen.queryByRole('dialog')).toBeNull()

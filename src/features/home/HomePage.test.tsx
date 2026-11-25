@@ -12,13 +12,16 @@ import {
 import { Carousel } from '@/components/ui/Carousel'
 import officialCatalog from '../../../docs/catalog/PY01_catalogo_operativo_v1.2.json'
 
-afterEach(() => vi.unstubAllGlobals())
+afterEach(() => {
+  vi.unstubAllGlobals()
+  vi.useRealTimers()
+})
 
-function setViewport(width: number) {
+function setViewport(width: number, reduce = false) {
   let currentWidth = width
   const media = new EventTarget()
   vi.stubGlobal('matchMedia', (query: string) => {
-    if (query !== '(min-width: 48rem)') return { matches: false }
+    if (query !== '(min-width: 48rem)') return { matches: reduce }
     return Object.assign(media, { matches: currentWidth >= 768 })
   })
   return {
@@ -35,6 +38,7 @@ function firstRegions() {
     'Productos destacados': 'featured',
     'Hacé de tu evento un momento único': 'hero',
     'Detalles para tu evento': 'values',
+    'Banners comerciales': 'banners',
   }
   return within(screen.getByRole('main'))
     .getAllByRole('region')
@@ -52,6 +56,7 @@ function firstRegions() {
 }
 
 function renderHome() {
+  if (!window.matchMedia) setViewport(1440)
   const router = createMemoryRouter(routes, { initialEntries: ['/'] })
   render(<RouterProvider router={router} />)
   return router
@@ -76,7 +81,6 @@ describe('Home LCDD', () => {
       'La Casa del Detalle',
       '¿Organizás eventos? Trabajemos juntos',
       '¿Cómo armar tu pedido?',
-      'Eventos para cada momento',
       'Hagamos algo especial',
       '¿Tenés dudas o una idea especial?',
     ])
@@ -86,14 +90,14 @@ describe('Home LCDD', () => {
       ),
     ).not.toBeInTheDocument()
   })
-  it.each([375, 390, 430, 768, 1440])(
+  it.each([320, 375, 390, 430, 768, 1440])(
     'presenta las secciones y enlaces en orden accesible a %i px',
     (width) => {
       setViewport(width)
       renderHome()
       expect(firstRegions()).toEqual(
         width < 768
-          ? ['categories', 'featured', 'hero', 'values']
+          ? ['banners', 'categories']
           : ['hero', 'values', 'categories', 'featured'],
       )
       expect(screen.getAllByRole('heading', { level: 1 })).toHaveLength(1)
@@ -102,10 +106,16 @@ describe('Home LCDD', () => {
   it('actualiza el orden al cambiar de breakpoint conservando los mismos componentes', () => {
     const viewport = setViewport(390)
     renderHome()
-    const heading = screen.getByRole('heading', { level: 1 })
+    const categories = screen.getByRole('region', {
+      name: 'Encontrá el detalle ideal para tu evento',
+    })
     act(() => viewport.setWidth(768))
     expect(firstRegions()).toEqual(['hero', 'values', 'categories', 'featured'])
-    expect(screen.getByRole('heading', { level: 1 })).toBe(heading)
+    expect(
+      screen.getByRole('region', {
+        name: 'Encontrá el detalle ideal para tu evento',
+      }),
+    ).toBe(categories)
   })
   it('mantiene el marcador agrupado para que icono y número no desplacen el texto a otra celda', () => {
     renderHome()
@@ -185,7 +195,7 @@ describe('Home LCDD', () => {
       within(carousel).queryByRole('button', { name: /Agregar/ }),
     ).not.toBeInTheDocument()
   })
-  it('muestra imágenes locales también en la categoría que no tenía recurso', () => {
+  it('conserva las imágenes locales y restaura el espacio sin imagen de Experiencias', () => {
     renderHome()
     expect(screen.getAllByRole('img').length).toBeGreaterThan(0)
     expect(
@@ -194,11 +204,13 @@ describe('Home LCDD', () => {
     expect(
       screen.getAllByRole('img', { name: 'Home principal' })[0],
     ).toHaveAttribute('src', '/media/home/hero-v01.webp')
-    expect(
-      screen.getByRole('img', {
-        name: 'Mesa de evento con flores y un cartel de mensajes en botella',
-      }),
-    ).toHaveAttribute('src', '/media/categories/experiencias-y-detalles.webp')
+    const categories = screen.getByRole('region', {
+      name: 'Encontrá el detalle ideal para tu evento',
+    })
+    const experiences = within(categories).getByRole('link', {
+      name: /Experiencias y detalles para eventos/,
+    })
+    expect(within(experiences).getByText('Sin imagen')).toBeVisible()
     expect(document.querySelector('img[src*="lcdd-original"]')).toBeNull()
     expect(document.querySelector('[style*="Mockup"]')).toBeNull()
   })
@@ -318,5 +330,104 @@ describe('Carrusel horizontal responsive', () => {
         name: 'Anterior en Productos de prueba',
       }),
     ).not.toBeDisabled()
+  })
+})
+
+describe('Inicio comercial en mobile', () => {
+  it('muestra exclusivamente los bloques aprobados en el orden indicado', () => {
+    setViewport(390)
+    renderHome()
+    const main = within(screen.getByRole('main'))
+    expect(
+      main.getByText('Tenemos combos perfectos para tu evento ✦', {
+        selector: '.sr-only',
+      }),
+    ).toBeInTheDocument()
+    expect(
+      main
+        .getAllByRole('heading', { level: 2 })
+        .map((heading) => heading.textContent),
+    ).toEqual([
+      'Los detalles hacen la diferencia',
+      'Encontrá el detalle ideal para tu evento',
+      'La Casa del Detalle',
+      '¿Organizás eventos? Trabajemos juntos',
+      'Eventos para cada momento',
+      'Hagamos algo especial',
+    ])
+    expect(
+      main.getByRole('button', { name: 'Pausar franja comercial' }),
+    ).toBeVisible()
+    fireEvent.click(
+      main.getByRole('button', { name: 'Pausar franja comercial' }),
+    )
+    expect(
+      main.getByRole('button', { name: 'Reanudar franja comercial' }),
+    ).toBeVisible()
+  })
+
+  it('rota cada seis segundos, permite pausar, elegir y deslizar a mano', () => {
+    vi.useFakeTimers()
+    setViewport(390)
+    renderHome()
+    const slider = within(
+      screen.getByRole('region', { name: 'Banners comerciales' }),
+    )
+    const details = slider.getByRole('button', {
+      name: 'Mostrar Los detalles hacen la diferencia',
+    })
+    const combos = slider.getByRole('button', {
+      name: 'Mostrar Combos para tu evento',
+    })
+    expect(details).toHaveAttribute('aria-current', 'true')
+    expect(
+      slider.getByRole('link', { name: 'Explorá el catálogo' }),
+    ).toHaveAttribute('href', '/catalogo')
+    act(() => vi.advanceTimersByTime(6_000))
+    expect(combos).toHaveAttribute('aria-current', 'true')
+    const whatsApp = slider.getByRole('link', {
+      name: 'Consultanos por nuestros combos',
+    })
+    const url = new URL(whatsApp.getAttribute('href') ?? '')
+    expect(url.pathname).toBe('/5491135939460')
+    expect(url.searchParams.get('text')).toBe(
+      '¡Hola! Me gustaría recibir información sobre los combos para eventos.',
+    )
+
+    fireEvent.click(slider.getByRole('button', { name: 'Pausar banners' }))
+    act(() => vi.advanceTimersByTime(12_000))
+    expect(combos).toHaveAttribute('aria-current', 'true')
+    fireEvent.click(details)
+    const stage = slider.getByRole('group', {
+      name: 'Los detalles hacen la diferencia',
+    }).parentElement
+    if (!stage) throw new Error('Falta la pista del slider')
+    fireEvent.touchStart(stage, { touches: [{ clientX: 230, clientY: 55 }] })
+    fireEvent.touchEnd(stage, {
+      changedTouches: [{ clientX: 100, clientY: 52 }],
+    })
+    expect(combos).toHaveAttribute('aria-current', 'true')
+    act(() => vi.advanceTimersByTime(6_000))
+    expect(combos).toHaveAttribute('aria-current', 'true')
+  })
+
+  it('con movimiento reducido conserva el primer banner hasta que el usuario elige', () => {
+    vi.useFakeTimers()
+    setViewport(390, true)
+    renderHome()
+    act(() => vi.advanceTimersByTime(12_000))
+    const slider = within(
+      screen.getByRole('region', { name: 'Banners comerciales' }),
+    )
+    expect(
+      slider.getByRole('button', { name: /Mostrar Los detalles/ }),
+    ).toHaveAttribute('aria-current', 'true')
+    expect(
+      slider.queryByRole('button', { name: 'Pausar banners' }),
+    ).not.toBeInTheDocument()
+    fireEvent.click(slider.getByRole('button', { name: /Mostrar Combos/ }))
+    expect(
+      slider.getByRole('heading', { name: 'Combos para tu evento' }),
+    ).toBeVisible()
   })
 })

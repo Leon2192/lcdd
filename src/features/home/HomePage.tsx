@@ -1,5 +1,8 @@
 import { useSyncExternalStore } from 'react'
 import { useOutletContext } from 'react-router'
+import { siteConfig } from '@/config/site'
+import { CommercialStrip } from '@/features/home/components/CommercialStrip'
+import { HomeBanners } from '@/features/home/components/HomeBanners'
 import type { LayoutContext } from '@/layouts/layout-context'
 import { Hero } from '@/features/home/components/Hero'
 import { ValueProposition } from '@/features/home/components/ValueProposition'
@@ -29,26 +32,31 @@ export function HomePage() {
     isEditorialViewport,
     () => false,
   )
-  const introduction = [
-    <Hero key="hero" priority={editorial} />,
-    <ValueProposition key="value" />,
-  ]
-  const catalog = [
-    <HomeCategories key="categories" />,
-    <FeaturedProducts key="featured" />,
-  ]
-
   return (
     <div className="home">
-      {editorial
-        ? [...introduction, ...catalog]
-        : [...catalog, ...introduction]}
-      <Inspiration />
+      {editorial ? (
+        <>
+          <Hero priority />
+          <ValueProposition />
+        </>
+      ) : (
+        <>
+          <h1 className="sr-only">{siteConfig.name}</h1>
+          <CommercialStrip />
+          <HomeBanners />
+        </>
+      )}
+      <HomeCategories />
+      {editorial && (
+        <>
+          <FeaturedProducts />
+          <Inspiration />
+        </>
+      )}
       <AboutAndProfessionals />
-      <HowItWorks />
-      <EventTypes />
+      {editorial ? <HowItWorks /> : <EventTypes />}
       <HomeConversion />
-      <HomeContact onContact={openContact} />
+      {editorial && <HomeContact onContact={openContact} />}
     </div>
   )
 }

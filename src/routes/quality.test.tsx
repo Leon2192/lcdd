@@ -114,9 +114,7 @@ describe('Rutas, metadatos y enlaces', () => {
   it('actualiza título y foco al navegar y conserva foco durante búsqueda', async () => {
     const user = userEvent.setup()
     visit('/')
-    await user.click(
-      screen.getByRole('link', { name: 'Explorá nuestros productos' }),
-    )
+    await user.click(screen.getByRole('link', { name: 'Explorá el catálogo' }))
     const heading = await screen.findByRole('heading', {
       name: 'Todos nuestros productos',
       level: 1,

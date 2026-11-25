@@ -10,6 +10,8 @@ Base local de la plataforma web LCDD, orientada a productos personalizados, souv
 
 En las fichas y el pedido, las cantidades nuevas se eligen en una lista de 10 a 200. Los valores ya guardados siguen disponibles hasta que se cambien. Al abrir una ficha desde el catálogo, la página enfoca el título situado sobre la galería. Bolsa y Pillow comparten la ilustración anterior del kit antiresaca.
 
+**V1.3 — Inicio mobile y navegación.** Inicio mobile abre con una franja comercial y dos banners locales antes de las categorías. La franja y el carrusel se pueden pausar y respetan la preferencia de movimiento reducido. La configuración local de Vercel permite acceder a rutas internas y reserva las rutas de archivos para sus recursos. El historial recupera el desplazamiento al usar Atrás o Adelante.
+
 ## Entorno
 
 Windows + WSL2, Ubuntu 24.04, Node 24, npm 11 y VS Code. Trabajar desde `~/projects/lcdd-web` en Ubuntu. `engines` exige Node 24/npm 11.

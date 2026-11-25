@@ -5,7 +5,7 @@ import { FloatingWhatsApp } from '@/components/layout/FloatingWhatsApp'
 import { OrderToast, useOrder } from '@/features/order'
 import { QuotationSession } from '@/features/quotation'
 import { useState } from 'react'
-import { Outlet } from 'react-router'
+import { Outlet, ScrollRestoration } from 'react-router'
 import { Footer } from '@/components/layout/Footer'
 import { Header } from '@/components/layout/Header'
 import { Modal } from '@/components/ui/Modal'
@@ -20,6 +20,7 @@ export function RootLayout() {
     <QuotationSession>
       <div className="site-layout">
         <RouteMetadata />
+        <ScrollRestoration />
         <a className="skip-link" href="#contenido">
           Saltar al contenido
         </a>

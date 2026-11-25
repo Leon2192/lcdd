@@ -2,6 +2,7 @@ import { RouteErrorPage } from '@/pages/RouteErrorPage'
 import { CatalogPage } from '@/features/catalog/CatalogPage'
 import { CategoryPage } from '@/features/catalog/CategoryPage'
 import { ProductDetailPage } from '@/features/catalog/ProductDetailPage'
+import { loadRouteModule } from './route-assets'
 import type { RouteObject } from 'react-router'
 import { HomePage } from '@/features/home/HomePage'
 import { navigation } from '@/config/navigation'
@@ -19,7 +20,9 @@ export const routes: RouteObject[] = [
           return {
             path,
             lazy: async () => {
-              const { OrderPage } = await import('@/features/order/OrderPage')
+              const { OrderPage } = await loadRouteModule(
+                () => import('@/features/order/OrderPage'),
+              )
               return { Component: OrderPage }
             },
           }
@@ -31,8 +34,9 @@ export const routes: RouteObject[] = [
           return {
             path,
             lazy: async () => {
-              const { EditorialPage } =
-                await import('@/features/editorial/EditorialPage')
+              const { EditorialPage } = await loadRouteModule(
+                () => import('@/features/editorial/EditorialPage'),
+              )
               const kind =
                 path === '/inspiracion'
                   ? 'inspiration'
@@ -50,8 +54,9 @@ export const routes: RouteObject[] = [
       {
         path: '/cotizacion',
         lazy: async () => {
-          const { QuotationPage } =
-            await import('@/features/quotation/QuotationPage')
+          const { QuotationPage } = await loadRouteModule(
+            () => import('@/features/quotation/QuotationPage'),
+          )
           return { Component: QuotationPage }
         },
       },

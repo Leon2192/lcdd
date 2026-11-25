@@ -20,12 +20,29 @@ const antiresacaIllustration: LocalImage = {
   fit: 'contain',
 }
 export const visualAssets: {
+  banners: Record<'details' | 'combos', LocalImage>
   logo: LocalImage | null
   home: Partial<Record<HomeMediaSlot, LocalImage>>
   categories: Partial<Record<CategoryId, LocalImage>>
   products: Partial<Record<ProductId, readonly LocalImage[]>>
   collections: Partial<Record<CollectionId, LocalImage>>
 } = {
+  banners: {
+    details: {
+      src: '/media/home/banner-detalles.webp',
+      alt: '',
+      width: 1050,
+      height: 1400,
+      origin: 'lcdd-supplied',
+    },
+    combos: {
+      src: '/media/home/banner-combos.webp',
+      alt: '',
+      width: 1050,
+      height: 1400,
+      origin: 'lcdd-supplied',
+    },
+  },
   logo: null,
   home: {
     hero: {
@@ -66,14 +83,6 @@ export const visualAssets: {
     },
   },
   categories: {
-    'experiencias-y-detalles-para-eventos': {
-      src: '/media/categories/experiencias-y-detalles.webp',
-      alt: 'Mesa de evento con flores y un cartel de mensajes en botella',
-      width: 1152,
-      height: 1536,
-      origin: 'lcdd-supplied',
-      fit: 'contain',
-    },
     'kits-para-eventos': {
       src: '/media/categories/kits-para-eventos-v01.webp',
       alt: 'Kits',

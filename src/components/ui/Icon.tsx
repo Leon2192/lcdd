@@ -23,8 +23,12 @@ type IconName =
   | 'users'
   | 'image'
   | 'check'
+  | 'pause'
+  | 'play'
 const paths: Record<Exclude<IconName, 'whatsapp'>, string> = {
   image: 'M3 3h18v18H3zM3 17l6-6 4 4 3-3 5 5M16 8h.01',
+  pause: 'M9 5v14m6-14v14',
+  play: 'm8 5 12 7-12 7Z',
   check: 'm5 12 4 4L19 6',
   search: 'M10.5 3a7.5 7.5 0 1 1 0 15 7.5 7.5 0 0 1 0-15Zm5.3 12.8L22 22',
   heart:
