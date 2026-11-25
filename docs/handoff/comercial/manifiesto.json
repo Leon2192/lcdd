@@ -1,0 +1,43 @@
+{
+  "version": "1.0",
+  "proyecto": "PY01",
+  "fase": "05",
+  "archivos": [
+    {
+      "ruta": "README.md",
+      "tipo": "md"
+    },
+    {
+      "ruta": "COM-01-estrategia.md",
+      "tipo": "md"
+    },
+    {
+      "ruta": "COM-02-recorrido.md",
+      "tipo": "md"
+    },
+    {
+      "ruta": "COM-03-04-propuesta.md",
+      "tipo": "md"
+    },
+    {
+      "ruta": "catalogo.json",
+      "tipo": "json"
+    },
+    {
+      "ruta": "decisiones.json",
+      "tipo": "json"
+    },
+    {
+      "ruta": "cotizacion.json",
+      "tipo": "json"
+    },
+    {
+      "ruta": "COM-09-10-validacion.md",
+      "tipo": "md"
+    },
+    {
+      "ruta": "manifiesto.json",
+      "tipo": "json"
+    }
+  ]
+}

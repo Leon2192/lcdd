@@ -1,0 +1,187 @@
+@layer components {
+  .editorial-hero {
+    background: linear-gradient(
+      115deg,
+      var(--lcdd-sand),
+      var(--lcdd-background) 72%
+    );
+  }
+  .editorial-hero-grid,
+  .editorial-story,
+  .editorial-contact-grid,
+  .editorial-collection-intro {
+    display: grid;
+    gap: 1.5rem;
+    min-width: 0;
+    align-items: center;
+  }
+  .editorial-page .editorial-copy {
+    max-width: 42rem;
+  }
+  .editorial-page h1.eyebrow {
+    font-family: var(--lcdd-font-body);
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.5;
+  }
+  .editorial-display {
+    font-family: var(--lcdd-font-heading);
+    font-size: clamp(2.25rem, 5vw, 4.25rem);
+    line-height: 1.05;
+    color: var(--lcdd-editorial);
+    font-style: italic;
+    margin-block: 1rem;
+    text-wrap: balance;
+  }
+  .editorial-lead {
+    font-size: 1.125rem;
+    max-width: 40ch;
+  }
+  .editorial-page .home-media {
+    aspect-ratio: 4 / 3;
+    min-width: 0;
+    border-radius: var(--lcdd-radius-panel);
+    overflow: hidden;
+  }
+  .editorial-notice {
+    font-size: 0.75rem;
+    color: var(--lcdd-muted);
+    margin-block: 1rem 0;
+  }
+  .editorial-topics {
+    display: grid;
+    gap: 1rem;
+    margin-block-start: 2rem;
+  }
+  .editorial-topic {
+    border: 1px solid var(--lcdd-border);
+    border-radius: var(--lcdd-radius-panel);
+    padding: 1.5rem;
+    background: var(--lcdd-neutral);
+  }
+  .editorial-number {
+    font-family: var(--lcdd-font-heading);
+    font-size: 2rem;
+    color: var(--lcdd-primary);
+  }
+  .editorial-contact {
+    background: var(--lcdd-sand);
+  }
+  .editorial-actions {
+    display: grid;
+    gap: 0.75rem;
+    justify-items: start;
+    min-width: 0;
+  }
+  .editorial-actions > a {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+  .editorial-collection-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-block-start: 1.5rem;
+  }
+  .editorial-collection-nav a {
+    min-height: 2.75rem;
+    display: inline-flex;
+    align-items: center;
+    padding: 0.625rem 1rem;
+    border: 1px solid var(--lcdd-border);
+    border-radius: var(--lcdd-radius-pill);
+    text-decoration: none;
+  }
+  .editorial-collection-nav a:hover {
+    background: var(--lcdd-sand);
+  }
+  .editorial-collection {
+    scroll-margin-block-start: calc(var(--lcdd-header-height) + 1rem);
+    border-block-start: 1px solid var(--lcdd-border);
+  }
+  .editorial-cover {
+    aspect-ratio: 16 / 9;
+    max-height: 18rem;
+    overflow: hidden;
+    border-radius: var(--lcdd-radius-panel);
+  }
+  .editorial-cover > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .editorial-cover .media-placeholder {
+    height: 100%;
+    aspect-ratio: auto;
+  }
+  .editorial-collection .product-rail {
+    margin-block-start: 1.5rem;
+  }
+  /* Decoración abstracta, sin representar fotografías ni características de productos. */
+  .media-placeholder,
+  .home-media-placeholder {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background:
+      radial-gradient(
+        ellipse at 10% 5%,
+        var(--lcdd-background),
+        transparent 62%
+      ),
+      linear-gradient(
+        140deg,
+        var(--lcdd-sand),
+        var(--lcdd-neutral) 55%,
+        var(--lcdd-rose)
+      );
+  }
+  .media-placeholder::before,
+  .home-media-placeholder::before {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    width: 65%;
+    aspect-ratio: 1;
+    border: 1px solid var(--lcdd-control-border);
+    border-radius: 50% 50% 0 0;
+    opacity: 0.35;
+    transform: rotate(25deg);
+    inset: 12% -15% auto auto;
+  }
+  .media-placeholder::after,
+  .home-media-placeholder::after {
+    content: '';
+    position: absolute;
+    z-index: -1;
+    width: 55%;
+    aspect-ratio: 1;
+    border: 1px solid var(--lcdd-control-border);
+    border-radius: 50%;
+    opacity: 0.3;
+    inset: auto auto -20% -12%;
+  }
+  .media-placeholder > span:last-child,
+  .home-media-placeholder small {
+    max-width: 26ch;
+    text-wrap: balance;
+  }
+  @media (width >= 48rem) {
+    .editorial-hero-grid {
+      grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+      gap: 3rem;
+    }
+    .editorial-story,
+    .editorial-contact-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 3rem;
+    }
+    .editorial-topics {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .editorial-collection-intro {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.5fr);
+      gap: 2rem;
+    }
+  }
+}

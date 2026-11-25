@@ -1,0 +1,22 @@
+{
+  "estado": "preliminar",
+  "hero": {
+    "titulo": "Los detalles hacen la diferencia",
+    "subtitulo": "Detalles personalizados para celebrar momentos únicos.",
+    "cta": "Descubrí nuestros productos"
+  },
+  "categorias": "Encontrá el detalle perfecto",
+  "colecciones": "Detalles que inspiran",
+  "conversion": {
+    "titulo": "Hagamos algo especial",
+    "texto": "Contanos sobre tu evento y encontremos juntos los detalles ideales.",
+    "cta": "Armá tu pedido"
+  },
+  "contacto": {
+    "whatsapp": "1135939460",
+    "internacional_propuesto": "5491135939460",
+    "email": "contacto.lacasadeldetalle@gmail.com",
+    "instagram": "@lacasadeldetalle_arg",
+    "nota": "Datos de Dirección General/contexto del proyecto; verificar enlace internacional antes de uso."
+  }
+}

@@ -1,0 +1,296 @@
+@layer theme, base, components, utilities;
+@layer components {
+  .catalog-page {
+    padding-block: 24px 48px;
+    overflow-wrap: anywhere;
+  }
+  .catalog-breadcrumbs ol {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    list-style: none;
+    padding: 0;
+    font-size: 0.875rem;
+  }
+  .catalog-breadcrumbs li + li::before {
+    content: '/';
+    margin-right: 8px;
+    color: var(--color-primary);
+  }
+  .catalog-breadcrumbs a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+  .catalog-heading {
+    padding-block: 24px;
+    max-width: 52rem;
+  }
+  .catalog-heading h1 {
+    margin-bottom: 16px;
+  }
+  .catalog-notice {
+    padding: 16px;
+    background: var(--color-sand);
+    border-left: 3px solid var(--color-primary);
+    margin-block: 16px 24px;
+    font-size: 0.875rem;
+  }
+  .catalog-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+  }
+  .catalog-sidebar fieldset {
+    border: 0;
+    padding: 0;
+    min-width: 0;
+  }
+  .catalog-sidebar legend {
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .catalog-sidebar .checkbox-label {
+    min-height: 44px;
+  }
+  .catalog-results {
+    min-width: 0;
+  }
+  .catalog-group {
+    margin-bottom: 32px;
+  }
+  .catalog-group-heading {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    background: var(--color-sand);
+    padding: 16px;
+    margin-bottom: 20px;
+  }
+  .catalog-group-heading h2 {
+    font-size: 1.75rem;
+  }
+  .catalog-group-heading a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+  .catalog-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+  }
+  .catalog-grid > * {
+    min-width: 0;
+  }
+  .catalog-category-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .catalog-category-nav a {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    align-items: center;
+    min-height: 44px;
+    padding: 8px;
+    border-bottom: 1px solid var(--lcdd-border);
+  }
+  .catalog-search {
+    margin-block: 20px;
+    max-width: 32rem;
+  }
+  .catalog-order-preview {
+    background: var(--color-sand);
+    padding: 24px;
+    margin-top: 32px;
+    display: grid;
+    gap: 16px;
+    justify-items: start;
+  }
+  .catalog-detail {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+  }
+  .catalog-gallery {
+    min-width: 0;
+  }
+  .catalog-gallery > .media-placeholder {
+    aspect-ratio: 4/5;
+  }
+  .catalog-main-image {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4/5;
+    object-fit: contain;
+    background: var(--color-sand);
+  }
+  .catalog-thumbnails {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 16px;
+  }
+  .catalog-thumbnails button {
+    min-width: 44px;
+    min-height: 44px;
+    border: 2px solid transparent;
+  }
+  .catalog-thumbnails button[aria-pressed='true'] {
+    border-color: var(--color-primary);
+  }
+  .catalog-thumbnails img {
+    width: 72px;
+    height: 90px;
+    object-fit: contain;
+  }
+  .catalog-product-copy {
+    min-width: 0;
+  }
+  .catalog-product-copy section {
+    margin-top: 24px;
+  }
+  .catalog-product-copy h2 {
+    font-size: 1.6rem;
+    margin-bottom: 12px;
+  }
+  .catalog-product-copy p {
+    margin-bottom: 12px;
+    line-height: 1.65;
+  }
+  .catalog-request {
+    display: grid;
+    gap: 12px;
+    border-top: 1px solid var(--lcdd-border);
+    padding-top: 24px;
+  }
+  .catalog-request .button {
+    white-space: normal;
+    text-align: center;
+  }
+  .catalog-related {
+    margin-top: 40px;
+  }
+  .catalog-related > p {
+    margin-block: 12px 24px;
+  }
+  @media (min-width: 390px) {
+    .catalog-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (min-width: 768px) {
+    .catalog-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+    .catalog-page {
+      padding-block: 32px 64px;
+    }
+    .catalog-heading {
+      padding-block: 32px;
+    }
+  }
+  @media (min-width: 1024px) {
+    .catalog-layout {
+      grid-template-columns: 220px minmax(0, 1fr);
+      gap: 32px;
+    }
+    .catalog-detail {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 48px;
+    }
+    .catalog-heading {
+      padding-block: 40px;
+    }
+    .catalog-related .catalog-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+  @media (min-width: 1440px) {
+    .catalog-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+}
+
+@layer components {
+  .catalog-breadcrumbs ol {
+    align-items: center;
+  }
+  .catalog-breadcrumbs li {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    gap: 0;
+  }
+  .catalog-breadcrumbs li + li::before {
+    flex: none;
+  }
+  .catalog-heading {
+    padding-block: 20px 28px;
+  }
+  .catalog-results > h2 {
+    margin-bottom: 16px;
+  }
+  .catalog-results > [role='status'] {
+    margin-block: 16px;
+  }
+  .catalog-search {
+    position: relative;
+    background: var(--lcdd-sand);
+    padding: 16px;
+    border-radius: var(--lcdd-radius-panel);
+    margin-block: 20px 24px;
+  }
+  .catalog-search .control {
+    padding-left: 44px;
+  }
+  .catalog-search-icon {
+    position: absolute;
+    left: 28px;
+    bottom: 30px;
+    pointer-events: none;
+    color: var(--lcdd-primary);
+  }
+  .catalog-small-selection {
+    max-width: 44rem;
+  }
+  .catalog-filter-disclosure > summary {
+    min-height: 44px;
+    cursor: pointer;
+    padding-block: 12px;
+    font-weight: 600;
+  }
+  .catalog-grid {
+    gap: 12px;
+  }
+  @media (min-width: 768px) {
+    .catalog-grid {
+      gap: 20px;
+    }
+    .catalog-small-selection .catalog-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  @media (min-width: 1024px) {
+    .catalog-filter-disclosure > summary {
+      font-size: 0.875rem;
+    }
+    .catalog-heading {
+      padding-block: 32px;
+    }
+  }
+}
+
+@layer components {
+  @media (min-width: 768px) {
+    .catalog-grid--small {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      max-width: 44rem;
+    }
+  }
+}

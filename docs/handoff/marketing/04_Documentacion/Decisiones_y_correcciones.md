@@ -1,0 +1,6 @@
+# Registro de decisiones y pendientes
+Resolución DG 24/11/2026: integración preliminar aprobada; transferencia a Comercial autorizada; no rehacer diseños antes de conclusiones. Nueva instrucción del usuario: arquitectura aprobada, Fase 01 validada, entrega para Fase 02 local mediante Codex CLI, React/Vite/TypeScript/Tailwind. Sin Git, GitHub, CI/CD, hosting, despliegue ni cambios de dominio; entrega final del código ZIP por Tecnología. No se dispone aquí del informe final de Comercial ni de la validación técnica de Fase 01.
+## Correcciones abiertas
+VIS-001 logo reinterpretado → original; VIS-002 bolsa/carrito → lista; VIS-003 fotografías no fieles (Estrellitas); VIS-004 localidad; VIS-005 dos etapas; VIS-006 solapamientos; VIS-007 una columna a 320; VIS-008 no afirmar solicitud enviada. Revisar comentarios, resumen y CTA final en UI-06, etiquetas de fecha/evento y coherencia de personalización. Las láminas no han sido corregidas ni verificadas nuevamente.
+## Pendientes
+Paleta/pesos exactos, SVG original, fuentes/licencias de versión, fotos originales y definitivas, textos institucionales, condiciones, variantes y mínimos, CTA y recorrido final de Comercial, verificación visual y técnica. No convertir pendientes en hechos ni bloqueos generales de desarrollo; sí resolver antes de publicación según Productos.

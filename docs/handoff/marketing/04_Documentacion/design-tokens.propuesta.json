@@ -1,0 +1,68 @@
+{
+  "status": "propuesta documentada, aprobación exacta pendiente de verificar",
+  "colors": {
+    "primary": "#315C5D",
+    "background": "#FAF8F5",
+    "sand": "#EDE3D7",
+    "rose": "#DDBFB4",
+    "editorial": "#60432E",
+    "text": "#292522",
+    "muted": "#71665D",
+    "white": "#FFFFFF",
+    "border": "#DED4CA",
+    "taupe": "#9B8B7E",
+    "neutral": "#F2EFEB",
+    "success": "#356B4A",
+    "error": "#A33D3D",
+    "successBackground": "#EAF3ED"
+  },
+  "fonts": {
+    "heading": "Cormorant Garamond",
+    "body": "DM Sans",
+    "weights": "pendientes de verificar"
+  },
+  "responsive": [
+    {
+      "width": 320,
+      "columns": 1,
+      "margin": 12,
+      "gap": 12,
+      "h1": 32,
+      "body": 16,
+      "header": 64,
+      "cta": 48
+    },
+    {
+      "width": 390,
+      "columns": 2,
+      "margin": 16,
+      "gap": 12,
+      "h1": 36,
+      "body": 16,
+      "header": 72,
+      "cta": 52
+    },
+    {
+      "width": 768,
+      "columns": 3,
+      "margin": 24,
+      "gap": 16,
+      "h1": 44,
+      "body": 16,
+      "header": 72,
+      "cta": 52
+    },
+    {
+      "width": 1440,
+      "columns": 4,
+      "margin": 48,
+      "gap": 24,
+      "h1": 56,
+      "body": 16,
+      "header": 96,
+      "cta": "48–52"
+    }
+  ],
+  "maxWidth": 1280,
+  "touchTarget": 44
+}

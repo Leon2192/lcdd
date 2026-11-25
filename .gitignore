@@ -1,34 +1,49 @@
-# Node modules
+# Dependencias instaladas
 node_modules/
 
-# Logs
+# Logs locales
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-# Build outputs
-dist/
-build/
-.next/
-out/
+# Compilación y cachés de Vite, TypeScript y herramientas de calidad
+/dist/
+.vite/
+.vite-temp/
+.cache/
+*.tsbuildinfo
+.eslintcache
+.prettier-cache
 
-# OS
+# Informes de cobertura
+/coverage/
+
+# Entregas portables generadas localmente
+/LCDD_Web_*.zip
+
+# Sistema operativo
 .DS_Store
 Thumbs.db
+Desktop.ini
 
-# Env files
+# Variables locales; conservar plantillas sin secretos
 .env
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+.env.*
+!.env.example
+!.env.*.example
 
-# IDEs
+# Configuración local de editores
 .vscode/
 .idea/
+*.swp
+*.swo
+*~
 
-# Optional: lockfiles (si no querés subirlos)
-# package-lock.json
-# yarn.lock
-# pnpm-lock.yaml
+# Herramientas privadas y credenciales locales
+/.agents/
+/.codex/
+/.aws/
+
+# Conservar package-lock.json, fuentes, pruebas, imágenes, licencias y docs/handoff/.

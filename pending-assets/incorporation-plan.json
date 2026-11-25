@@ -1,0 +1,227 @@
+[
+  {
+    "name": "Home principal",
+    "file": "home/hero-v01.webp",
+    "width": 1600,
+    "height": 1200,
+    "kind": "home",
+    "key": "hero",
+    "alt": "Home principal"
+  },
+  {
+    "name": "Kits para eventos",
+    "file": "categories/kits-para-eventos-v01.webp",
+    "width": 1000,
+    "height": 750,
+    "kind": "categories",
+    "key": "kits-para-eventos",
+    "alt": "Kits para eventos"
+  },
+  {
+    "name": "Souvenirs personalizados",
+    "file": "categories/souvenirs-personalizados-v01.webp",
+    "width": 1000,
+    "height": 750,
+    "kind": "categories",
+    "key": "souvenirs-personalizados",
+    "alt": "Souvenirs personalizados"
+  },
+  {
+    "name": "Experiencias y detalles para eventos",
+    "file": "categories/experiencias-y-detalles-para-eventos-v01.webp",
+    "width": 1000,
+    "height": 750,
+    "kind": "categories",
+    "key": "experiencias-y-detalles-para-eventos",
+    "alt": "Experiencias y detalles para eventos"
+  },
+  {
+    "name": "Detalles de mesa",
+    "file": "categories/detalles-de-mesa-v01.webp",
+    "width": 1000,
+    "height": 750,
+    "kind": "categories",
+    "key": "detalles-de-mesa",
+    "alt": "Detalles de mesa"
+  },
+  {
+    "name": "Invitaciones digitales",
+    "file": "categories/invitaciones-digitales-v01.webp",
+    "width": 1000,
+    "height": 750,
+    "kind": "categories",
+    "key": "invitaciones-digitales",
+    "alt": "Invitaciones digitales"
+  },
+  {
+    "name": "Kits antiresaca",
+    "file": "products/P-001/P-001_principal_01_v01.webp",
+    "width": 1200,
+    "height": 1500,
+    "kind": "products",
+    "key": "P-001",
+    "alt": "Kits antiresaca"
+  },
+  {
+    "name": "Kits de baño",
+    "file": "products/P-002/P-002_principal_01_v01.webp",
+    "width": 1200,
+    "height": 1500,
+    "kind": "products",
+    "key": "P-002",
+    "alt": "Kits de baño"
+  },
+  {
+    "name": "Vasos personalizados",
+    "file": "products/P-003/P-003_principal_01_v01.webp",
+    "width": 1200,
+    "height": 1500,
+    "kind": "products",
+    "key": "P-003",
+    "alt": "Vasos personalizados"
+  },
+  {
+    "name": "Abanicos personalizados",
+    "file": "products/P-004/P-004_principal_01_v01.webp",
+    "width": 1200,
+    "height": 1500,
+    "kind": "products",
+    "key": "P-004",
+    "alt": "Abanicos personalizados"
+  },
+  {
+    "name": "Lentes personalizados",
+    "file": "products/P-005/P-005_principal_01_v01.webp",
+    "width": 1200,
+    "height": 1500,
+    "kind": "products",
+    "key": "P-005",
+    "alt": "Lentes personalizados"
+  },
+  {
+    "name": "Diarios personalizados",
+    "file": "products/P-006/P-006_principal_01_v01.webp",
+    "width": 1200,
+    "height": 1500,
+    "kind": "products",
+    "key": "P-006",
+    "alt": "Diarios personalizados"
+  },
+  {
+    "name": "Estrellitas",
+    "file": "products/P-007/P-007_principal_01_v01.webp",
+    "width": 1200,
+    "height": 1500,
+    "kind": "products",
+    "key": "P-007",
+    "alt": "Estrellitas"
+  },
+  {
+    "name": "Capitán de mesa",
+    "file": "products/P-008/P-008_principal_01_v01.webp",
+    "width": 1200,
+    "height": 1500,
+    "kind": "products",
+    "key": "P-008",
+    "alt": "Capitán de mesa"
+  },
+  {
+    "name": "Difusores personalizados",
+    "file": "products/P-009/P-009_principal_01_v01.webp",
+    "width": 1200,
+    "height": 1500,
+    "kind": "products",
+    "key": "P-009",
+    "alt": "Difusores personalizados"
+  },
+  {
+    "name": "Espejitos personalizados",
+    "file": "products/P-010/P-010_principal_01_v01.webp",
+    "width": 1200,
+    "height": 1500,
+    "kind": "products",
+    "key": "P-010",
+    "alt": "Espejitos personalizados"
+  },
+  {
+    "name": "Carpa QR",
+    "file": "products/P-011/P-011_principal_01_v01.webp",
+    "width": 1200,
+    "height": 1500,
+    "kind": "products",
+    "key": "P-011",
+    "alt": "Carpa QR"
+  },
+  {
+    "name": "Números de mesa",
+    "file": "products/P-012/P-012_principal_01_v01.webp",
+    "width": 1200,
+    "height": 1500,
+    "kind": "products",
+    "key": "P-012",
+    "alt": "Números de mesa"
+  },
+  {
+    "name": "Invitaciones digitales",
+    "file": "products/P-013/P-013_principal_01_v01.webp",
+    "width": 1200,
+    "height": 1500,
+    "kind": "products",
+    "key": "P-013",
+    "alt": "Invitaciones digitales"
+  },
+  {
+    "name": "Save the date",
+    "file": "products/P-014/P-014_principal_01_v01.webp",
+    "width": 1200,
+    "height": 1500,
+    "kind": "products",
+    "key": "P-014",
+    "alt": "Save the date"
+  },
+  {
+    "name": "Inspiración 1",
+    "file": "home/inspiration-1-v01.webp",
+    "width": 1200,
+    "height": 900,
+    "kind": "home",
+    "key": "inspiration-1",
+    "alt": "Inspiración 1"
+  },
+  {
+    "name": "Inspiración 2",
+    "file": "home/inspiration-2-v01.webp",
+    "width": 1200,
+    "height": 900,
+    "kind": "home",
+    "key": "inspiration-2",
+    "alt": "Inspiración 2"
+  },
+  {
+    "name": "Inspiración 3",
+    "file": "home/inspiration-3-v01.webp",
+    "width": 1200,
+    "height": 900,
+    "kind": "home",
+    "key": "inspiration-3",
+    "alt": "Inspiración 3"
+  },
+  {
+    "name": "Logo limpio",
+    "file": "brand/logo-principal-v01.png",
+    "width": 1200,
+    "height": 600,
+    "kind": "logo",
+    "key": "logo",
+    "alt": "Logo limpio"
+  },
+  {
+    "name": "Favicon definitivo",
+    "file": "brand/favicon-32-v01.png",
+    "width": 32,
+    "height": 32,
+    "kind": "favicon",
+    "key": "favicon",
+    "alt": "Favicon definitivo"
+  }
+]

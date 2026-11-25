@@ -1,0 +1,69 @@
+{
+  "estado": "PROPUESTA_NO_APROBADA",
+  "campos": [
+    {
+      "campo": "productos",
+      "obligatorio_propuesto": true,
+      "nota": "solo recorrido estructurado; al menos una línea"
+    },
+    {
+      "campo": "nombre",
+      "obligatorio_propuesto": false,
+      "nota": "identificación inicial"
+    },
+    {
+      "campo": "tipo_evento",
+      "obligatorio_propuesto": false,
+      "nota": "texto o selección validada"
+    },
+    {
+      "campo": "fecha_evento",
+      "obligatorio_propuesto": false,
+      "nota": "fecha válida si se informa; opción por definir"
+    },
+    {
+      "campo": "localidad",
+      "obligatorio_propuesto": false,
+      "nota": "sin restricción geográfica inventada"
+    },
+    {
+      "campo": "comentarios",
+      "obligatorio_propuesto": false,
+      "nota": "texto libre"
+    },
+    {
+      "campo": "correo",
+      "obligatorio_propuesto": false,
+      "nota": "solo si se justifica; no exigir"
+    },
+    {
+      "campo": "telefono",
+      "obligatorio_propuesto": false,
+      "nota": "no solicitar por defecto en flujo WhatsApp"
+    }
+  ],
+  "linea": {
+    "producto_id": "ID oficial",
+    "cantidad": "entero positivo o pendiente explícito, si se aprueba; no aplica a servicios",
+    "unidad": "según modalidad",
+    "variante": "solo opción confirmada o pendiente",
+    "personalizacion": "comentario opcional"
+  },
+  "validaciones_propuestas": [
+    "ID existente",
+    "cantidad entera positiva si informada y aplicable",
+    "sin mínimo comercial ficticio",
+    "fecha válida si informada",
+    "no bloquear por diseño final desconocido",
+    "revisión antes de apertura",
+    "consulta directa sin formulario"
+  ],
+  "mensaje_plantilla": "Hola, quisiera solicitar una cotización desde la web de LCDD.\nProductos:\n{lineas}\n{datos_evento}\n{comentarios}\nGracias.",
+  "linea_plantilla": "- {nombre} ({id}) — {cantidad_y_unidad_o_servicio}{variante_si_aplica}",
+  "contacto": {
+    "numero_informado_por_DG": "1135939460",
+    "internacional_propuesto_no_verificado": "5491135939460",
+    "envio_automatico": false
+  },
+  "incompletos": "No inventar cantidades ni datos; ofrecer consulta directa. Aceptación de incompletos en recorrido estructurado pendiente de aprobación."
+}

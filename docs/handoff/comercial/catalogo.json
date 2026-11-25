@@ -1,0 +1,242 @@
+{
+  "estado": "identidad y categorías aprobadas; modalidades y relacionados preliminares de Productos",
+  "categorias": {
+    "1": "Kits para eventos",
+    "2": "Souvenirs personalizados",
+    "3": "Experiencias y detalles para eventos",
+    "4": "Detalles de mesa",
+    "5": "Invitaciones digitales"
+  },
+  "productos": [
+    {
+      "id": "P-001",
+      "nombre": "Kits antiresaca",
+      "categoria": 1,
+      "modalidad_propuesta": "kits",
+      "minimo_comercial": null,
+      "variantes_confirmadas": null,
+      "relacionados_propuestos": [
+        "P-002",
+        "P-003",
+        "P-005"
+      ]
+    },
+    {
+      "id": "P-002",
+      "nombre": "Kits de baño",
+      "categoria": 1,
+      "modalidad_propuesta": "kits",
+      "minimo_comercial": null,
+      "variantes_confirmadas": null,
+      "relacionados_propuestos": [
+        "P-001",
+        "P-010"
+      ]
+    },
+    {
+      "id": "P-003",
+      "nombre": "Vasos personalizados",
+      "categoria": 2,
+      "modalidad_propuesta": "unidades",
+      "minimo_comercial": null,
+      "variantes_confirmadas": null,
+      "relacionados_propuestos": [
+        "P-005",
+        "P-004",
+        "P-001"
+      ]
+    },
+    {
+      "id": "P-004",
+      "nombre": "Abanicos personalizados",
+      "categoria": 2,
+      "modalidad_propuesta": "unidades",
+      "minimo_comercial": null,
+      "variantes_confirmadas": null,
+      "relacionados_propuestos": [
+        "P-005",
+        "P-003",
+        "P-010"
+      ]
+    },
+    {
+      "id": "P-005",
+      "nombre": "Lentes personalizados",
+      "categoria": 2,
+      "modalidad_propuesta": "unidades",
+      "minimo_comercial": null,
+      "variantes_confirmadas": null,
+      "relacionados_propuestos": [
+        "P-003",
+        "P-004",
+        "P-007"
+      ]
+    },
+    {
+      "id": "P-006",
+      "nombre": "Diarios personalizados",
+      "categoria": 3,
+      "modalidad_propuesta": "ejemplares",
+      "minimo_comercial": null,
+      "variantes_confirmadas": null,
+      "relacionados_propuestos": [
+        "P-013",
+        "P-012",
+        "P-011"
+      ]
+    },
+    {
+      "id": "P-007",
+      "nombre": "Estrellitas",
+      "categoria": 3,
+      "modalidad_propuesta": "unidades",
+      "minimo_comercial": null,
+      "variantes_confirmadas": null,
+      "relacionados_propuestos": [
+        "P-008",
+        "P-011"
+      ]
+    },
+    {
+      "id": "P-008",
+      "nombre": "Capitán de mesa",
+      "categoria": 3,
+      "modalidad_propuesta": "mesas_o_unidades",
+      "minimo_comercial": null,
+      "variantes_confirmadas": null,
+      "relacionados_propuestos": [
+        "P-012",
+        "P-003",
+        "P-011"
+      ]
+    },
+    {
+      "id": "P-009",
+      "nombre": "Difusores personalizados",
+      "categoria": 2,
+      "modalidad_propuesta": "unidades",
+      "minimo_comercial": null,
+      "variantes_confirmadas": null,
+      "relacionados_propuestos": [
+        "P-010",
+        "P-004"
+      ]
+    },
+    {
+      "id": "P-010",
+      "nombre": "Espejitos personalizados",
+      "categoria": 2,
+      "modalidad_propuesta": "unidades",
+      "minimo_comercial": null,
+      "variantes_confirmadas": null,
+      "relacionados_propuestos": [
+        "P-004",
+        "P-009",
+        "P-002"
+      ]
+    },
+    {
+      "id": "P-011",
+      "nombre": "Carpa QR",
+      "categoria": 4,
+      "modalidad_propuesta": "unidades",
+      "minimo_comercial": null,
+      "variantes_confirmadas": null,
+      "relacionados_propuestos": [
+        "P-012",
+        "P-006",
+        "P-013"
+      ]
+    },
+    {
+      "id": "P-012",
+      "nombre": "Números de mesa",
+      "categoria": 4,
+      "modalidad_propuesta": "mesas_o_unidades",
+      "minimo_comercial": null,
+      "variantes_confirmadas": null,
+      "relacionados_propuestos": [
+        "P-008",
+        "P-011"
+      ]
+    },
+    {
+      "id": "P-013",
+      "nombre": "Invitaciones digitales",
+      "categoria": 5,
+      "modalidad_propuesta": "servicio",
+      "minimo_comercial": null,
+      "variantes_confirmadas": null,
+      "relacionados_propuestos": [
+        "P-014",
+        "P-006",
+        "P-011"
+      ]
+    },
+    {
+      "id": "P-014",
+      "nombre": "Save the date",
+      "categoria": 5,
+      "modalidad_propuesta": "servicio",
+      "minimo_comercial": null,
+      "variantes_confirmadas": null,
+      "relacionados_propuestos": [
+        "P-013",
+        "P-006"
+      ]
+    }
+  ],
+  "colecciones": [
+    {
+      "id": "COL-001",
+      "nombre": "Cuidá a tus invitados",
+      "productos": [
+        "P-001",
+        "P-002",
+        "P-010"
+      ],
+      "estado": "aprobada preliminarmente para diseño; mantener propuesto por Comercial"
+    },
+    {
+      "id": "COL-002",
+      "nombre": "Que empiece la fiesta",
+      "productos": [
+        "P-003",
+        "P-005",
+        "P-004",
+        "P-007"
+      ],
+      "estado": "aprobada preliminarmente para diseño; mantener propuesto por Comercial"
+    },
+    {
+      "id": "COL-003",
+      "nombre": "Cada mesa, un detalle",
+      "productos": [
+        "P-012",
+        "P-011",
+        "P-008"
+      ],
+      "estado": "aprobada preliminarmente para diseño; mantener propuesto por Comercial"
+    },
+    {
+      "id": "COL-004",
+      "nombre": "Recuerdos especiales",
+      "productos": [
+        "P-009",
+        "P-010",
+        "P-004"
+      ],
+      "estado": "aprobada preliminarmente para diseño; mantener propuesto por Comercial"
+    },
+    {
+      "id": "COL-005",
+      "nombre": "Contá tu historia",
+      "productos": [
+        "P-013",
+        "P-014",
+        "P-006"
+      ],
+      "estado": "aprobada preliminarmente para diseño; mantener propuesto por Comercial"
+    }
+  ]
+}

@@ -1,0 +1,89 @@
+@layer theme, base, components, utilities;
+
+@import 'tailwindcss' source(none);
+@import './tokens.css';
+@import './fonts.css';
+@import './components.css';
+
+@source '../';
+@source '../../index.html';
+@source not '../**/*.test.{ts,tsx}';
+
+@layer base {
+  :root {
+    font-family: var(--lcdd-font-body);
+    color: var(--lcdd-text);
+    background: var(--lcdd-background);
+    font-synthesis: none;
+    font-optical-sizing: auto;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    line-height: var(--lcdd-leading-body);
+    overflow-wrap: anywhere;
+  }
+  body {
+    margin: 0;
+  }
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
+  button,
+  a,
+  input,
+  select,
+  textarea,
+  summary,
+  [tabindex] {
+    -webkit-tap-highlight-color: transparent;
+  }
+  :focus-visible {
+    outline: 2px solid var(--lcdd-focus);
+    outline-offset: 4px;
+  }
+  h1,
+  h2,
+  h3 {
+    font-family: var(--lcdd-font-heading);
+    font-weight: var(--lcdd-weight-regular);
+    color: var(--lcdd-editorial);
+    line-height: var(--lcdd-leading-heading);
+  }
+  h1 {
+    font-size: var(--lcdd-h1);
+  }
+  h2 {
+    font-size: var(--lcdd-h2);
+  }
+  h3 {
+    font-size: var(--lcdd-h3);
+  }
+  a,
+  button,
+  input,
+  select,
+  textarea {
+    touch-action: manipulation;
+  }
+  button:enabled,
+  summary {
+    cursor: pointer;
+  }
+  button:disabled {
+    cursor: not-allowed;
+  }
+  ::selection {
+    background: var(--lcdd-sand);
+  }
+}

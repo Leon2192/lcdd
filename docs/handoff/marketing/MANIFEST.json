@@ -1,0 +1,232 @@
+[
+  {
+    "path": "01_Identidad/Editorial_Boutique_original.png",
+    "bytes": 370279,
+    "sha256": "936cb7f05c37f12740ead3c912df578d84737b3d8f19bb57804e16162787f08c"
+  },
+  {
+    "path": "01_Identidad/Logo_original.png",
+    "bytes": 762853,
+    "sha256": "4927068b7bd257b9c4499cf35958cda3126390edd36a3b0ccf11a387bf587950"
+  },
+  {
+    "path": "02_Mockups/UI-01_Inicio_Desktop.png",
+    "bytes": 2178100,
+    "sha256": "b1bc627f6ef0731f261d9b37dd9970b40899553d15079896743899f1d9dbf4c2"
+  },
+  {
+    "path": "02_Mockups/UI-01_Inicio_Mobile.png",
+    "bytes": 2184003,
+    "sha256": "652a8343b27812f14ac3be6f974421f325021d53c3341fc9752480825f30db7a"
+  },
+  {
+    "path": "02_Mockups/UI-02_Catalogo_Desktop_V1.1.png",
+    "bytes": 2085560,
+    "sha256": "3e2ccbfa548eca8ad0ba03c1d5905374d3f620138587cec0bf153794bbd399ac"
+  },
+  {
+    "path": "02_Mockups/UI-02_Catalogo_Mobile_V1.1.png",
+    "bytes": 2163513,
+    "sha256": "a96ba313bfd13e43c577de7ce6743f94772e5e9222b02e5a03f998169e86de9a"
+  },
+  {
+    "path": "02_Mockups/UI-02_Catalogo_original.png",
+    "bytes": 2128636,
+    "sha256": "d7f2cecb9bdeef3aa68b4834a768683e31d1dfb1ec1fbb1c863563d366210c62"
+  },
+  {
+    "path": "02_Mockups/UI-03_Categorias.png",
+    "bytes": 1982020,
+    "sha256": "bf24d7d59d116d757e5e81f05b40a594f903e19cc9059e5d73622f26d746342c"
+  },
+  {
+    "path": "02_Mockups/UI-04_Producto.png",
+    "bytes": 1799713,
+    "sha256": "455451ac8846681014cf60ce2e0417fb1429495fc3e054cfa8019606b2aa9aa7"
+  },
+  {
+    "path": "02_Mockups/UI-05_Pedido_Desktop.png",
+    "bytes": 1905418,
+    "sha256": "7c739fee92cee47eb0b78867950f25ac411eef556ee9b107df0090a8b1863c4c"
+  },
+  {
+    "path": "02_Mockups/UI-05_Pedido_Mobile.png",
+    "bytes": 1693232,
+    "sha256": "8394321d87bc9d843f523a15d7ce583432e3e4f36cade46e2bfb8acec0f01864"
+  },
+  {
+    "path": "02_Mockups/UI-06_Cotizacion.png",
+    "bytes": 1715199,
+    "sha256": "5697f4d4060d2aa35a7e6f51b53aef40a115f8411df59885e9379ed66e4a1928"
+  },
+  {
+    "path": "02_Mockups/UI-07_Invitaciones_Desktop.png",
+    "bytes": 2112628,
+    "sha256": "0f1c1d2c7a54cdecfa01ea388ab17d1c5a2bfd2dc927df88efbab77440a4a574"
+  },
+  {
+    "path": "02_Mockups/UI-07_Invitaciones_Mobile.png",
+    "bytes": 1879004,
+    "sha256": "bfc54a339c4d8a1e84b52ebd2a53c7a7ee13145f491fda7ee18cba1436d33ced"
+  },
+  {
+    "path": "02_Mockups/UI-08_Inspiracion.png",
+    "bytes": 2107701,
+    "sha256": "591bbd35c67cf7e04cf21f6694b46c4b80f03fb9f96965e8547affce5e1f6484"
+  },
+  {
+    "path": "02_Mockups/UI-09_Nosotros_Contacto.png",
+    "bytes": 1961582,
+    "sha256": "ca701ab17720b7b69d44e5eb5c25fee84a7cbba3d61651d9bcf53e23af125390"
+  },
+  {
+    "path": "02_Mockups/UI-10_Navegacion.png",
+    "bytes": 2080595,
+    "sha256": "f372b33346e530b23e6fc2a27f0d662b0861bdc79ae3ffa01783328d9ef8869c"
+  },
+  {
+    "path": "03_Bloques/A_Design_Board.png",
+    "bytes": 2173136,
+    "sha256": "b9cae4db9005b4edc885af9ba63372f3212757a3d82d7b2dad763fd866f66e20"
+  },
+  {
+    "path": "03_Bloques/C_Commercial_Journey.png",
+    "bytes": 2099350,
+    "sha256": "1820ec3fcdaccbc9ef0d7d778654f68c810b26817c34e7734132e898d0879799"
+  },
+  {
+    "path": "03_Bloques/D_Mobile_First_01.png",
+    "bytes": 2210548,
+    "sha256": "a575a6a5a4364f8c06e2f954fcdf351498a69d246ec7540f791ddfd24f529414"
+  },
+  {
+    "path": "03_Bloques/D_Mobile_First_02.png",
+    "bytes": 2195599,
+    "sha256": "8a18d9c29fd8a7e065c00b9737a099237766e15145e4fe78c9732c657493b840"
+  },
+  {
+    "path": "04_Documentacion/Commercial_Journey_V1.0.extracto.md",
+    "bytes": 698,
+    "sha256": "cb7e193da7077dcbe54340438a81e9d43113e9e8909daf95afefc0bc735ef74e"
+  },
+  {
+    "path": "04_Documentacion/Decisiones_y_correcciones.md",
+    "bytes": 1351,
+    "sha256": "7b43e2b3c287d7b0bda2aa9de6237a6b6db4a5872d3b6005a6337687c7dce244"
+  },
+  {
+    "path": "04_Documentacion/Design_UX_Master_V1.0.extracto.md",
+    "bytes": 1454,
+    "sha256": "199dce9451c33e44b1aad4d521664c93bf14e8685f8e6cc14b6da96cb17b66a2"
+  },
+  {
+    "path": "04_Documentacion/Marketing_Product_Integration_V1.0.extracto.md",
+    "bytes": 1193,
+    "sha256": "b591b8f849cc53b5b8dc2e43563230a505996515ac9cfed31c0fd070dbb36e88"
+  },
+  {
+    "path": "04_Documentacion/Mobile_First_Experience_V1.0.extracto.md",
+    "bytes": 747,
+    "sha256": "5518d9f89a26725e072029feec893689a414e7f5e369fdb13dd86e167162c932"
+  },
+  {
+    "path": "04_Documentacion/Product_Catalog_Handoff_V1.0.docx",
+    "bytes": 44691,
+    "sha256": "c1511522b1d2c6223a40a4543d4f64ef6626bc95e9d719107aa0c514bad2e597"
+  },
+  {
+    "path": "04_Documentacion/Product_Catalog_Handoff_V1.0.transcripcion.md",
+    "bytes": 18855,
+    "sha256": "79975397055d1481329a704ab35786b23a080a783c78852fb313d612e245c702"
+  },
+  {
+    "path": "04_Documentacion/Sistema_Diseno_V1.1.extracto.md",
+    "bytes": 1318,
+    "sha256": "45fe4288e945b0bbf1e3d8886dfb1460ffe639d8f7e4c6650b5d822b1a99d81c"
+  },
+  {
+    "path": "04_Documentacion/UI_Master_V1.0.extracto.md",
+    "bytes": 984,
+    "sha256": "5bd016e048885dc73288fff175d67b7d93504dfbcb4675617fd73e0d2088198d"
+  },
+  {
+    "path": "04_Documentacion/design-tokens.propuesta.json",
+    "bytes": 1291,
+    "sha256": "aa6b4ad438a2f5f8ced97ce312661f6a5e35e807670f6e9d46449c71a7693b10"
+  },
+  {
+    "path": "05_Archivo_historico/Auditoria/audit0.jpg",
+    "bytes": 273220,
+    "sha256": "42f1039362183f387bd820191829bea62151fc434854d6e01ef2c751a348bcac"
+  },
+  {
+    "path": "05_Archivo_historico/Auditoria/audit12.jpg",
+    "bytes": 82547,
+    "sha256": "fe80b7bf8f752252ce4ad0929d28ecc07daaa6157a51733345c403b5256013c6"
+  },
+  {
+    "path": "05_Archivo_historico/Auditoria/audit3.jpg",
+    "bytes": 202058,
+    "sha256": "aa0485c45630c7f53d8be3e7102151077237e071412f4ba2b9e1c87bb5b3f6c1"
+  },
+  {
+    "path": "05_Archivo_historico/Auditoria/audit6.jpg",
+    "bytes": 197709,
+    "sha256": "17aa2ff29b02b43736e1700de72671bf4e6aeff5d724d29d29e2db5a2e146ff3"
+  },
+  {
+    "path": "05_Archivo_historico/Auditoria/audit9.jpg",
+    "bytes": 186706,
+    "sha256": "5e5b681bb4081502b88d56c8d34f1631c9189470683a4de0766d31be2bba1c10"
+  },
+  {
+    "path": "05_Archivo_historico/a_clean_elegant_website_mockup_in_a_single_image.png",
+    "bytes": 2106276,
+    "sha256": "97e94868c96274852d3be25d3e046447cedd4b1b28d0ae789bde482a02638dfd"
+  },
+  {
+    "path": "05_Archivo_historico/a_clean_elegant_website_mockup_shown_in_a_single.png",
+    "bytes": 2182022,
+    "sha256": "3902bc4fb16875d111aec1fd7f0aeaa5e4bc4781ef2bbf07521b3c64aaa41677"
+  },
+  {
+    "path": "05_Archivo_historico/a_clean_modern_warm_editorial_web_design_mockup.png",
+    "bytes": 2120126,
+    "sha256": "41fa806441dde4609935b2c8581999562f071d98df24d6b87a0ad54a9366ee59"
+  },
+  {
+    "path": "05_Archivo_historico/a_high_quality_website_mockup_composite_on_the_le.png",
+    "bytes": 2287732,
+    "sha256": "aa52b75159cedc2289023f682dde42fc32503ffa8cde8416ffb82a32059e3671"
+  },
+  {
+    "path": "05_Archivo_historico/a_photorealistic_mockup_scene_showing_a_laptop_scr.png",
+    "bytes": 2166397,
+    "sha256": "6745759d144ec5cc5c9ab672b7b77fed62149efc8039783dd29b31bec9fa635e"
+  },
+  {
+    "path": "05_Archivo_historico/a_polished_marketing_mockup_scene_on_a_light_backg.png",
+    "bytes": 2107683,
+    "sha256": "1448675cd9bcb5d612316cb2dd6eddf75ed143f26efbe1ef7ecd8b1325186b2f"
+  },
+  {
+    "path": "06_Datos/catalogo.preliminar.json",
+    "bytes": 13950,
+    "sha256": "f2c4e32963118d35eb64bdf1125c1a157f2059b0024d606e0b6bf3eb5a183aaa"
+  },
+  {
+    "path": "06_Datos/textos.preliminares.json",
+    "bytes": 782,
+    "sha256": "db10e98879b36e86849f271291feb74437f8330e380db90363ef46b429641356"
+  },
+  {
+    "path": "LEEME.md",
+    "bytes": 5330,
+    "sha256": "329856152f126bc1157bc9b53171ee994008eeead4e6ea9c96b34fd5ae35f2cc"
+  },
+  {
+    "path": "README.md",
+    "bytes": 2422,
+    "sha256": "751d1a7eb1de80299c8005097d3abb22a07fa5ce71394e38726ea0829e296cac"
+  }
+]

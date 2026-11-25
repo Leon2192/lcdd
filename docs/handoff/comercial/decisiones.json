@@ -1,0 +1,32 @@
+{
+  "aprobadas": [
+    "14 productos y cinco categorías",
+    "IDs P-001 a P-014",
+    "selección de productos, cantidades y variantes cuando corresponda",
+    "cotización por WhatsApp y cierre humano",
+    "sección Armá tu pedido (nombre provisional)",
+    "Editorial Boutique original, logo actual, Mobile First",
+    "sin precios públicos, pagos, checkout, backend, Git ni despliegues",
+    "Fase 05 autorizada según solicitud actual"
+  ],
+  "propuestas": [
+    "dos caminos de conversión",
+    "conservar selección durante navegación",
+    "edición y eliminación",
+    "consulta contextualizada",
+    "matriz única de relacionados",
+    "CTA y campos candidatos de COM-03/04",
+    "validaciones técnicas candidatas de cotizacion.json"
+  ],
+  "pendientes": [
+    "mínimos, variantes, características, fotos y condiciones reales",
+    "unidad definitiva para P-008/P-012",
+    "alcance digital Carpa QR",
+    "público prioritario y diferencial",
+    "nombre definitivo Armá tu pedido",
+    "obligatoriedad de campos y tratamiento de solicitudes incompletas",
+    "persistencia y reglas de duplicados",
+    "auditoría visual Marketing y matriz única de relacionados",
+    "verificación del enlace WhatsApp"
+  ]
+}

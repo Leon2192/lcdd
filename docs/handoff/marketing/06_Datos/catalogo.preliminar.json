@@ -1,0 +1,347 @@
+{
+  "fuente": "Product & Catalog Handoff V1.0",
+  "productos": [
+    {
+      "id": "P-001",
+      "nombre": "Kits antiresaca",
+      "texto": [
+        "Kits para eventos",
+        "Un detalle pensado para cuidar a tus invitados y seguir disfrutando después de una gran celebración."
+      ],
+      "campos": {
+        "Características": "Contenido, materiales y dimensiones",
+        "Variantes": "Presentaciones y composición",
+        "Personalización": "Diseño y elementos personalizables por definir",
+        "Selección": "Cantidad de kits",
+        "Compra mínima / cantidades": "Pendiente",
+        "Complementarios": "P-002, P-003, P-005",
+        "Fotografías": "Kit completo, Evento, Contenido, Presentaciones"
+      },
+      "categoria": "Kits para eventos",
+      "descripcion_preliminar": "Un detalle pensado para cuidar a tus invitados y seguir disfrutando después de una gran celebración.",
+      "estado": "preliminar para diseño",
+      "cantidad_minima_confirmada": null
+    },
+    {
+      "id": "P-002",
+      "nombre": "Kits de baño",
+      "texto": [
+        "Kits para eventos",
+        "Pequeños detalles que hacen que tus invitados se sientan cuidados durante todo el evento."
+      ],
+      "campos": {
+        "Características": "Contenido, materiales y dimensiones",
+        "Variantes": "Presentaciones y composición",
+        "Personalización": "Diseño y presentación por definir",
+        "Selección": "Cantidad de kits",
+        "Compra mínima / cantidades": "Pendiente",
+        "Complementarios": "P-001, P-010",
+        "Fotografías": "Kit completo, Ambientación, Contenido, Presentaciones"
+      },
+      "categoria": "Kits para eventos",
+      "descripcion_preliminar": "Pequeños detalles que hacen que tus invitados se sientan cuidados durante todo el evento.",
+      "estado": "preliminar para diseño",
+      "cantidad_minima_confirmada": null
+    },
+    {
+      "id": "P-003",
+      "nombre": "Vasos personalizados",
+      "texto": [
+        "Souvenirs personalizados",
+        "Un recuerdo práctico y especial, diseñado para acompañar cada brindis de tu celebración."
+      ],
+      "campos": {
+        "Características": "Material, capacidad y accesorios",
+        "Variantes": "Modelos y colores",
+        "Personalización": "Diseño y técnica por confirmar",
+        "Selección": "Cantidad de unidades",
+        "Compra mínima / cantidades": "Pendiente de validación",
+        "Complementarios": "P-005, P-004, P-001",
+        "Fotografías": "Vaso aislado, Celebración, Personalización, Variantes"
+      },
+      "categoria": "Souvenirs personalizados",
+      "descripcion_preliminar": "Un recuerdo práctico y especial, diseñado para acompañar cada brindis de tu celebración.",
+      "estado": "preliminar para diseño",
+      "cantidad_minima_confirmada": null
+    },
+    {
+      "id": "P-004",
+      "nombre": "Abanicos personalizados",
+      "texto": [
+        "Souvenirs personalizados",
+        "Un detalle que combina utilidad y estilo, pensado para acompañar a tus invitados."
+      ],
+      "campos": {
+        "Características": "Materiales y dimensiones",
+        "Variantes": "Modelos y colores",
+        "Personalización": "Diseño y técnica por definir",
+        "Selección": "Cantidad de unidades",
+        "Compra mínima / cantidades": "Pendiente",
+        "Complementarios": "P-005, P-003, P-010",
+        "Fotografías": "Abanico aislado, Evento, Terminaciones, Variantes"
+      },
+      "categoria": "Souvenirs personalizados",
+      "descripcion_preliminar": "Un detalle que combina utilidad y estilo, pensado para acompañar a tus invitados.",
+      "estado": "preliminar para diseño",
+      "cantidad_minima_confirmada": null
+    },
+    {
+      "id": "P-005",
+      "nombre": "Lentes personalizados",
+      "texto": [
+        "Souvenirs personalizados",
+        "Sumá diversión y personalidad a los momentos más especiales de tu fiesta."
+      ],
+      "campos": {
+        "Características": "Materiales y dimensiones",
+        "Variantes": "Modelos y colores",
+        "Personalización": "Diseño y ubicación por definir",
+        "Selección": "Cantidad de unidades",
+        "Compra mínima / cantidades": "Pendiente",
+        "Complementarios": "P-003, P-004, P-007",
+        "Fotografías": "Lentes aislados, Fiesta, Personalización, Variantes"
+      },
+      "categoria": "Souvenirs personalizados",
+      "descripcion_preliminar": "Sumá diversión y personalidad a los momentos más especiales de tu fiesta.",
+      "estado": "preliminar para diseño",
+      "cantidad_minima_confirmada": null
+    },
+    {
+      "id": "P-006",
+      "nombre": "Diarios personalizados",
+      "texto": [
+        "Experiencias y detalles para eventos",
+        "Una manera original de contar tu historia y compartirla con quienes forman parte de ese día."
+      ],
+      "campos": {
+        "Características": "Papel, dimensiones y cantidad de páginas",
+        "Variantes": "Formatos y diseños",
+        "Personalización": "Contenido, textos, fotografías y diseño por confirmar",
+        "Selección": "Cantidad de ejemplares",
+        "Compra mínima / cantidades": "Pendiente",
+        "Complementarios": "P-013, P-012, P-011",
+        "Fotografías": "Portada, Ambientación, Interior, Diseños"
+      },
+      "categoria": "Experiencias y detalles para eventos",
+      "descripcion_preliminar": "Una manera original de contar tu historia y compartirla con quienes forman parte de ese día.",
+      "estado": "preliminar para diseño",
+      "cantidad_minima_confirmada": null
+    },
+    {
+      "id": "P-007",
+      "nombre": "Estrellitas",
+      "texto": [
+        "Experiencias y detalles para eventos",
+        "Un detalle para iluminar los momentos que merecen convertirse en recuerdos inolvidables."
+      ],
+      "campos": {
+        "Características": "Dimensiones, presentación y contenido incluido",
+        "Variantes": "Formatos y diseños",
+        "Personalización": "Elementos personalizables por confirmar",
+        "Selección": "Cantidad de unidades",
+        "Compra mínima / cantidades": "Pendiente",
+        "Complementarios": "P-008, P-011",
+        "Fotografías": "Presentación, Celebración, Personalización, Conjunto"
+      },
+      "categoria": "Experiencias y detalles para eventos",
+      "descripcion_preliminar": "Un detalle para iluminar los momentos que merecen convertirse en recuerdos inolvidables.",
+      "estado": "preliminar para diseño",
+      "cantidad_minima_confirmada": null
+    },
+    {
+      "id": "P-008",
+      "nombre": "Capitán de mesa",
+      "texto": [
+        "Experiencias y detalles para eventos",
+        "Una propuesta divertida para convertir a tus invitados en protagonistas de la celebración."
+      ],
+      "campos": {
+        "Características": "Materiales, contenido y presentación",
+        "Variantes": "Modelos y diseños",
+        "Personalización": "Textos y elementos gráficos por confirmar",
+        "Selección": "Cantidad de mesas o unidades",
+        "Compra mínima / cantidades": "Pendiente",
+        "Complementarios": "P-012, P-003, P-011",
+        "Fotografías": "Producto completo, Mesa, Diseño, Presentaciones"
+      },
+      "categoria": "Experiencias y detalles para eventos",
+      "descripcion_preliminar": "Una propuesta divertida para convertir a tus invitados en protagonistas de la celebración.",
+      "estado": "preliminar para diseño",
+      "cantidad_minima_confirmada": null
+    },
+    {
+      "id": "P-009",
+      "nombre": "Difusores personalizados",
+      "texto": [
+        "Souvenirs personalizados",
+        "Un recuerdo delicado que permite revivir la esencia de un día especial."
+      ],
+      "campos": {
+        "Características": "Capacidad, envase y contenido",
+        "Variantes": "Fragancias y presentaciones",
+        "Personalización": "Diseño y elementos personalizables por confirmar",
+        "Selección": "Cantidad de unidades",
+        "Compra mínima / cantidades": "Pendiente",
+        "Complementarios": "P-010, P-004",
+        "Fotografías": "Difusor aislado, Ambientación, Envase, Variantes"
+      },
+      "categoria": "Souvenirs personalizados",
+      "descripcion_preliminar": "Un recuerdo delicado que permite revivir la esencia de un día especial.",
+      "estado": "preliminar para diseño",
+      "cantidad_minima_confirmada": null
+    },
+    {
+      "id": "P-010",
+      "nombre": "Espejitos personalizados",
+      "texto": [
+        "Souvenirs personalizados",
+        "Un souvenir delicado, práctico y pensado especialmente para tus invitados."
+      ],
+      "campos": {
+        "Características": "Materiales y dimensiones",
+        "Variantes": "Modelos, colores y presentaciones",
+        "Personalización": "Diseño y técnica por confirmar",
+        "Selección": "Cantidad de unidades",
+        "Compra mínima / cantidades": "Pendiente",
+        "Complementarios": "P-004, P-009, P-002",
+        "Fotografías": "Espejito aislado, Ambientación, Personalización, Variantes"
+      },
+      "categoria": "Souvenirs personalizados",
+      "descripcion_preliminar": "Un souvenir delicado, práctico y pensado especialmente para tus invitados.",
+      "estado": "preliminar para diseño",
+      "cantidad_minima_confirmada": null
+    },
+    {
+      "id": "P-011",
+      "nombre": "Carpa QR",
+      "texto": [
+        "Detalles de mesa",
+        "Una forma sencilla de compartir experiencias digitales con tus invitados durante el evento."
+      ],
+      "campos": {
+        "Características": "Material, dimensiones y servicio asociado al QR",
+        "Variantes": "Formatos y diseños",
+        "Personalización": "Diseño y destino del QR por confirmar",
+        "Selección": "Cantidad de tarjetas",
+        "Compra mínima / cantidades": "Pendiente de validación",
+        "Complementarios": "P-012, P-006, P-013",
+        "Fotografías": "Carpa armada, Mesa, QR y diseño, Formatos"
+      },
+      "categoria": "Detalles de mesa",
+      "descripcion_preliminar": "Una forma sencilla de compartir experiencias digitales con tus invitados durante el evento.",
+      "estado": "preliminar para diseño",
+      "cantidad_minima_confirmada": null
+    },
+    {
+      "id": "P-012",
+      "nombre": "Números de mesa",
+      "texto": [
+        "Detalles de mesa",
+        "Organizá cada espacio de tu celebración con detalles que acompañen la estética de tu evento."
+      ],
+      "campos": {
+        "Características": "Material, dimensiones y soporte",
+        "Variantes": "Formatos y diseños",
+        "Personalización": "Numeración, tipografía y diseño por confirmar",
+        "Selección": "Cantidad de mesas o unidades",
+        "Compra mínima / cantidades": "Pendiente",
+        "Complementarios": "P-008, P-011",
+        "Fotografías": "Número de mesa, Mesa, Tipografía, Diseños"
+      },
+      "categoria": "Detalles de mesa",
+      "descripcion_preliminar": "Organizá cada espacio de tu celebración con detalles que acompañen la estética de tu evento.",
+      "estado": "preliminar para diseño",
+      "cantidad_minima_confirmada": null
+    },
+    {
+      "id": "P-013",
+      "nombre": "Invitaciones digitales",
+      "texto": [
+        "Invitaciones digitales",
+        "El primer encuentro de tus invitados con ese día tan especial, a través de un diseño que refleje tu historia."
+      ],
+      "campos": {
+        "Características": "Funcionalidades, modalidad de entrega y vigencia",
+        "Variantes": "Modelos, estilos y funcionalidades",
+        "Personalización": "Información del evento y diseño",
+        "Selección": "Servicio digital",
+        "Compra mínima / cantidades": "Sin selector de unidades en propuesta inicial",
+        "Complementarios": "P-014, P-006, P-011",
+        "Fotografías": "Mockup móvil, Presentación, Secciones, Modelos"
+      },
+      "categoria": "Invitaciones digitales",
+      "descripcion_preliminar": "El primer encuentro de tus invitados con ese día tan especial, a través de un diseño que refleje tu historia.",
+      "estado": "preliminar para diseño",
+      "cantidad_minima_confirmada": null
+    },
+    {
+      "id": "P-014",
+      "nombre": "Save the date",
+      "texto": [
+        "Invitaciones digitales",
+        "Anticipá tu gran día con una presentación especial para que nadie deje de reservar esa fecha."
+      ],
+      "campos": {
+        "Características": "Formato y modalidad de entrega",
+        "Variantes": "Modelos y estilos",
+        "Personalización": "Fecha, información del evento y diseño",
+        "Selección": "Servicio digital",
+        "Compra mínima / cantidades": "Sin selector de unidades en propuesta inicial",
+        "Complementarios": "P-013, P-006",
+        "Fotografías": "Mockup móvil, Presentación, Diseño, Modelos"
+      },
+      "categoria": "Invitaciones digitales",
+      "descripcion_preliminar": "Anticipá tu gran día con una presentación especial para que nadie deje de reservar esa fecha.",
+      "estado": "preliminar para diseño",
+      "cantidad_minima_confirmada": null
+    }
+  ],
+  "colecciones": [
+    {
+      "id": "COL-001",
+      "nombre": "Cuidá a tus invitados",
+      "productos": [
+        "P-001",
+        "P-002",
+        "P-010"
+      ]
+    },
+    {
+      "id": "COL-002",
+      "nombre": "Que empiece la fiesta",
+      "productos": [
+        "P-003",
+        "P-005",
+        "P-004",
+        "P-007"
+      ]
+    },
+    {
+      "id": "COL-003",
+      "nombre": "Cada mesa, un detalle",
+      "productos": [
+        "P-012",
+        "P-011",
+        "P-008"
+      ]
+    },
+    {
+      "id": "COL-004",
+      "nombre": "Recuerdos especiales",
+      "productos": [
+        "P-009",
+        "P-010",
+        "P-004"
+      ]
+    },
+    {
+      "id": "COL-005",
+      "nombre": "Contá tu historia",
+      "productos": [
+        "P-013",
+        "P-014",
+        "P-006"
+      ]
+    }
+  ]
+}

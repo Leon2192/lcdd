@@ -1,0 +1,122 @@
+/* Dirección artística aprobada: Editorial Boutique. Valores exactos: propuesta del handoff.
+   Complementos de interacción, bordes y movimiento: provisionales técnicos. */
+:root {
+  --lcdd-primary: #315c5d;
+  --lcdd-background: #faf8f5;
+  --lcdd-sand: #ede3d7;
+  --lcdd-rose: #ddbfb4;
+  --lcdd-editorial: #60432e;
+  --lcdd-text: #292522;
+  --lcdd-muted: #71665d;
+  --lcdd-white: #ffffff;
+  --lcdd-border: #ded4ca;
+  --lcdd-taupe: #9b8b7e;
+  --lcdd-neutral: #f2efeb;
+  --lcdd-success: #356b4a;
+  --lcdd-error: #a33d3d;
+  --lcdd-success-background: #eaf3ed;
+  --lcdd-hover: #244748;
+  --lcdd-pressed: #1c3839;
+  --lcdd-control-border: #9b8b7e;
+  --lcdd-focus: #315c5d;
+  --lcdd-disabled: #ede3d7;
+  /* Fontsource Variable 5.3.0: archivos locales, normal e italic, OFL-1.1. */
+  --lcdd-font-heading:
+    'Cormorant Garamond Variable', Georgia, 'Times New Roman', serif;
+  --lcdd-font-body: 'DM Sans Variable', system-ui, sans-serif;
+  --lcdd-weight-regular: 400;
+  --lcdd-weight-medium: 500;
+  --lcdd-weight-strong: 600;
+  --lcdd-text-xs: 0.75rem;
+  --lcdd-text-sm: 0.875rem;
+  --lcdd-text-body: 1rem;
+  --lcdd-text-lead: 1.125rem;
+  --lcdd-h1: 2rem;
+  --lcdd-h2: 2rem;
+  --lcdd-h3: 1.5rem;
+  --lcdd-leading-body: 1.6;
+  --lcdd-leading-heading: 1.1;
+  --lcdd-space-1: 0.25rem;
+  --lcdd-space-2: 0.5rem;
+  --lcdd-space-3: 0.75rem;
+  --lcdd-space-4: 1rem;
+  --lcdd-space-5: 1.5rem;
+  --lcdd-space-6: 2rem;
+  --lcdd-space-7: 3rem;
+  --lcdd-space-8: 4.5rem;
+  --lcdd-radius-input: 0.25rem;
+  --lcdd-radius-card: 0.5rem;
+  --lcdd-radius-panel: 1rem;
+  --lcdd-radius-pill: 999px;
+  --lcdd-border-width: 1px;
+  --lcdd-shadow-card: 0 2px 8px rgb(96 67 46 / 8%);
+  --lcdd-shadow-overlay: 0 16px 48px rgb(41 37 34 / 18%);
+  --lcdd-duration: 180ms;
+  --lcdd-easing: ease-out;
+  --lcdd-container: 80rem;
+  --lcdd-gutter: 0.75rem;
+  --lcdd-grid-gap: 0.75rem;
+  --lcdd-columns: 1;
+  --lcdd-header-height: 4rem;
+  --lcdd-control-height: 3rem;
+  --lcdd-touch: 2.75rem;
+  --lcdd-section-space: 2rem;
+}
+
+@theme inline {
+  --color-primary: var(--lcdd-primary);
+  --color-background: var(--lcdd-background);
+  --color-sand: var(--lcdd-sand);
+  --color-rose: var(--lcdd-rose);
+  --color-editorial: var(--lcdd-editorial);
+  --color-ink: var(--lcdd-text);
+  --color-muted: var(--lcdd-muted);
+  --color-line: var(--lcdd-border);
+  --color-success: var(--lcdd-success);
+  --color-error: var(--lcdd-error);
+  --font-editorial: var(--lcdd-font-heading);
+  --font-body: var(--lcdd-font-body);
+}
+
+@theme {
+  --breakpoint-*: initial;
+  --breakpoint-mobile: 24.375rem;
+  --breakpoint-tablet: 48rem;
+  --breakpoint-desktop: 80rem;
+  --breakpoint-wide: 90rem;
+}
+
+@media (width >= 24.375rem) {
+  :root {
+    --lcdd-columns: 2;
+    --lcdd-gutter: 1rem;
+    --lcdd-h1: 2.25rem;
+    --lcdd-header-height: 4.5rem;
+    --lcdd-control-height: 3.25rem;
+  }
+}
+@media (width >= 48rem) {
+  :root {
+    --lcdd-columns: 3;
+    --lcdd-gutter: 1.5rem;
+    --lcdd-grid-gap: 1rem;
+    --lcdd-h1: 2.75rem;
+    --lcdd-h2: 2.5rem;
+    --lcdd-section-space: 3rem;
+  }
+}
+@media (width >= 90rem) {
+  :root {
+    --lcdd-columns: 4;
+    --lcdd-gutter: 3rem;
+    --lcdd-grid-gap: 1.5rem;
+    --lcdd-h1: 3.5rem;
+    --lcdd-header-height: 6rem;
+    --lcdd-control-height: 3.25rem;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --lcdd-duration: 0ms;
+  }
+}
