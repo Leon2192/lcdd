@@ -435,7 +435,7 @@ it('cotiza los tres formatos por separado y permite modificar y quitar una líne
     }
   }
 
-  const quote = screen.getByRole('link', { name: 'Cotizar por WhatsApp' })
+  const quote = screen.getByRole('link', { name: 'Cotizar mi pedido' })
   const message = new URL(quote.getAttribute('href') ?? '').searchParams.get(
     'text',
   )

@@ -2,7 +2,7 @@
 
 ## Flujo actual
 
-- **Cotizar por WhatsApp** aparece en `/arma-tu-pedido`, antes de la lista de productos. El enlace usa la selección actual y el número oficial de LCDD.
+- **Cotizar mi pedido** aparece en `/arma-tu-pedido`, debajo del resumen del pedido. El enlace usa la selección actual y el número oficial de LCDD.
 - Las solicitudes incluyen el nombre y cantidad de los productos físicos y los servicios digitales elegidos. El usuario decide cuándo enviar desde WhatsApp y el pedido permanece guardado.
 - La ruta anterior `/cotizacion` redirige al pedido. El formulario de datos del evento queda en pausa.
 

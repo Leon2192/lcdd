@@ -68,17 +68,6 @@ export function OrderPage() {
         />
       ) : (
         <>
-          <div className="order-quote-action">
-            {quotationUrl ? (
-              <a className="button button--primary" href={quotationUrl}>
-                <Icon name="whatsapp" /> Cotizar por WhatsApp
-              </a>
-            ) : (
-              <p role="alert">
-                No pudimos preparar la cotización. Revisá tu selección.
-              </p>
-            )}
-          </div>
           <div className="order-layout">
             <section aria-labelledby="order-selection-title">
               <h2 id="order-selection-title">Tu selección</h2>
@@ -152,6 +141,15 @@ export function OrderPage() {
             </section>
             <aside className="order-review">
               <OrderSummary lines={lines} />
+              {quotationUrl ? (
+                <a className="button button--primary" href={quotationUrl}>
+                  <Icon name="whatsapp" /> Cotizar mi pedido
+                </a>
+              ) : (
+                <p role="alert">
+                  No pudimos preparar la cotización. Revisá tu selección.
+                </p>
+              )}
               <p>La solicitud no implica una compra confirmada.</p>
             </aside>
           </div>

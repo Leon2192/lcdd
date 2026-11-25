@@ -132,8 +132,14 @@
     gap: 12px;
     margin-block: 16px;
   }
+  .order-utility-actions {
+    max-width: 24rem;
+  }
   .order-utility-actions > .button {
     flex: 1 1 8rem;
+    min-height: var(--lcdd-touch);
+    padding: 0.375rem 0.75rem;
+    font-size: var(--lcdd-text-sm);
   }
   .order-actions > * {
     max-width: 100%;
@@ -166,15 +172,6 @@
   .order-summary li span,
   .order-summary > p:last-child {
     font-size: 0.875rem;
-  }
-  .order-quote-action {
-    display: grid;
-    margin-block-end: 1.25rem;
-  }
-  @media (width >= 48rem) {
-    .order-quote-action {
-      justify-items: start;
-    }
   }
   .order-review {
     display: grid;

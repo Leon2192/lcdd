@@ -84,13 +84,13 @@ Para revisar, ejecutar Vite localmente y abrir `/` en Chrome de Windows a 320, 3
 
 ## Pedido y cotización local
 
-Desde una ficha elegible, elegí una cantidad o un servicio digital. `/arma-tu-pedido` permite editar cantidades, quitar y vaciar. **Cotizar por WhatsApp** abre la conversación con la selección actual y sus cantidades. La ruta anterior `/cotizacion` lleva al pedido.
+Desde una ficha elegible, elegí una cantidad o un servicio digital. `/arma-tu-pedido` permite editar cantidades, quitar y vaciar. **Cotizar mi pedido** abre la conversación con la selección actual y sus cantidades. La ruta anterior `/cotizacion` lleva al pedido.
 
 Solo se persisten IDs/cantidades y metadatos en lcdd:order. Los datos del evento quedan en memoria al navegar y se descartan al recargar. P-008/P-011/P-012 ofrecen consulta contextualizada por unidad pendiente; no se inventan reglas. Repetir un producto no suma cantidades. Nuevas bibliotecas: Zustand 5.1.0, React Hook Form 7.92.0 y Zod 4.6.7, instaladas por el usuario y verificadas con el lockfile.
 
 ## Optimización 05.1
 
-El propietario confirmó manualmente que 5491135939460 abre la conversación LCDD. **Cotizar por WhatsApp** abre la conversación con el texto preparado en la pestaña actual. El usuario decide enviar desde WhatsApp y el pedido se conserva. La consulta directa de una ficha mantiene su diálogo con mensaje contextualizado y opción de copia.
+El propietario confirmó manualmente que 5491135939460 abre la conversación LCDD. **Cotizar mi pedido** abre la conversación con el texto preparado en la pestaña actual. El usuario decide enviar desde WhatsApp y el pedido se conserva. La consulta directa de una ficha mantiene su diálogo con mensaje contextualizado y opción de copia.
 
 Revisión con desplazamiento/foco y reduced-motion, retorno a edición, resumen de fecha DD/MM/AAAA y relacionados en pista horizontal accesible. Tipo de evento con selector opcional: Fiesta de XV, Casamiento, Cumpleaños y Otro, aprobados posteriormente por el propietario; sin selección por defecto. Los demás campos mantienen su obligatoriedad. No se persistieron datos personales ni se incorporaron dependencias.
 

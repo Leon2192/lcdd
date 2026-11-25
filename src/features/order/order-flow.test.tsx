@@ -25,9 +25,7 @@ describe('Recorrido de pedido y cotización', () => {
     )
     expect(router.state.location.pathname).toBe('/arma-tu-pedido')
     expect(screen.getByText('Tu pedido está vacío')).toBeVisible()
-    expect(
-      screen.queryByRole('link', { name: 'Cotizar por WhatsApp' }),
-    ).toBeNull()
+    expect(screen.queryByRole('link', { name: 'Cotizar mi pedido' })).toBeNull()
     expect(
       screen.getByRole('link', { name: 'Explorar catálogo' }),
     ).toHaveAttribute('href', '/catalogo')
@@ -126,14 +124,15 @@ describe('Recorrido de pedido y cotización', () => {
     const router = visit('/arma-tu-pedido')
     const quote = await screen.findByRole(
       'link',
-      { name: 'Cotizar por WhatsApp' },
+      { name: 'Cotizar mi pedido' },
       { timeout: 4_000 },
     )
-    const selection = screen.getByRole('region', { name: 'Tu selección' })
+    const summary = screen.getByRole('region', { name: 'Resumen de tu pedido' })
+    const clear = screen.getByRole('button', { name: 'Vaciar pedido' })
     expect(
-      quote.compareDocumentPosition(selection) &
-        Node.DOCUMENT_POSITION_FOLLOWING,
+      clear.compareDocumentPosition(summary) & Node.DOCUMENT_POSITION_FOLLOWING,
     ).toBeTruthy()
+    expect(summary.nextElementSibling).toBe(quote)
     expect(
       screen.queryByRole('navigation', { name: 'Etapas de la solicitud' }),
     ).not.toBeInTheDocument()
