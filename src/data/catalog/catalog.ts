@@ -1,3 +1,4 @@
+import { isDisplayImage } from '@/config/image-attribution'
 import { visualAssets } from '@/config/media'
 import { officialCatalog } from './catalog.generated'
 import type { Catalog, Product, CatalogImage } from './types'
@@ -38,5 +39,7 @@ export const getRelatedProducts = (product: Product) =>
 // Registrar una fotografía no cambia el estado comercial ni publicationReady del original.
 export function getProductMedia(product: Product): readonly CatalogImage[] {
   const identity = productIdentities.find((item) => item.id === product.id)
-  return identity ? (visualAssets.products[identity.id] ?? []) : []
+  return identity
+    ? (visualAssets.products[identity.id]?.filter(isDisplayImage) ?? [])
+    : []
 }

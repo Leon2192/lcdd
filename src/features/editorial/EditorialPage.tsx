@@ -7,6 +7,7 @@ import { ProductRail } from '@/components/ui/ProductRail'
 import { MediaPlaceholder } from '@/components/ui/MediaPlaceholder'
 import { Icon } from '@/components/ui/Icon'
 import { catalog, getProduct } from '@/data/catalog/catalog'
+import { isDisplayImage } from '@/config/image-attribution'
 import { visualAssets } from '@/config/media'
 import { editorialContent } from '@/config/editorial'
 import { siteConfig } from '@/config/site'
@@ -84,7 +85,7 @@ export function EditorialPage({ kind }: EditorialPageProps) {
                 <Container>
                   <div className="editorial-collection-intro">
                     <div className="editorial-cover">
-                      {image ? (
+                      {isDisplayImage(image) ? (
                         <>
                           <img
                             src={image.src}

@@ -195,24 +195,24 @@ describe('Home LCDD', () => {
       within(carousel).queryByRole('button', { name: /Agregar/ }),
     ).not.toBeInTheDocument()
   })
-  it('conserva las imágenes locales y restaura el espacio sin imagen de Experiencias', () => {
+  it('muestra Sin imagen en las ilustraciones anteriores y conserva fotos entregadas en destacados', () => {
     renderHome()
-    expect(screen.getAllByRole('img').length).toBeGreaterThan(0)
-    expect(
-      screen.queryByText(/ilustración IA|no es foto real/i),
-    ).not.toBeInTheDocument()
-    expect(
-      screen.getAllByRole('img', { name: 'Home principal' })[0],
-    ).toHaveAttribute('src', '/media/home/hero-v01.webp')
+    const hero = screen.getByRole('region', {
+      name: 'Hacé de tu evento un momento único',
+    })
+    expect(within(hero).getByText('Sin imagen')).toBeVisible()
+    expect(within(hero).queryByRole('img')).not.toBeInTheDocument()
     const categories = screen.getByRole('region', {
       name: 'Encontrá el detalle ideal para tu evento',
     })
-    const experiences = within(categories).getByRole('link', {
-      name: /Experiencias y detalles para eventos/,
+    expect(within(categories).getAllByText('Sin imagen')).toHaveLength(5)
+    const featured = screen.getByRole('region', {
+      name: 'Productos destacados',
     })
-    expect(within(experiences).getByText('Sin imagen')).toBeVisible()
-    expect(document.querySelector('img[src*="lcdd-original"]')).toBeNull()
-    expect(document.querySelector('[style*="Mockup"]')).toBeNull()
+    expect(
+      within(featured).getByRole('img', { name: /Kit de baño con artículos/ }),
+    ).toHaveAttribute('src', '/media/products/kit-de-bano.webp')
+    expect(within(featured).getAllByText('Sin imagen')).toHaveLength(2)
   })
   it('lleva desde la acción principal al catálogo con el catálogo de Fase 04', async () => {
     const user = userEvent.setup()
@@ -370,6 +370,15 @@ describe('Inicio comercial en mobile', () => {
     vi.useFakeTimers()
     setViewport(390)
     renderHome()
+    const banners = screen.getByRole('region', { name: 'Banners comerciales' })
+    expect(
+      Array.from(banners.querySelectorAll('img'), (image) =>
+        image.getAttribute('src'),
+      ),
+    ).toEqual([
+      '/media/home/banner-detalles.webp',
+      '/media/home/banner-combos.webp',
+    ])
     const slider = within(
       screen.getByRole('region', { name: 'Banners comerciales' }),
     )

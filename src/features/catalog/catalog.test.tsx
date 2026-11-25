@@ -28,6 +28,16 @@ import {
 } from '@/data/catalog/catalog'
 import { routes } from '@/routes/routes'
 import { ProductGallery } from './components/ProductGallery'
+const productsWithoutImage = new Set([
+  'P-001',
+  'P-003',
+  'P-004',
+  'P-010',
+  'P-011',
+  'P-012',
+  'P-015',
+])
+
 function visit(path: string) {
   const router = createMemoryRouter(routes, { initialEntries: [path] })
   render(<RouterProvider router={router} />)
@@ -70,7 +80,9 @@ describe('Integridad oficial', () => {
       expect(getRelatedProducts(p).map((r) => r.id)).toEqual(
         p.relatedProducts.ids,
       )
-      expect(getProductMedia(p)).toHaveLength(1)
+      expect(getProductMedia(p)).toHaveLength(
+        productsWithoutImage.has(p.id) ? 0 : 1,
+      )
     }
     for (const c of catalog.collections)
       for (const id of c.productIds)
@@ -179,15 +191,16 @@ describe('Fichas oficiales', () => {
         screen.getByRole('region', { name: `Galería de ${product.name}` }),
       )
       const media = getProductMedia(product)[0]
-      if (!media) throw new Error('Falta la imagen principal')
-      expect(gallery.getByRole('img', { name: media.alt })).toHaveAttribute(
-        'src',
-        media.src,
-      )
-      if (media.origin === 'lcdd-supplied')
-        expect(
-          gallery.queryByText('Imagen ilustrativa'),
-        ).not.toBeInTheDocument()
+      if (productsWithoutImage.has(product.id)) {
+        expect(gallery.getByText('Sin imagen')).toBeVisible()
+        expect(gallery.queryByRole('img')).not.toBeInTheDocument()
+      } else {
+        if (!media) throw new Error('Falta el recurso entregado por LCDD')
+        expect(gallery.getByRole('img', { name: media.alt })).toHaveAttribute(
+          'src',
+          media.src,
+        )
+      }
 
       if (getOrderRule(product).kind === 'quantity')
         expect(screen.getByRole('combobox')).toHaveValue('')
@@ -276,10 +289,7 @@ describe('Fichas oficiales', () => {
         screen.getByRole('heading', { name: 'Descripción' }),
       ) & Node.DOCUMENT_POSITION_FOLLOWING,
     ).toBeTruthy()
-    expect(within(gallery).getByRole('img')).toHaveAttribute(
-      'src',
-      '/media/products/P-001/P-001_principal_01_v01.webp',
-    )
+    expect(within(gallery).getByText('Sin imagen')).toBeVisible()
   })
   it('agrega desde la ficha y permite revisar una selección real', async () => {
     const user = userEvent.setup()
@@ -383,7 +393,6 @@ it('cotiza los tres formatos por separado y permite modificar y quitar una líne
   ).toHaveValue('14')
   for (const kit of kits) {
     const media = getProductMedia(kit)[0]
-    if (!media) throw new Error('Falta la imagen de un kit')
     const selection = within(
       screen.getByRole('region', { name: 'Tu selección' }),
     )
@@ -391,10 +400,13 @@ it('cotiza los tres formatos por separado y permite modificar y quitar una líne
       .getByRole('heading', { name: kit.name })
       .closest('article')
     if (!item) throw new Error('Falta el producto en el pedido')
-    expect(within(item).getByRole('img', { name: media.alt })).toHaveAttribute(
-      'src',
-      media.src,
-    )
+    if (kit.id === 'P-016' && media) {
+      expect(
+        within(item).getByRole('img', { name: media.alt }),
+      ).toHaveAttribute('src', '/media/products/kit-antiresaca-craft.webp')
+    } else {
+      expect(within(item).getByText('Sin imagen')).toBeVisible()
+    }
   }
 
   const open = vi.spyOn(whatsapp, 'openWhatsApp').mockReturnValue(true)

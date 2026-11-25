@@ -1,3 +1,4 @@
+import { isDisplayImage } from '@/config/image-attribution'
 import { visualAssets } from '@/config/media'
 import { CategoryCard } from '@/components/ui/CategoryCard'
 import { Container } from '@/components/ui/Container'
@@ -19,16 +20,17 @@ export function HomeCategories() {
           {homeContent.categories.title}
         </SectionHeading>
         <div className="home-categories-grid">
-          {categories.map((category) => (
-            <CategoryCard
-              key={category.id}
-              {...(visualAssets.categories[category.id]
-                ? { image: visualAssets.categories[category.id] }
-                : {})}
-              name={category.name}
-              to={`/catalogo/categoria/${category.id}`}
-            />
-          ))}
+          {categories.map((category) => {
+            const image = visualAssets.categories[category.id]
+            return (
+              <CategoryCard
+                key={category.id}
+                {...(isDisplayImage(image) ? { image } : {})}
+                name={category.name}
+                to={`/catalogo/categoria/${category.id}`}
+              />
+            )
+          })}
         </div>
       </Container>
     </Section>

@@ -17,6 +17,10 @@ describe('Páginas editoriales V1.0', () => {
     visit('inspiration')
     for (const collection of catalog.collections) {
       const section = screen.getByRole('region', { name: collection.name })
+      expect(section.querySelector('.editorial-cover')).toHaveTextContent(
+        'Sin imagen',
+      )
+      expect(section.querySelector('.editorial-cover img')).toBeNull()
       expect(
         within(section).getByRole('heading', { level: 2 }),
       ).toHaveTextContent(collection.name)
