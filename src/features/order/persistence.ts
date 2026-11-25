@@ -5,6 +5,10 @@ import type { Product } from '@/data/catalog/types'
 import { getOrderRule } from './rules'
 export const ORDER_STORAGE_KEY = 'lcdd:order'
 export const ORDER_VERSION = 1
+// Única revisión anterior compatible. Su P-001 identificaba un kit sin formato.
+const legacyCatalogRevision =
+  '5207b6431d612f46412d96396b8ea88368ab0a3b2fd4144b8ebf90f746ee6a6f'
+const splitKitIds = new Set(['P-001', 'P-015', 'P-016'])
 export const quantitySchema = z
   .number()
   .int()
@@ -39,17 +43,23 @@ export function reconcileOrder(
       notice:
         'No pudimos recuperar el pedido guardado. Podés iniciar una nueva selección.',
     }
-  if (parsed.data.catalogRevision !== revision)
+  const legacyOrder = parsed.data.catalogRevision === legacyCatalogRevision
+  if (!legacyOrder && parsed.data.catalogRevision !== revision)
     return {
       lines: [],
       notice:
         'El catálogo cambió. Volvé a seleccionar los productos y sus cantidades.',
     }
   const lines: OrderLine[] = []
+  let chooseKitFormat = false
   for (const candidate of parsed.data.lines) {
     const result = orderLineSchema.safeParse(candidate)
     if (!result.success) continue
     const line = result.data
+    if (legacyOrder && splitKitIds.has(line.productId)) {
+      if (line.productId === 'P-001') chooseKitFormat = true
+      continue
+    }
     const product = products.find((item) => item.id === line.productId)
     if (!product || lines.some((item) => item.productId === line.productId))
       continue
@@ -66,10 +76,13 @@ export function reconcileOrder(
   }
   return {
     lines,
-    notice:
-      lines.length === parsed.data.lines.length
-        ? ''
-        : 'Recuperamos parte de tu pedido. Revisá tu selección antes de continuar.',
+    notice: chooseKitFormat
+      ? 'El kit antiresaca ahora tiene tres formatos. Volvé a elegir el tuyo en la categoría Kits antes de solicitar la cotización.'
+      : lines.length !== parsed.data.lines.length
+        ? 'Recuperamos parte de tu pedido. Revisá tu selección antes de continuar.'
+        : legacyOrder
+          ? 'Recuperamos tu pedido con el catálogo actualizado.'
+          : '',
   }
 }
 export function orderEnvelope(lines: readonly OrderLine[]) {

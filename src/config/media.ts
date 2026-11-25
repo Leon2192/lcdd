@@ -59,9 +59,17 @@ export const visualAssets: {
     },
   },
   categories: {
+    'experiencias-y-detalles-para-eventos': {
+      src: '/media/categories/experiencias-y-detalles.webp',
+      alt: 'Mesa de evento con flores y un cartel de mensajes en botella',
+      width: 1152,
+      height: 1536,
+      origin: 'lcdd-supplied',
+      fit: 'contain',
+    },
     'kits-para-eventos': {
       src: '/media/categories/kits-para-eventos-v01.webp',
-      alt: 'Kits para eventos',
+      alt: 'Kits',
       width: 1000,
       height: 750,
     },
@@ -85,20 +93,74 @@ export const visualAssets: {
     },
   },
   products: {
+    'P-015': [
+      {
+        src: '/media/products/kit-antiresaca-pillow.webp',
+        alt: 'Cajas blancas con formato Pillow y diseño personalizado de kit antiresaca',
+        width: 1220,
+        height: 1007,
+        origin: 'lcdd-supplied',
+        fit: 'contain',
+      },
+    ],
+    'P-016': [
+      {
+        src: '/media/products/kit-antiresaca-craft.webp',
+        alt: 'Envoltorios de papel kraft con mensajes impresos de kit antiresaca',
+        width: 1168,
+        height: 1462,
+        origin: 'lcdd-supplied',
+        fit: 'contain',
+      },
+    ],
+    'P-008': [
+      {
+        src: '/media/products/capitan-de-mesa.webp',
+        alt: 'Tarjetas y señaladores de Capitán de mesa con motivos botánicos',
+        width: 1220,
+        height: 1483,
+        origin: 'lcdd-supplied',
+        fit: 'contain',
+      },
+    ],
+    'P-007': [
+      {
+        src: '/media/products/estrellitas.webp',
+        alt: 'Estrellitas con etiquetas personalizadas en un florero de vidrio',
+        width: 1024,
+        height: 1536,
+        origin: 'lcdd-supplied',
+        fit: 'contain',
+      },
+    ],
+    'P-014': [
+      {
+        src: '/media/products/save-the-date.webp',
+        alt: 'Tarjeta Save the date con un retrato de pareja en blanco y negro',
+        width: 864,
+        height: 1536,
+        origin: 'lcdd-supplied',
+        fit: 'contain',
+      },
+    ],
     'P-001': [
       {
-        src: '/media/products/P-001/P-001_principal_01_v01.webp',
-        alt: 'Kits antiresaca',
-        width: 1200,
-        height: 1500,
+        src: '/media/products/kit-antiresaca-bolsa.webp',
+        alt: 'Bolsas blancas con cordón y diseños personalizados de kit antiresaca',
+        width: 1536,
+        height: 1536,
+        origin: 'lcdd-supplied',
+        fit: 'contain',
       },
     ],
     'P-002': [
       {
-        src: '/media/products/P-002/P-002_principal_01_v01.webp',
-        alt: 'Kits de baño',
-        width: 1200,
-        height: 1500,
+        src: '/media/products/kit-de-bano.webp',
+        alt: 'Kit de baño con artículos etiquetados en una bandeja',
+        width: 1536,
+        height: 1536,
+        origin: 'lcdd-supplied',
+        fit: 'contain',
       },
     ],
     'P-003': [
@@ -119,26 +181,32 @@ export const visualAssets: {
     ],
     'P-005': [
       {
-        src: '/media/products/P-005/P-005_principal_01_v01.webp',
-        alt: 'Lentes personalizados',
-        width: 1200,
-        height: 1500,
+        src: '/media/products/lentes-personalizados.webp',
+        alt: 'Lentes negros en forma de corazón con iniciales y mensajes blancos',
+        width: 1152,
+        height: 1536,
+        origin: 'lcdd-supplied',
+        fit: 'contain',
       },
     ],
     'P-006': [
       {
-        src: '/media/products/P-006/P-006_principal_01_v01.webp',
-        alt: 'Diarios personalizados',
-        width: 1200,
-        height: 1500,
+        src: '/media/products/diarios-personalizados.webp',
+        alt: 'Diarios personalizados con portadas de boda en blanco y negro',
+        width: 1178,
+        height: 1536,
+        origin: 'lcdd-supplied',
+        fit: 'contain',
       },
     ],
     'P-009': [
       {
-        src: '/media/products/P-009/P-009_principal_01_v01.webp',
-        alt: 'Difusores personalizados',
-        width: 1200,
-        height: 1500,
+        src: '/media/products/difusores-personalizados.webp',
+        alt: 'Difusor con iniciales, varillas y una tarjeta de agradecimiento',
+        width: 1302,
+        height: 1536,
+        origin: 'lcdd-supplied',
+        fit: 'contain',
       },
     ],
     'P-010': [
@@ -167,10 +235,12 @@ export const visualAssets: {
     ],
     'P-013': [
       {
-        src: '/media/products/P-013/P-013_principal_01_v01.webp',
-        alt: 'Invitaciones digitales',
-        width: 1200,
-        height: 1500,
+        src: '/media/products/invitaciones-digitales.webp',
+        alt: 'Dos diseños de invitaciones digitales en pantallas de celular',
+        width: 1220,
+        height: 1525,
+        origin: 'lcdd-supplied',
+        fit: 'contain',
       },
     ],
   },

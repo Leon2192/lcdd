@@ -1,10 +1,12 @@
 import { Link } from 'react-router'
+import type { CatalogImage } from '@/data/catalog/types'
 import { Icon } from '@/components/ui/Icon'
 import { MediaPlaceholder } from '@/components/ui/MediaPlaceholder'
 type ProductCardProps = {
   name: string
   to: string
-  image?: { src: string; alt: string }
+  image?: Pick<CatalogImage, 'src' | 'alt'> &
+    Partial<Pick<CatalogImage, 'width' | 'height' | 'fit'>>
   note?: string
 }
 export function ProductCard({ name, to, image, note }: ProductCardProps) {
@@ -17,8 +19,9 @@ export function ProductCard({ name, to, image, note }: ProductCardProps) {
             alt={image.alt}
             loading="lazy"
             decoding="async"
-            width="480"
-            height="600"
+            width={image.width ?? 480}
+            height={image.height ?? 600}
+            data-fit={image.fit}
           />
         ) : (
           <MediaPlaceholder />

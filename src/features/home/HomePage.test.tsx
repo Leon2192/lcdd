@@ -1,8 +1,8 @@
 import { getProductPath } from '@/data/catalog/catalog'
-import { fireEvent, render, screen, within } from '@testing-library/react'
+import { act, fireEvent, render, screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { createMemoryRouter, RouterProvider } from 'react-router'
-import { describe, expect, it, vi } from 'vitest'
+import { afterEach, describe, expect, it, vi } from 'vitest'
 import { routes } from '@/routes/routes'
 import { productIdentities } from '@/features/home/catalog-identities'
 import {
@@ -10,7 +10,46 @@ import {
   featuredSelection,
 } from '@/features/home/home-content'
 import { Carousel } from '@/components/ui/Carousel'
-import officialCatalog from '../../../docs/handoff/productos/PY01_catalogo_publico_v1.0.json'
+import officialCatalog from '../../../docs/catalog/PY01_catalogo_operativo_v1.2.json'
+
+afterEach(() => vi.unstubAllGlobals())
+
+function setViewport(width: number) {
+  let currentWidth = width
+  const media = new EventTarget()
+  vi.stubGlobal('matchMedia', (query: string) => {
+    if (query !== '(min-width: 48rem)') return { matches: false }
+    return Object.assign(media, { matches: currentWidth >= 768 })
+  })
+  return {
+    setWidth(next: number) {
+      currentWidth = next
+      media.dispatchEvent(new Event('change'))
+    },
+  }
+}
+
+function firstRegions() {
+  const labels = {
+    'Encontrá el detalle ideal para tu evento': 'categories',
+    'Productos destacados': 'featured',
+    'Hacé de tu evento un momento único': 'hero',
+    'Detalles para tu evento': 'values',
+  }
+  return within(screen.getByRole('main'))
+    .getAllByRole('region')
+    .flatMap((region) =>
+      Object.entries(labels)
+        .filter(
+          ([name]) =>
+            region.getAttribute('aria-label') === name ||
+            document.getElementById(
+              region.getAttribute('aria-labelledby') ?? '',
+            )?.textContent === name,
+        )
+        .map(([, label]) => label),
+    )
+}
 
 function renderHome() {
   const router = createMemoryRouter(routes, { initialEntries: ['/'] })
@@ -46,6 +85,27 @@ describe('Home LCDD', () => {
         /vista previa|pendientes de validación|selección de demostración/i,
       ),
     ).not.toBeInTheDocument()
+  })
+  it.each([375, 390, 430, 768, 1440])(
+    'presenta las secciones y enlaces en orden accesible a %i px',
+    (width) => {
+      setViewport(width)
+      renderHome()
+      expect(firstRegions()).toEqual(
+        width < 768
+          ? ['categories', 'featured', 'hero', 'values']
+          : ['hero', 'values', 'categories', 'featured'],
+      )
+      expect(screen.getAllByRole('heading', { level: 1 })).toHaveLength(1)
+    },
+  )
+  it('actualiza el orden al cambiar de breakpoint conservando los mismos componentes', () => {
+    const viewport = setViewport(390)
+    renderHome()
+    const heading = screen.getByRole('heading', { level: 1 })
+    act(() => viewport.setWidth(768))
+    expect(firstRegions()).toEqual(['hero', 'values', 'categories', 'featured'])
+    expect(screen.getByRole('heading', { level: 1 })).toBe(heading)
   })
   it('mantiene el marcador agrupado para que icono y número no desplacen el texto a otra celda', () => {
     renderHome()
@@ -125,7 +185,7 @@ describe('Home LCDD', () => {
       within(carousel).queryByRole('button', { name: /Agregar/ }),
     ).not.toBeInTheDocument()
   })
-  it('conserva las imágenes y presenta un placeholder discreto para recursos faltantes', () => {
+  it('muestra imágenes locales también en la categoría que no tenía recurso', () => {
     renderHome()
     expect(screen.getAllByRole('img').length).toBeGreaterThan(0)
     expect(
@@ -134,7 +194,11 @@ describe('Home LCDD', () => {
     expect(
       screen.getAllByRole('img', { name: 'Home principal' })[0],
     ).toHaveAttribute('src', '/media/home/hero-v01.webp')
-    expect(screen.getAllByText('Sin imagen').length).toBeGreaterThan(0)
+    expect(
+      screen.getByRole('img', {
+        name: 'Mesa de evento con flores y un cartel de mensajes en botella',
+      }),
+    ).toHaveAttribute('src', '/media/categories/experiencias-y-detalles.webp')
     expect(document.querySelector('img[src*="lcdd-original"]')).toBeNull()
     expect(document.querySelector('[style*="Mockup"]')).toBeNull()
   })
@@ -151,9 +215,7 @@ describe('Home LCDD', () => {
         name: 'Todos nuestros productos',
       }),
     ).toBeVisible()
-    expect(
-      screen.getByRole('checkbox', { name: 'Kits para eventos' }),
-    ).toBeVisible()
+    expect(screen.getByRole('checkbox', { name: 'Kits' })).toBeVisible()
   })
   it('permite acceder a inspiración y profesionales mediante destinos existentes', () => {
     renderHome()

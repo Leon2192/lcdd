@@ -20,7 +20,8 @@ pnpm-debug.log*
 # Informes de cobertura
 /coverage/
 
-# Entregas portables generadas localmente
+# Entregas portables y paquetes de recursos locales
+/LCDD_Web_Assets_V2.0.zip
 /LCDD_Web_*.zip
 
 # Sistema operativo

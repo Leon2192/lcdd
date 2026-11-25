@@ -6,6 +6,8 @@ Base local de la plataforma web LCDD, orientada a productos personalizados, souv
 
 **V1.1 — Interfaz comercial.** El encabezado muestra el carrito y la cantidad de productos distintos seleccionados. Cada alta válida muestra una confirmación durante cinco segundos con acceso a «Armá tu pedido». El acceso flotante abre WhatsApp con un mensaje de consulta preparado. Las fichas conservan una marca discreta en las imágenes ilustrativas y los espacios sin recurso muestran «Sin imagen». Los estados comerciales y el origen de los recursos se conservan en sus registros internos.
 
+**V1.2 — Catálogo y recursos comerciales.** El catálogo operativo tiene 16 productos en cinco categorías. Kits conserva su URL y reúne Kits de baño, Kit antiresaca Bolsa, Pillow y Craft. Las selecciones guardadas de la revisión anterior conservan las líneas válidas y requieren volver a elegir el formato del kit genérico. En Inicio, hasta 767 px, las categorías y los destacados aparecen antes del hero.
+
 ## Entorno
 
 Windows + WSL2, Ubuntu 24.04, Node 24, npm 11 y VS Code. Trabajar desde `~/projects/lcdd-web` en Ubuntu. `engines` exige Node 24/npm 11.
@@ -72,7 +74,7 @@ Para revisar, ejecutar Vite localmente y abrir `/` en Chrome de Windows a 320, 3
 
 ## Actualización del catálogo oficial
 
-`npm run catalog:sync` genera la fuente de ejecución desde Productos sin modificar originales. `npm run catalog:check` verifica sincronización y se ejecuta en typecheck/build/check. Catálogo: `/catalogo`; categorías: `/catalogo/categoria/:categorySlug`; fichas: `/catalogo/producto/:productSlug`. Los ID anteriores redirigen a slugs legibles. Todos los datos comerciales pendientes conservan su estado; la vista local no aprueba publicación. Pedido, formulario y copia del mensaje están implementados; la apertura de WhatsApp está activa con el número internacional autorizado.
+`npm run catalog:sync` genera la fuente de ejecución desde `docs/catalog/PY01_catalogo_operativo_v1.2.json`. Los documentos originales de `docs/handoff/` se conservan como referencia histórica. `npm run catalog:check` verifica sincronización y se ejecuta en typecheck/build/check. Catálogo: `/catalogo`; categorías: `/catalogo/categoria/:categorySlug`; fichas: `/catalogo/producto/:productSlug`. Los ID anteriores redirigen a slugs legibles. Todos los datos comerciales pendientes conservan su estado; la vista local no aprueba publicación. Pedido, formulario y copia del mensaje están implementados; la apertura de WhatsApp está activa con el número internacional autorizado.
 
 ## Pedido y cotización local
 

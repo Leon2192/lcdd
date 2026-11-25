@@ -21,6 +21,7 @@ export function QuotationPage() {
   const reviewHeading = useRef<HTMLHeadingElement>(null)
   const eventHeading = useRef<HTMLHeadingElement>(null)
   const lines = useOrder((state) => state.lines)
+  const notice = useOrder((state) => state.notice)
   const {
     register,
     handleSubmit,
@@ -60,6 +61,11 @@ export function QuotationPage() {
         <h1 ref={eventHeading} tabIndex={-1}>
           Contanos sobre tu evento
         </h1>
+        {notice && (
+          <p className="order-notice" role="status">
+            {notice}
+          </p>
+        )}
         <EmptyState
           title="Primero elegí qué querés consultar"
           description="Agregá un producto o servicio a tu pedido para solicitar una cotización. También podés consultarnos por WhatsApp."
@@ -91,6 +97,11 @@ export function QuotationPage() {
         </p>
       </header>
       <OrderSteps current="event" />
+      {notice && (
+        <p className="order-notice" role="status">
+          {notice}
+        </p>
+      )}
       <div className="order-layout">
         <form
           className="quotation-form"

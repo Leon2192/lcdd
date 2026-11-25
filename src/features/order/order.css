@@ -110,9 +110,12 @@
     padding: 12px;
   }
   .order-item-media img {
+    display: block;
     width: 100%;
     height: auto;
+    aspect-ratio: 4 / 5;
     object-fit: contain;
+    background: var(--lcdd-neutral);
   }
   .order-item-copy {
     display: grid;

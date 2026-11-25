@@ -3,7 +3,7 @@ import { Container } from '@/components/ui/Container'
 import { Icon } from '@/components/ui/Icon'
 import { HomeMedia } from '@/features/home/components/HomeMedia'
 import { homeContent } from '@/features/home/home-content'
-export function Hero() {
+export function Hero({ priority }: { priority: boolean }) {
   const { hero } = homeContent
   return (
     <section className="home-hero" aria-labelledby="hero-title">
@@ -18,7 +18,7 @@ export function Hero() {
             <Icon name="arrow" />
           </Link>
         </div>
-        <HomeMedia slot="hero" className="hero-media" priority />
+        <HomeMedia slot="hero" className="hero-media" priority={priority} />
       </Container>
     </section>
   )

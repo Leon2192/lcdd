@@ -14,6 +14,9 @@ import { ProductGallery } from './components/ProductGallery'
 import { ProductInformation } from './components/ProductInformation'
 export function ProductDetailPage() {
   const { productSlug = '' } = useParams()
+  // Este enlace anterior describía el kit genérico, así que permite elegir formato.
+  if (productSlug === 'p-001-kits-antiresaca')
+    return <Navigate to={getCategoryPath('kits-para-eventos')} replace />
   const product = resolveProduct(productSlug)
   if (!product) return <CatalogMissing kind="Producto" />
   const canonical = getProductPath(product)

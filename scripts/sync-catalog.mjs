@@ -3,10 +3,8 @@ import { createHash } from 'node:crypto'
 import assert from 'node:assert/strict'
 import { format, resolveConfig } from 'prettier'
 
-const source = new URL(
-  '../docs/handoff/productos/PY01_catalogo_publico_v1.0.json',
-  import.meta.url,
-)
+const sourcePath = 'docs/catalog/PY01_catalogo_operativo_v1.2.json'
+const source = new URL(`../${sourcePath}`, import.meta.url)
 const target = new URL(
   '../src/data/catalog/catalog.generated.ts',
   import.meta.url,
@@ -18,7 +16,7 @@ assert.equal(
   '1.0',
   'Revisar el modelo al cambiar schemaVersion',
 )
-assert.equal(data.products.length, 14, 'El alcance autorizado son 14 productos')
+assert.equal(data.products.length, 16, 'El alcance autorizado son 16 productos')
 assert.equal(
   data.categories.length,
   5,
@@ -26,8 +24,21 @@ assert.equal(
 )
 const ids = new Set(data.products.map((product) => product.id))
 const categories = new Set(data.categories.map((category) => category.id))
-assert.equal(ids.size, 14, 'IDs duplicados')
+assert.equal(ids.size, 16, 'IDs duplicados')
 assert.equal(categories.size, 5, 'Categorías duplicadas')
+assert.equal(
+  data.categories.find(({ id }) => id === 'kits-para-eventos')?.name,
+  'Kits',
+  'La categoría Kits debe conservar su identificador',
+)
+assert.deepEqual(
+  data.products
+    .filter(({ categoryId }) => categoryId === 'kits-para-eventos')
+    .map(({ id }) => id)
+    .sort(),
+  ['P-001', 'P-002', 'P-015', 'P-016'],
+  'Kits debe incluir el kit de baño y los tres formatos antiresaca',
+)
 for (const product of data.products) {
   assert(
     categories.has(product.categoryId),
@@ -49,7 +60,7 @@ for (const id of data.featuredProducts.ids ?? [])
 const sha = createHash('sha256').update(text).digest('hex')
 const output = await format(
   `// Generado por npm run catalog:sync. No editar manualmente.
-// Fuente exclusiva: docs/handoff/productos/PY01_catalogo_publico_v1.0.json
+// Fuente exclusiva: ${sourcePath}
 import type { Catalog } from './types'
 export const catalogSourceSha256 = '${sha}'
 export const officialCatalog = ${JSON.stringify(data, null, 2)} as const satisfies Catalog
@@ -64,7 +75,7 @@ if (process.argv.includes('--check')) {
     'Catálogo derivado desactualizado: ejecutar npm run catalog:sync y revisar cambios',
   )
   console.log(
-    'Catálogo sincronizado: 14 productos, cinco categorías, estados originales preservados.',
+    'Catálogo sincronizado: 16 productos, cinco categorías y cuatro productos en Kits.',
   )
 } else {
   await writeFile(target, output)

@@ -1,19 +1,19 @@
 // Generado por npm run catalog:sync. No editar manualmente.
-// Fuente exclusiva: docs/handoff/productos/PY01_catalogo_publico_v1.0.json
+// Fuente exclusiva: docs/catalog/PY01_catalogo_operativo_v1.2.json
 import type { Catalog } from "./types";
 export const catalogSourceSha256 =
-  "5207b6431d612f46412d96396b8ea88368ab0a3b2fd4144b8ebf90f746ee6a6f";
+  "838d3fe0d6aba6ad5882f7e346a86d807139d80eb63c91cbbe9e5d1b1514b7e2";
 export const officialCatalog = {
   schemaVersion: "1.0",
-  catalogVersion: "1.0",
-  source: "PY01 — Product & Catalog Handoff V1.0",
+  catalogVersion: "1.2",
+  source: "PY01 — Catálogo operativo V1.2",
   locale: "es-AR",
   status: "preliminary_for_implementation",
   publicationReady: false,
   categories: [
     {
       id: "kits-para-eventos",
-      name: "Kits para eventos",
+      name: "Kits",
       status: "confirmed",
     },
     {
@@ -38,55 +38,6 @@ export const officialCatalog = {
     },
   ],
   products: [
-    {
-      id: "P-001",
-      name: "Kits antiresaca",
-      categoryId: "kits-para-eventos",
-      identityStatus: "confirmed",
-      description: {
-        value:
-          "Un detalle pensado para cuidar a tus invitados y seguir disfrutando después de una gran celebración.",
-        status: "proposed",
-      },
-      characteristics: {
-        values: null,
-        fieldsToValidate: "Contenido, materiales y dimensiones",
-        status: "pending",
-      },
-      variants: {
-        options: null,
-        fieldsToValidate: "Presentaciones y composición",
-        status: "pending",
-      },
-      personalization: {
-        options: null,
-        proposal: "Diseño y elementos personalizables por definir",
-        status: "pending",
-      },
-      selection: {
-        mode: "quantity",
-        label: "Cantidad de kits",
-        status: "proposed",
-        minimumQuantity: null,
-        minimumQuantityStatus: "pending",
-      },
-      relatedProducts: {
-        ids: ["P-002", "P-003", "P-005"],
-        status: "proposed",
-      },
-      images: {
-        primary: null,
-        gallery: [],
-        status: "pending",
-        plannedShots: {
-          primary: "Kit completo",
-          context: "Evento",
-          detail: "Contenido",
-          additional: "Presentaciones",
-        },
-      },
-      publicationReady: false,
-    },
     {
       id: "P-002",
       name: "Kits de baño",
@@ -130,6 +81,153 @@ export const officialCatalog = {
         plannedShots: {
           primary: "Kit completo",
           context: "Ambientación",
+          detail: "Contenido",
+          additional: "Presentaciones",
+        },
+      },
+      publicationReady: false,
+    },
+    {
+      id: "P-001",
+      name: "Kit antiresaca Bolsa",
+      categoryId: "kits-para-eventos",
+      identityStatus: "confirmed",
+      description: {
+        value:
+          "Kit antiresaca presentado en una bolsa personalizada, ideal para sorprender a tus invitados con un detalle original.",
+        status: "proposed",
+      },
+      characteristics: {
+        values: null,
+        fieldsToValidate: "Contenido, materiales y dimensiones",
+        status: "pending",
+      },
+      variants: {
+        options: null,
+        fieldsToValidate: "Presentaciones y composición",
+        status: "pending",
+      },
+      personalization: {
+        options: null,
+        proposal: "Diseño y elementos personalizables por definir",
+        status: "pending",
+      },
+      selection: {
+        mode: "quantity",
+        label: "Cantidad de kits",
+        status: "proposed",
+        minimumQuantity: null,
+        minimumQuantityStatus: "pending",
+      },
+      relatedProducts: {
+        ids: ["P-002", "P-003", "P-005"],
+        status: "proposed",
+      },
+      images: {
+        primary: null,
+        gallery: [],
+        status: "pending",
+        plannedShots: {
+          primary: "Kit completo",
+          context: "Evento",
+          detail: "Contenido",
+          additional: "Presentaciones",
+        },
+      },
+      publicationReady: false,
+    },
+    {
+      id: "P-015",
+      name: "Kit antiresaca Pillow",
+      categoryId: "kits-para-eventos",
+      identityStatus: "confirmed",
+      description: {
+        value:
+          "Kit antiresaca presentado en una caja personalizada con formato Pillow, pensado para sumar un detalle especial a tu evento.",
+        status: "proposed",
+      },
+      characteristics: {
+        values: null,
+        fieldsToValidate: "Contenido, materiales y dimensiones",
+        status: "pending",
+      },
+      variants: {
+        options: null,
+        fieldsToValidate: "Presentaciones y composición",
+        status: "pending",
+      },
+      personalization: {
+        options: null,
+        proposal: "Diseño y elementos personalizables por definir",
+        status: "pending",
+      },
+      selection: {
+        mode: "quantity",
+        label: "Cantidad de kits",
+        status: "proposed",
+        minimumQuantity: null,
+        minimumQuantityStatus: "pending",
+      },
+      relatedProducts: {
+        ids: ["P-002", "P-003", "P-005"],
+        status: "proposed",
+      },
+      images: {
+        primary: null,
+        gallery: [],
+        status: "pending",
+        plannedShots: {
+          primary: "Kit completo",
+          context: "Evento",
+          detail: "Contenido",
+          additional: "Presentaciones",
+        },
+      },
+      publicationReady: false,
+    },
+    {
+      id: "P-016",
+      name: "Kit antiresaca Craft",
+      categoryId: "kits-para-eventos",
+      identityStatus: "confirmed",
+      description: {
+        value:
+          "Kit antiresaca presentado en un envoltorio de papel kraft personalizado, con una estética cálida y original.",
+        status: "proposed",
+      },
+      characteristics: {
+        values: null,
+        fieldsToValidate: "Contenido, materiales y dimensiones",
+        status: "pending",
+      },
+      variants: {
+        options: null,
+        fieldsToValidate: "Presentaciones y composición",
+        status: "pending",
+      },
+      personalization: {
+        options: null,
+        proposal: "Diseño y elementos personalizables por definir",
+        status: "pending",
+      },
+      selection: {
+        mode: "quantity",
+        label: "Cantidad de kits",
+        status: "proposed",
+        minimumQuantity: null,
+        minimumQuantityStatus: "pending",
+      },
+      relatedProducts: {
+        ids: ["P-002", "P-003", "P-005"],
+        status: "proposed",
+      },
+      images: {
+        primary: null,
+        gallery: [],
+        status: "pending",
+        plannedShots: {
+          primary: "Kit completo",
+          context: "Evento",
           detail: "Contenido",
           additional: "Presentaciones",
         },

@@ -9,13 +9,13 @@
     "alt": "Home principal"
   },
   {
-    "name": "Kits para eventos",
+    "name": "Kits",
     "file": "categories/kits-para-eventos-v01.webp",
     "width": 1000,
     "height": 750,
     "kind": "categories",
     "key": "kits-para-eventos",
-    "alt": "Kits para eventos"
+    "alt": "Kits"
   },
   {
     "name": "Souvenirs personalizados",
@@ -25,15 +25,6 @@
     "kind": "categories",
     "key": "souvenirs-personalizados",
     "alt": "Souvenirs personalizados"
-  },
-  {
-    "name": "Experiencias y detalles para eventos",
-    "file": "categories/experiencias-y-detalles-para-eventos-v01.webp",
-    "width": 1000,
-    "height": 750,
-    "kind": "categories",
-    "key": "experiencias-y-detalles-para-eventos",
-    "alt": "Experiencias y detalles para eventos"
   },
   {
     "name": "Detalles de mesa",
@@ -54,24 +45,6 @@
     "alt": "Invitaciones digitales"
   },
   {
-    "name": "Kits antiresaca",
-    "file": "products/P-001/P-001_principal_01_v01.webp",
-    "width": 1200,
-    "height": 1500,
-    "kind": "products",
-    "key": "P-001",
-    "alt": "Kits antiresaca"
-  },
-  {
-    "name": "Kits de baño",
-    "file": "products/P-002/P-002_principal_01_v01.webp",
-    "width": 1200,
-    "height": 1500,
-    "kind": "products",
-    "key": "P-002",
-    "alt": "Kits de baño"
-  },
-  {
     "name": "Vasos personalizados",
     "file": "products/P-003/P-003_principal_01_v01.webp",
     "width": 1200,
@@ -88,51 +61,6 @@
     "kind": "products",
     "key": "P-004",
     "alt": "Abanicos personalizados"
-  },
-  {
-    "name": "Lentes personalizados",
-    "file": "products/P-005/P-005_principal_01_v01.webp",
-    "width": 1200,
-    "height": 1500,
-    "kind": "products",
-    "key": "P-005",
-    "alt": "Lentes personalizados"
-  },
-  {
-    "name": "Diarios personalizados",
-    "file": "products/P-006/P-006_principal_01_v01.webp",
-    "width": 1200,
-    "height": 1500,
-    "kind": "products",
-    "key": "P-006",
-    "alt": "Diarios personalizados"
-  },
-  {
-    "name": "Estrellitas",
-    "file": "products/P-007/P-007_principal_01_v01.webp",
-    "width": 1200,
-    "height": 1500,
-    "kind": "products",
-    "key": "P-007",
-    "alt": "Estrellitas"
-  },
-  {
-    "name": "Capitán de mesa",
-    "file": "products/P-008/P-008_principal_01_v01.webp",
-    "width": 1200,
-    "height": 1500,
-    "kind": "products",
-    "key": "P-008",
-    "alt": "Capitán de mesa"
-  },
-  {
-    "name": "Difusores personalizados",
-    "file": "products/P-009/P-009_principal_01_v01.webp",
-    "width": 1200,
-    "height": 1500,
-    "kind": "products",
-    "key": "P-009",
-    "alt": "Difusores personalizados"
   },
   {
     "name": "Espejitos personalizados",
@@ -160,24 +88,6 @@
     "kind": "products",
     "key": "P-012",
     "alt": "Números de mesa"
-  },
-  {
-    "name": "Invitaciones digitales",
-    "file": "products/P-013/P-013_principal_01_v01.webp",
-    "width": 1200,
-    "height": 1500,
-    "kind": "products",
-    "key": "P-013",
-    "alt": "Invitaciones digitales"
-  },
-  {
-    "name": "Save the date",
-    "file": "products/P-014/P-014_principal_01_v01.webp",
-    "width": 1200,
-    "height": 1500,
-    "kind": "products",
-    "key": "P-014",
-    "alt": "Save the date"
   },
   {
     "name": "Inspiración 1",

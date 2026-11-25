@@ -18,7 +18,7 @@ import { Modal } from '@/components/ui/Modal'
 import { Drawer } from '@/components/ui/Drawer'
 import { Header } from '@/components/layout/Header'
 import { categories } from '@/config/categories'
-import officialCatalog from '../../../docs/handoff/productos/PY01_catalogo_publico_v1.0.json'
+import officialCatalog from '../../../docs/catalog/PY01_catalogo_operativo_v1.2.json'
 
 describe('Acciones y controles', () => {
   it('activa un botón por teclado sin enviar formularios por defecto', async () => {
@@ -153,10 +153,7 @@ describe('Tarjetas y estados', () => {
           name="Vasos personalizados"
           to="/catalogo/producto/P-003"
         />
-        <CategoryCard
-          name="Kits para eventos"
-          to="/catalogo/categoria/kits-para-eventos"
-        />
+        <CategoryCard name="Kits" to="/catalogo/categoria/kits-para-eventos" />
       </MemoryRouter>,
     )
     expect(screen.getAllByText('Sin imagen')).toHaveLength(2)
@@ -289,7 +286,7 @@ describe('Diálogos y navegación', () => {
     expect(categories).toEqual(
       officialCatalog.categories.map(({ id, name }) => ({ id, name })),
     )
-    expect(officialCatalog.products).toHaveLength(14)
+    expect(officialCatalog.products).toHaveLength(16)
     expect(
       officialCatalog.products.find((product) => product.id === 'P-011')
         ?.selection.label,

@@ -55,3 +55,32 @@ describe('Recuperación y limpieza resilientes', () => {
     expect(result.notice).toContain('no se pudo borrar')
   })
 })
+
+it('recupera líneas compatibles del catálogo anterior y pide volver a elegir el kit genérico', () => {
+  const bath = { productId: 'P-002', kind: 'quantity' as const, quantity: 14 }
+  const oldKit = { ...bath, productId: 'P-001', quantity: 9 }
+  const catalogRevision =
+    '5207b6431d612f46412d96396b8ea88368ab0a3b2fd4144b8ebf90f746ee6a6f'
+  const previous = { ...orderEnvelope([oldKit, bath]), catalogRevision }
+  let value: string | null = JSON.stringify(previous)
+  const storage: OrderStorage = {
+    getItem: () => value,
+    setItem: (_, stored) => {
+      value = stored
+    },
+    removeItem: () => {
+      value = null
+    },
+  }
+
+  const recovered = readOrder(storage)
+  expect(recovered.lines).toEqual([bath])
+  expect(recovered.notice).toMatch(
+    /volvé a elegir el tuyo en la categoría Kits/i,
+  )
+  expect(value).toBe(JSON.stringify(orderEnvelope([bath])))
+  expect(readOrder(storage)).toEqual({ lines: [bath], notice: '' })
+
+  value = JSON.stringify(orderEnvelope([oldKit, bath]))
+  expect(readOrder(storage)).toEqual({ lines: [oldKit, bath], notice: '' })
+})

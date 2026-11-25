@@ -20,6 +20,7 @@ export default defineConfig({
         '**/.cache/**',
         '**/AGENTS.md',
         '**/README.md',
+        '**/LCDD_Web_Assets_V2.0.zip',
         '**/package-lock.json',
         '**/.aws/**',
         '**/.codex/**',
