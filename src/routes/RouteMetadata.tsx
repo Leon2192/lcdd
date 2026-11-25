@@ -13,16 +13,14 @@ export function RouteMetadata() {
     const frame = requestAnimationFrame(() => {
       const main = document.querySelector('main')
       const heading = main?.querySelector<HTMLElement>('h1')
-      // La ficha abre por el título junto a la galería, incluso desde un relacionado.
-      if (
-        !heading?.hasAttribute('data-product-focus') &&
-        main?.contains(document.activeElement)
-      )
-        return
       if (!heading) return
+      const isProduct = heading.hasAttribute('data-product-focus')
+      if (!isProduct && main?.contains(document.activeElement)) return
       heading.setAttribute('tabindex', '-1')
       heading.focus({ preventScroll: true })
-      heading.scrollIntoView?.({ block: 'start', behavior: 'auto' })
+      // En la ficha, ScrollRestoration deja visible el encabezado de la página.
+      if (!isProduct)
+        heading.scrollIntoView?.({ block: 'start', behavior: 'auto' })
     })
     return () => cancelAnimationFrame(frame)
   }, [navigationType, pathname])

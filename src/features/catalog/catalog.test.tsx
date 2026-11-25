@@ -8,7 +8,7 @@ import {
 } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { createMemoryRouter, RouterProvider } from 'react-router'
-import { describe, it, expect, beforeEach } from 'vitest'
+import { describe, it, expect, beforeEach, vi } from 'vitest'
 import { orderStore } from '@/features/order/store'
 import { getOrderRule } from '@/features/order/rules'
 beforeEach(() => {
@@ -236,14 +236,19 @@ describe('Fichas oficiales', () => {
     ).toBe(true)
     expect(screen.queryByRole('combobox')).toBeNull()
   })
-  it('enfoca el título y presenta la galería antes de la descripción al abrir una ficha', async () => {
+  it('abre la ficha desde el encabezado sin desplazar la página al enfocar el título', async () => {
     visit('/catalogo?categoria=kits-para-eventos')
+    const scrollTo = vi.spyOn(window, 'scrollTo')
     fireEvent.click(screen.getByRole('link', { name: /Kit antiresaca Pillow/ }))
-    const title = await screen.findByRole('heading', {
+    const title = screen.getByRole('heading', {
       name: 'Kit antiresaca Pillow',
       level: 1,
     })
+    const scrollToTitle = vi.fn()
+    title.scrollIntoView = scrollToTitle
     await waitFor(() => expect(title).toHaveFocus())
+    expect(scrollTo).toHaveBeenCalledWith(0, 0)
+    expect(scrollToTitle).not.toHaveBeenCalled()
     const gallery = screen.getByRole('region', {
       name: 'Galería de Kit antiresaca Pillow',
     })
