@@ -92,7 +92,14 @@ describe('Catálogo y categorías', () => {
     const user = userEvent.setup()
     const router = visit('/catalogo')
     expect(screen.getAllByRole('article')).toHaveLength(16)
-    await user.click(screen.getByRole('checkbox', { name: 'Kits' }))
+    const filter = within(screen.getByRole('group', { name: 'Categorías' }))
+    expect(
+      within(screen.getByRole('main')).getAllByText('Categorías'),
+    ).toHaveLength(1)
+    expect(
+      screen.queryByText(/Filtrar por categoría|Filtrar categorías/),
+    ).not.toBeInTheDocument()
+    await user.click(filter.getByRole('checkbox', { name: 'Kits' }))
     expect(screen.getAllByRole('article')).toHaveLength(4)
     expect(router.state.location.search).toContain('kits-para-eventos')
     await user.click(screen.getByRole('button', { name: 'Limpiar filtros' }))

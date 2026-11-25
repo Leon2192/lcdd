@@ -1,3 +1,4 @@
+import { useId } from 'react'
 import { ProductGrid } from '@/components/ui/ProductGrid'
 import { Link, useSearchParams } from 'react-router'
 import { Checkbox } from '@/components/ui/Checkbox'
@@ -10,6 +11,7 @@ import {
   getCategoryProducts,
 } from '@/data/catalog/catalog'
 export function CatalogPage() {
+  const categoryFilterId = useId()
   const [params, setParams] = useSearchParams()
   const selected = params.getAll('categoria')
   const visible = catalog.categories.filter(
@@ -32,14 +34,12 @@ export function CatalogPage() {
       <header className="catalog-heading">
         <p className="eyebrow">Detalles para compartir</p>
         <h1>Todos nuestros productos</h1>
-        <p>Explorá las cinco categorías de La Casa del Detalle.</p>
       </header>
       <div className="catalog-layout">
         <aside className="catalog-sidebar">
           <details className="catalog-filter-disclosure" open>
-            <summary>Filtrar categorías</summary>
-            <fieldset>
-              <legend>Filtrar por categoría</legend>
+            <summary id={categoryFilterId}>Categorías</summary>
+            <fieldset aria-labelledby={categoryFilterId}>
               {catalog.categories.map((category) => (
                 <Checkbox
                   key={category.id}

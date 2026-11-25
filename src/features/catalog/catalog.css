@@ -39,10 +39,6 @@
     padding: 0;
     min-width: 0;
   }
-  .catalog-sidebar legend {
-    font-weight: 600;
-    margin-bottom: 12px;
-  }
   .catalog-sidebar .checkbox-label {
     min-height: 44px;
   }
