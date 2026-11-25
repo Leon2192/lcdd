@@ -1,4 +1,3 @@
-import * as whatsapp from '@/lib/whatsapp'
 import { render, screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { createMemoryRouter, RouterProvider } from 'react-router'
@@ -18,15 +17,16 @@ beforeEach(() => {
 })
 describe('Recorrido de pedido y cotización', () => {
   it('orienta al catálogo con pedido vacío y evita cotización vacía', async () => {
-    visit('/cotizacion')
+    const router = visit('/cotizacion')
     await screen.findByRole(
       'heading',
-      { name: 'Contanos sobre tu evento', level: 1 },
+      { name: 'Armá tu pedido', level: 1 },
       { timeout: 4_000 },
     )
-    expect(screen.getByText('Primero elegí qué querés consultar')).toBeVisible()
+    expect(router.state.location.pathname).toBe('/arma-tu-pedido')
+    expect(screen.getByText('Tu pedido está vacío')).toBeVisible()
     expect(
-      screen.queryByRole('button', { name: 'Cotizar por WhatsApp' }),
+      screen.queryByRole('link', { name: 'Cotizar por WhatsApp' }),
     ).toBeNull()
     expect(
       screen.getByRole('link', { name: 'Explorar catálogo' }),
@@ -119,81 +119,47 @@ describe('Recorrido de pedido y cotización', () => {
     expect(localStorage.getItem(ORDER_STORAGE_KEY)).toBeNull()
     expect(screen.getByText('Tu pedido está vacío')).toBeVisible()
   })
-  it('mantiene selección y datos de evento en memoria al volver para editar', async () => {
+  it('cotiza desde el pedido con la cantidad actual y conserva la selección', async () => {
     const user = userEvent.setup()
     orderStore.getState().add('P-003', 20)
-    visit('/arma-tu-pedido')
-    await screen.findByRole('heading', { level: 1, name: 'Armá tu pedido' })
-    await user.click(screen.getByRole('link', { name: 'Solicitar cotización' }))
-    await user.type(
-      await screen.findByRole('textbox', { name: 'Tu nombre (opcional)' }),
-      'María',
+    orderStore.getState().add('P-014', null)
+    const router = visit('/arma-tu-pedido')
+    const quote = await screen.findByRole(
+      'link',
+      { name: 'Cotizar por WhatsApp' },
+      { timeout: 4_000 },
     )
-    await user.click(
-      within(
-        screen.getByRole('navigation', { name: 'Ruta de navegación' }),
-      ).getByRole('link', { name: 'Armá tu pedido' }),
-    )
-    await screen.findByRole('heading', { level: 1, name: 'Armá tu pedido' })
+    const selection = screen.getByRole('region', { name: 'Tu selección' })
+    expect(
+      quote.compareDocumentPosition(selection) &
+        Node.DOCUMENT_POSITION_FOLLOWING,
+    ).toBeTruthy()
+    expect(
+      screen.queryByRole('navigation', { name: 'Etapas de la solicitud' }),
+    ).not.toBeInTheDocument()
+    expect(
+      screen.queryByRole('textbox', { name: 'Tu nombre (opcional)' }),
+    ).not.toBeInTheDocument()
     await user.click(
       screen.getByRole('button', {
         name: 'Aumentar cantidad para vasos personalizados',
       }),
     )
-    await user.click(screen.getByRole('link', { name: 'Solicitar cotización' }))
-    expect(
-      await screen.findByRole('textbox', { name: 'Tu nombre (opcional)' }),
-    ).toHaveValue('María')
-    expect(orderStore.getState().lines[0]?.quantity).toBe(21)
-    expect(localStorage.getItem(ORDER_STORAGE_KEY)).not.toContain('María')
-  })
-  it('abre WhatsApp con los datos del evento y conserva el pedido', async () => {
-    const user = userEvent.setup()
-    const open = vi.spyOn(whatsapp, 'openWhatsApp').mockReturnValue(true)
-    orderStore.getState().add('P-003', 20)
-    orderStore.getState().add('P-014', null)
-    visit('/cotizacion')
-    await screen.findByRole('heading', {
-      name: 'Contanos sobre tu evento',
-      level: 1,
-    })
-    await user.type(
-      await screen.findByRole('textbox', { name: 'Tu nombre (opcional)' }),
-      'José',
-    )
-    await user.type(
-      screen.getByRole('textbox', { name: 'Localidad (opcional)' }),
-      'Lanús',
-    )
-    await user.type(
-      screen.getByRole('textbox', {
-        name: 'Comentarios adicionales (opcional)',
-      }),
-      'Comentario privado',
-    )
-    await user.click(
-      screen.getByRole('checkbox', { name: 'Fecha por definir' }),
-    )
-    await user.click(
-      screen.getByRole('button', { name: 'Cotizar por WhatsApp' }),
-    )
-    expect(open).toHaveBeenCalledOnce()
-    const message = open.mock.calls[0]?.[0]
-    expect(message).toContain('Nombre: José')
-    expect(message).toContain('Localidad: Lanús')
-    expect(message).toContain('Fecha del evento: por definir')
+    const url = new URL(quote.getAttribute('href') ?? '')
+    expect(url.origin).toBe('https://wa.me')
+    expect(url.pathname).toBe('/5491135939460')
+    const message = url.searchParams.get('text')
+    expect(message).toContain('Vasos personalizados — Cantidad de unidades: 21')
     expect(message).toContain('Save the date — Servicio digital')
-    expect(
-      screen.queryByRole('textbox', { name: 'Mensaje preparado' }),
-    ).not.toBeInTheDocument()
-    expect(
-      screen.queryByRole('link', { name: 'Editar mi pedido' }),
-    ).not.toBeInTheDocument()
-    expect(orderStore.getState().lines).toHaveLength(2)
+    expect(message).not.toContain('Datos del evento')
     const stored = localStorage.getItem(ORDER_STORAGE_KEY)
-    expect(stored).not.toContain('José')
-    expect(stored).not.toContain('Lanús')
-    expect(stored).not.toContain('Comentario privado')
+    quote.addEventListener('click', (event) => event.preventDefault(), {
+      once: true,
+    })
+    await user.click(quote)
+    expect(router.state.location.pathname).toBe('/arma-tu-pedido')
+    expect(localStorage.getItem(ORDER_STORAGE_KEY)).toBe(stored)
+    expect(orderStore.getState().lines).toHaveLength(2)
   })
   it('ofrece selección manual del texto en la consulta de producto si falla el portapapeles', async () => {
     const user = userEvent.setup()

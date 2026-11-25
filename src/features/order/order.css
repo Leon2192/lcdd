@@ -167,6 +167,15 @@
   .order-summary > p:last-child {
     font-size: 0.875rem;
   }
+  .order-quote-action {
+    display: grid;
+    margin-block-end: 1.25rem;
+  }
+  @media (width >= 48rem) {
+    .order-quote-action {
+      justify-items: start;
+    }
+  }
   .order-review {
     display: grid;
     gap: 16px;

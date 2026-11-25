@@ -3,6 +3,8 @@ import userEvent from '@testing-library/user-event'
 import { createMemoryRouter, RouterProvider } from 'react-router'
 import { afterEach, beforeEach, describe, it, expect, vi } from 'vitest'
 import { routes } from '@/routes/routes'
+import { QuotationPage } from './QuotationPage'
+import { QuotationSession } from './QuotationSession'
 import { orderStore } from '@/features/order/store'
 import { ORDER_STORAGE_KEY } from '@/features/order/persistence'
 import { siteConfig } from '@/config/site'
@@ -21,7 +23,17 @@ function visit(path: string) {
   return router
 }
 async function quotation() {
-  visit('/cotizacion')
+  const router = createMemoryRouter([
+    {
+      path: '/',
+      element: (
+        <QuotationSession>
+          <QuotationPage />
+        </QuotationSession>
+      ),
+    },
+  ])
+  render(<RouterProvider router={router} />)
   await screen.findByRole('heading', {
     name: 'Contanos sobre tu evento',
     level: 1,
@@ -115,7 +127,7 @@ describe('Activación de WhatsApp 05.1', () => {
   )
 })
 
-describe('Cotización directa y datos del evento', () => {
+describe('Formulario de evento en pausa y pistas de producto', () => {
   it.each(['Fiesta de XV', 'Casamiento', 'Cumpleaños', 'Otro'])(
     'incluye la opción aprobada %s al abrir WhatsApp',
     async (eventType) => {

@@ -12,7 +12,7 @@ const cases = [
   { path: '/', label: 'Detalles personalizados para eventos' },
   { path: '/catalogo', label: 'Catálogo' },
   { path: '/arma-tu-pedido', label: 'Armá tu pedido' },
-  { path: '/cotizacion', label: 'Tu evento y solicitud de cotización' },
+  { path: '/cotizacion', label: 'Armá tu pedido' },
   ...catalog.categories.map((category) => ({
     path: `/catalogo/categoria/${category.id}`,
     label: category.name,
@@ -130,7 +130,7 @@ describe('Rutas, metadatos y enlaces', () => {
     expect(search).toHaveFocus()
     expect(document.title).toContain('Souvenirs personalizados')
   })
-  it('no roba foco cuando el usuario ya empezó a usar el formulario', async () => {
+  it('no roba foco al usuario que ya está editando una cantidad en el pedido', async () => {
     const frames: FrameRequestCallback[] = []
     vi.spyOn(window, 'requestAnimationFrame').mockImplementation((callback) => {
       frames.push(callback)
@@ -138,15 +138,15 @@ describe('Rutas, metadatos y enlaces', () => {
     })
     orderStore.getState().add('P-003', 20)
     const router = visit('/nosotros')
-    await act(() => router.navigate('/cotizacion'))
-    const name = await screen.findByRole('textbox', {
-      name: 'Tu nombre (opcional)',
+    await act(() => router.navigate('/arma-tu-pedido'))
+    const quantity = await screen.findByRole('combobox', {
+      name: 'Cantidad para Vasos personalizados',
     })
-    name.focus()
+    quantity.focus()
     act(() => {
       for (const callback of frames) callback(0)
     })
-    expect(name).toHaveFocus()
+    expect(quantity).toHaveFocus()
   })
   it('muestra recuperación genérica sin revelar detalles internos', async () => {
     vi.spyOn(console, 'error').mockImplementation(() => {})

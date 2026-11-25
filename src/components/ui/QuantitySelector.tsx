@@ -34,6 +34,7 @@ export function QuantitySelector({
     <Select
       ref={ref}
       label={label}
+      className="quantity-control"
       disabled={disabled}
       value={value ?? ''}
       {...(error ? { error } : {})}

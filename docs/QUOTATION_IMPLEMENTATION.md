@@ -2,10 +2,10 @@
 
 ## Flujo actual
 
-- `/cotizacion` requiere una selección válida. Con el pedido vacío, orienta al catálogo.
-- React Hook Form conserva en memoria los campos opcionales del evento durante la navegación interna. LocalStorage conserva únicamente el pedido. Zod valida el tipo de evento y la fecha de calendario, incluyendo la compatibilidad con «Fecha por definir».
-- `generateQuotationMessage` revalida la selección y usa los nombres de los productos, las cantidades o el servicio digital y los campos aportados. La fecha se expresa en DD/MM/AAAA.
-- **Cotizar por WhatsApp** abre en la misma pestaña el enlace oficial con el mensaje preparado. El envío se decide en WhatsApp y la selección permanece guardada.
+- **Cotizar por WhatsApp** aparece en `/arma-tu-pedido`, antes de la lista de productos. El enlace usa la selección actual y el número oficial de LCDD.
+- Las solicitudes incluyen el nombre y cantidad de los productos físicos y los servicios digitales elegidos. El usuario decide cuándo enviar desde WhatsApp y el pedido permanece guardado.
+- La ruta anterior `/cotizacion` redirige al pedido. El formulario de datos del evento queda en pausa.
+
 - La consulta directa desde una ficha conserva su diálogo contextual y la opción de copiar el texto. Si el portapapeles falla, el diálogo selecciona el mensaje para copiarlo manualmente.
 
 ## Corrección del desplegable a 360 px

@@ -1,4 +1,3 @@
-import * as whatsapp from '@/lib/whatsapp'
 import {
   act,
   fireEvent,
@@ -436,20 +435,14 @@ it('cotiza los tres formatos por separado y permite modificar y quitar una líne
     }
   }
 
-  const open = vi.spyOn(whatsapp, 'openWhatsApp').mockReturnValue(true)
-  await act(() => router.navigate('/cotizacion'))
-  await act(async () => {
-    fireEvent.click(
-      screen.getByRole('button', { name: 'Cotizar por WhatsApp' }),
-    )
-  })
-  expect(open).toHaveBeenCalledOnce()
-  const message = open.mock.calls[0]?.[0]
+  const quote = screen.getByRole('link', { name: 'Cotizar por WhatsApp' })
+  const message = new URL(quote.getAttribute('href') ?? '').searchParams.get(
+    'text',
+  )
   expect(message).toContain('Kit antiresaca Bolsa — Cantidad de kits: 12')
   expect(message).toContain('Kit antiresaca Pillow — Cantidad de kits: 14')
   expect(message).toContain('Kit antiresaca Craft — Cantidad de kits: 14')
 
-  await act(() => router.navigate('/arma-tu-pedido'))
   fireEvent.click(
     screen.getByRole('button', { name: 'Quitar Kit antiresaca Craft' }),
   )

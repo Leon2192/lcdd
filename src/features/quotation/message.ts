@@ -1,9 +1,10 @@
 import { catalog, getProduct } from '@/data/catalog/catalog'
 import { formatEventDate } from '@/lib/event-date'
+import { getValidatedWhatsAppUrl } from '@/lib/whatsapp'
 export { encodeWhatsAppUrl, getValidatedWhatsAppUrl } from '@/lib/whatsapp'
 import { reconcileOrder, orderEnvelope, getLineLabel } from '@/features/order'
 import type { OrderLine } from '@/features/order'
-import { quotationSchema } from './schema'
+import { emptyQuotation, quotationSchema } from './schema'
 import type { QuotationData } from './schema'
 export function generateQuotationMessage(
   lines: readonly OrderLine[],
@@ -40,6 +41,18 @@ export function generateQuotationMessage(
     ...(event.comments ? [`Comentarios: ${event.comments}`] : []),
     'Gracias.',
   ].join('\n\n')
+}
+export function getOrderQuotationUrl(
+  lines: readonly OrderLine[],
+): string | null {
+  if (!lines.length) return null
+  try {
+    return getValidatedWhatsAppUrl(
+      generateQuotationMessage(lines, emptyQuotation),
+    )
+  } catch {
+    return null
+  }
 }
 export function generateDirectConsultation(productId: string): string {
   const product = catalog.products.find((item) => item.id === productId)

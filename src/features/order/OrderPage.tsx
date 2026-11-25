@@ -16,7 +16,8 @@ import { useOrder } from './use-order'
 import { selectOrderProducts, selectSuggestions } from './selectors'
 import { getLineLabel, orderQuantityRange } from './rules'
 import { OrderSummary } from './components/OrderSummary'
-import { OrderSteps } from './components/OrderSteps'
+import { Icon } from '@/components/ui/Icon'
+import { getOrderQuotationUrl } from '@/features/quotation/message'
 export function OrderPage() {
   const lines = useOrder((state) => state.lines)
   const notice = useOrder((state) => state.notice)
@@ -30,6 +31,7 @@ export function OrderPage() {
   const reference = referenceId ? getProduct(referenceId) : undefined
   const products = selectOrderProducts(lines)
   const suggestions = selectSuggestions(lines)
+  const quotationUrl = getOrderQuotationUrl(lines)
   return (
     <div className="container-lcdd order-page">
       <Breadcrumbs
@@ -38,12 +40,8 @@ export function OrderPage() {
       <header className="order-heading">
         <p className="eyebrow">Prepará tu evento</p>
         <h1>Armá tu pedido</h1>
-        <p>
-          Revisá tu selección y contanos qué necesitás para solicitar una
-          cotización personalizada.
-        </p>
+        <p>Revisá tu selección y solicitá una cotización por WhatsApp.</p>
       </header>
-      <OrderSteps current="selection" />
       {notice && (
         <p className="order-notice" role="status">
           {notice}
@@ -70,6 +68,17 @@ export function OrderPage() {
         />
       ) : (
         <>
+          <div className="order-quote-action">
+            {quotationUrl ? (
+              <a className="button button--primary" href={quotationUrl}>
+                <Icon name="whatsapp" /> Cotizar por WhatsApp
+              </a>
+            ) : (
+              <p role="alert">
+                No pudimos preparar la cotización. Revisá tu selección.
+              </p>
+            )}
+          </div>
           <div className="order-layout">
             <section aria-labelledby="order-selection-title">
               <h2 id="order-selection-title">Tu selección</h2>
@@ -143,9 +152,6 @@ export function OrderPage() {
             </section>
             <aside className="order-review">
               <OrderSummary lines={lines} />
-              <Link className="button button--primary" to="/cotizacion">
-                Solicitar cotización
-              </Link>
               <p>La solicitud no implica una compra confirmada.</p>
             </aside>
           </div>

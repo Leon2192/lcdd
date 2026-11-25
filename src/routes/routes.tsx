@@ -3,6 +3,7 @@ import { CatalogPage } from '@/features/catalog/CatalogPage'
 import { CategoryPage } from '@/features/catalog/CategoryPage'
 import { ProductDetailPage } from '@/features/catalog/ProductDetailPage'
 import { loadRouteModule } from './route-assets'
+import { replace } from 'react-router'
 import type { RouteObject } from 'react-router'
 import { HomePage } from '@/features/home/HomePage'
 import { navigation } from '@/config/navigation'
@@ -53,12 +54,7 @@ export const routes: RouteObject[] = [
       }),
       {
         path: '/cotizacion',
-        lazy: async () => {
-          const { QuotationPage } = await loadRouteModule(
-            () => import('@/features/quotation/QuotationPage'),
-          )
-          return { Component: QuotationPage }
-        },
+        loader: () => replace('/arma-tu-pedido'),
       },
       {
         path: '/catalogo/categoria/:categorySlug',
